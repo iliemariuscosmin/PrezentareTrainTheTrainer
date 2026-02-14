@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De la Bulgăre la Bijuterie — Training Lut Polimeric</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- AOS - Animate on Scroll -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===================== PROGRESS BAR ===================== -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav class="nav" id="mainNav">
+        <div class="nav-logo">🎨 Lut Polimeric</div>
+        <ul class="nav-links">
+            <li><a href="#hero">Acasă</a></li>
+            <li><a href="#intro">Ce e lutul?</a></li>
+            <li><a href="#materiale">Materiale</a></li>
+            <li><a href="#modelare">Modelare</a></li>
+            <li><a href="#rasina">Rășină UV</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ===================== SIDE DOTS ===================== -->
+    <div class="side-dots" id="sideDots">
+        <a href="#hero" class="dot active" data-section="hero" title="Acasă"></a>
+        <a href="#intro" class="dot" data-section="intro" title="Ce e lutul?"></a>
+        <a href="#materiale" class="dot" data-section="materiale" title="Materiale"></a>
+        <a href="#modelare" class="dot" data-section="modelare" title="Modelare"></a>
+        <a href="#rasina" class="dot" data-section="rasina" title="Rășină UV"></a>
+        <a href="#galerie" class="dot" data-section="galerie" title="Galerie"></a>
+        <a href="#quiz" class="dot" data-section="quiz" title="Quiz"></a>
+        <a href="#recap" class="dot" data-section="recap" title="Recap"></a>
+    </div>
+
+    <!-- ===================== SECTION 1: HERO ===================== -->
+    <section id="hero" class="section hero-section">
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="hero-content">
+            <h1 class="hero-title" data-aos="zoom-in" data-aos-duration="1000">
+                De la <span class="highlight-coral">Bulgăre</span> la <span class="highlight-gold">Bijuterie</span>
+            </h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300">
+                Descoperă magia lutului polimeric și a rășinii UV epoxidice
+            </p>
+            <div class="hero-badges" data-aos="fade-up" data-aos-delay="500">
+                <span class="badge badge-purple">🕐 15 minute</span>
+                <span class="badge badge-teal">✨ Creativ</span>
+                <span class="badge badge-coral">🎯 Practic</span>
+            </div>
+            <a href="#intro" class="scroll-arrow" data-aos="fade-up" data-aos-delay="700">
+                <span>Hai să începem</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </a>
+        </div>
+        <div class="hero-image" data-aos="fade-left" data-aos-delay="400">
+            <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&h=700&fit=crop&crop=center" 
+                 alt="Bijuterii colorate din lut polimeric" loading="eager">
+            <div class="hero-image-decoration"></div>
+        </div>
+    </section>
+
+    <!-- ===================== SECTION 2: INTRO ===================== -->
+    <section id="intro" class="section intro-section">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">✨ Descoperă</span>
+                <h2>Ce este <span class="highlight-teal">Lutul Polimeric</span>?</h2>
+            </div>
+            
+            <div class="intro-grid">
+                <div class="intro-text" data-aos="fade-right">
+                    <p class="intro-lead">
+                        Lutul polimeric este un material de modelat pe bază de PVC care se întărește la 
+                        <strong>temperaturi joase</strong> (110-130°C) în cuptorul de acasă.
+                    </p>
+                    <div class="fun-fact">
+                        <span class="fun-fact-icon">💡</span>
+                        <div>
+                            <strong>Știai că?</strong>
+                            <p>Lutul polimeric a fost inventat în anii 1930 în Germania de Fifi Rehbinder 
+                            și a fost inițial conceput ca material izolator!</p>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li data-aos="fade-up" data-aos-delay="100">
+                            <span class="feature-icon">🎨</span>
+                            <span>Disponibil în <strong>sute de culori</strong></span>
+                        </li>
+                        <li data-aos="fade-up" data-aos-delay="200">
+                            <span class="feature-icon">🔥</span>
+                            <span>Se coace în <strong>cuptorul de acasă</strong></span>
+                        </li>
+                        <li data-aos="fade-up" data-aos-delay="300">
+                            <span class="feature-icon">💎</span>
+                            <span>Se poate <strong>șlefui, lustrui, lacui</strong></span>
+                        </li>
+                        <li data-aos="fade-up" data-aos-delay="400">
+                            <span class="feature-icon">🧪</span>
+                            <span>Se combină perfect cu <strong>rășina UV epoxidică</strong></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="intro-visual" data-aos="fade-left">
+                    <div class="image-stack">
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&h=400&fit=crop" 
+                             alt="Lut polimeric colorat" class="stack-img stack-img-1">
+                        <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=500&h=400&fit=crop" 
+                             alt="Culori vibrante lut" class="stack-img stack-img-2">
+                        <div class="image-badge">Nu e nevoie de talent — doar de curiozitate! 🌟</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SECTION 3: MATERIALE ===================== -->
+    <section id="materiale" class="section materiale-section">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">🧰 Pregătire</span>
+                <h2>Ce <span class="highlight-purple">Materiale</span> ne trebuie?</h2>
+                <p class="section-desc">Totul pentru prima ta bijuterie — de la lut la accesorii</p>
+            </div>
+
+            <div class="materiale-tabs" data-aos="fade-up" data-aos-delay="200">
+                <button class="tab-btn active" data-tab="lut">🎨 Tipuri de Lut</button>
+                <button class="tab-btn" data-tab="instrumente">🛠️ Instrumente</button>
+                <button class="tab-btn" data-tab="rasina-mat">🧪 Rășină UV</button>
+            </div>
+
+            <div class="tab-content active" id="tab-lut">
+                <div class="cards-grid">
+                    <div class="material-card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #FF6B6B, #ee5a24);">
+                            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300&h=200&fit=crop" alt="Fimo">
+                        </div>
+                        <h3>FIMO</h3>
+                        <div class="card-tag">🇩🇪 Germania</div>
+                        <p>Cel mai popular brand. Vine în variante <strong>Soft</strong>, <strong>Professional</strong> și <strong>Effect</strong>.</p>
+                        <div class="card-rating">
+                            <span>Dificultate:</span>
+                            <div class="rating-dots">
+                                <span class="dot-filled"></span>
+                                <span class="dot-filled"></span>
+                                <span class="dot-empty"></span>
+                                <span class="dot-empty"></span>
+                                <span class="dot-empty"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="material-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #a29bfe, #6c5ce7);">
+                            <img src="https://images.unsplash.com/photo-1528396518501-b53880b6d890?w=300&h=200&fit=crop" alt="Sculpey">
+                        </div>
+                        <h3>SCULPEY</h3>
+                        <div class="card-tag">🇺🇸 SUA</div>
+                        <p>Foarte moale și ușor de lucrat. Perfect pentru <strong>începători</strong> și copii.</p>
+                        <div class="card-rating">
+                            <span>Dificultate:</span>
+                            <div class="rating-dots">
+                                <span class="dot-filled"></span>
+                                <span class="dot-empty"></span>
+                                <span class="dot-empty"></span>
+                                <span class="dot-empty"></span>
+                                <span class="dot-empty"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="material-card" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #00cec9, #0984e3);">
+                            <img src="https://images.unsplash.com/photo-1596638787647-904d822d751e?w=300&h=200&fit=crop" alt="Cernit">
+                        </div>
+                        <h3>CERNIT</h3>
+                        <div class="card-tag">🇧🇪 Belgia</div>
+                        <p>Finisaj <strong>semi-translucid</strong> unic. Excelent pentru tehnici avansate și mixuri.</p>
+                        <div class="card-rating">
+                            <span>Dificultate:</span>
+                            <div class="rating-dots">
+                                <span class="dot-filled"></span>
+                                <span class="dot-filled"></span>
+                                <span class="dot-filled"></span>
+                                <span class="dot-empty"></span>
+                                <span class="dot-empty"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-instrumente">
+                <div class="tools-showcase">
+                    <div class="tool-item" data-aos="flip-up" data-aos-delay="100">
+                        <div class="tool-emoji">🖐️</div>
+                        <h4>Mâinile tale</h4>
+                        <p>Cel mai important instrument!</p>
+                    </div>
+                    <div class="tool-item" data-aos="flip-up" data-aos-delay="150">
+                        <div class="tool-emoji">📏</div>
+                        <h4>Rolă acrilică</h4>
+                        <p>Pentru întinderea uniformă</p>
+                    </div>
+                    <div class="tool-item" data-aos="flip-up" data-aos-delay="200">
+                        <div class="tool-emoji">🔪</div>
+                        <h4>Cutter / Lamă</h4>
+                        <p>Pentru tăieturi precise</p>
+                    </div>
+                    <div class="tool-item" data-aos="flip-up" data-aos-delay="250">
+                        <div class="tool-emoji">🍪</div>
+                        <h4>Forme de tăiat</h4>
+                        <p>Cercuri, inimi, stele, etc.</p>
+                    </div>
+                    <div class="tool-item" data-aos="flip-up" data-aos-delay="300">
+                        <div class="tool-emoji">📌</div>
+                        <h4>Ace & Ace cu buclă</h4>
+                        <p>Pentru montaj bijuterii</p>
+                    </div>
+                    <div class="tool-item" data-aos="flip-up" data-aos-delay="350">
+                        <div class="tool-emoji">🧻</div>
+                        <h4>Hârtie de copt</h4>
+                        <p>Suprafață de lucru</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-rasina-mat">
+                <div class="rasina-info">
+                    <div class="rasina-card" data-aos="fade-right">
+                        <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=500&h=350&fit=crop" 
+                             alt="Rășină UV">
+                        <div class="rasina-overlay">
+                            <span>✨ Efect de cristal</span>
+                        </div>
+                    </div>
+                    <div class="rasina-details" data-aos="fade-left">
+                        <h3>Rășina UV Epoxidică</h3>
+                        <p>Rășina UV se <strong>întărește în 2-3 minute</strong> sub lumina UV, oferind un finisaj 
+                        strălucitor ca sticla.</p>
+                        <div class="rasina-steps">
+                            <div class="r-step">
+                                <span class="r-step-num">1</span>
+                                <span>Aplici un strat subțire pe bijuterie</span>
+                            </div>
+                            <div class="r-step">
+                                <span class="r-step-num">2</span>
+                                <span>Elimini bulele cu o scobitor</span>
+                            </div>
+                            <div class="r-step">
+                                <span class="r-step-num">3</span>
+                                <span>Expui la lampa UV 2-3 minute</span>
+                            </div>
+                            <div class="r-step">
+                                <span class="r-step-num">4</span>
+                                <span>Gata! Efect de sticlă premium ✨</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SECTION 4: MODELARE ===================== -->
+    <section id="modelare" class="section modelare-section">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">🤲 Practică</span>
+                <h2>Cum <span class="highlight-coral">Modelăm</span>?</h2>
+                <p class="section-desc">5 pași simpli de la lut brut la piesă finită</p>
+            </div>
+
+            <div class="steps-timeline">
+                <!-- Step 1 -->
+                <div class="step" data-aos="fade-right">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="gif/EVERYTHING_YOU_NEED_TO_KNOW_IN_3_MINUTES_4_DEMOS_HOW_TO_CONDITION_POLYMER_CLAY_FAST.gif" 
+                                 alt="Condiționarea lutului polimeric - demo animat"
+                                 style="width: 100%; border-radius: 16px; object-fit: cover;">
+                            <div class="step-badge">🎬 Demo GIF</div>
+                        </div>
+                        <div class="step-text">
+                            <h3>Condiționarea Lutului</h3>
+                            <p>Frământă lutul în mâini până devine <strong>moale și elastic</strong>. 
+                            Aceasta activează plastifianții și face materialul maleabil.</p>
+                            <div class="step-tip">
+                                💡 <strong>Tip:</strong> Dacă e prea tare, tăie-l în bucăți mici și lucrează-le pe rând.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step" data-aos="fade-left">
+                    <div class="step-number">02</div>
+                    <div class="step-content reverse">
+                        <div class="step-image">
+                            <img src="https://images.unsplash.com/photo-1582845512747-e42001c95638?w=400&h=300&fit=crop" 
+                                 alt="Mixarea culorilor">
+                            <div class="step-badge">🎨 Creativ</div>
+                        </div>
+                        <div class="step-text">
+                            <h3>Mixarea Culorilor</h3>
+                            <p>Amestecă <strong>două sau mai multe culori</strong> pentru nuanțe unice. 
+                            Tehnica Skinner Blend creează gradienți superbi.</p>
+                            <div class="step-tip">
+                                💡 <strong>Tip:</strong> Culorile deschise + închise = efecte dramatice!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step" data-aos="fade-right">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&h=300&fit=crop" 
+                                 alt="Formarea piesei">
+                            <div class="step-badge">✂️ Precizie</div>
+                        </div>
+                        <div class="step-text">
+                            <h3>Formarea Piesei</h3>
+                            <p>Intinde lutul cu rola acrilică și <strong>decupează formele</strong> dorite. 
+                            Adaugă texturi, imprimeuri sau decorațiuni.</p>
+                            <div class="step-tip">
+                                💡 <strong>Tip:</strong> Grosimea ideală: 2-3mm pentru cercei, 4-5mm pentru pandantive.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step" data-aos="fade-left">
+                    <div class="step-number">04</div>
+                    <div class="step-content reverse">
+                        <div class="step-image">
+                            <img src="https://media1.tenor.com/m/Acw0MiUDE-QAAAAd/%EA%BC%AC%EC%95%BC%EB%B9%B5%EC%95%BC%EC%82%90%EC%95%84%ED%94%BC%EC%9E%90%EA%B5%BD%EA%B8%B0%EA%B5%BD%EB%8B%A4%EC%98%A4%EB%B8%90%EB%8B%AB%EA%B8%B0-tv%EC%9C%A0%EC%B9%98%EC%9B%90.gif" 
+                                 alt="Coacere în cuptor - demo animat"
+                                 style="width: 100%; border-radius: 16px; object-fit: cover;">
+                            <div class="step-badge">🔥 130°C</div>
+                        </div>
+                        <div class="step-text">
+                            <h3>Coacerea</h3>
+                            <p>Coace piesele la <strong>110-130°C</strong> pentru 15-30 minute 
+                            (depinde de grosime). Lasă să se răcească complet.</p>
+                            <div class="step-tip">
+                                ⚠️ <strong>Atenție:</strong> Nu depăși temperatura! Lutul poate degaja fum toxic dacă arde.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step" data-aos="fade-right">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=300&fit=crop" 
+                                 alt="Finisare">
+                            <div class="step-badge">💎 Final</div>
+                        </div>
+                        <div class="step-text">
+                            <h3>Finisarea & Asamblarea</h3>
+                            <p>Șlefuiește cu hârtie abrazivă fină, lustruiește, apoi <strong>montează 
+                            accesoriile</strong>: cârlige de cercei, lanțuri, inele.</p>
+                            <div class="step-tip">
+                                💡 <strong>Tip:</strong> Începe cu granulație 400, apoi 800, apoi 1200 pentru efect de oglindă.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SECTION 5: RĂȘINĂ UV ===================== -->
+    <section id="rasina" class="section rasina-section">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">🧪 Magie</span>
+                <h2>Rășina <span class="highlight-gold">UV Epoxidică</span></h2>
+                <p class="section-desc">Secretul finisajului premium — de la mat la strălucitor în 3 minute</p>
+            </div>
+
+            <div class="rasina-demo" data-aos="fade-up">
+                <div class="demo-container">
+                    <div class="demo-before-after">
+                        <div class="demo-side demo-before">
+                            <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=500&h=500&fit=crop" 
+                                 alt="Înainte de rășină">
+                            <div class="demo-label">Înainte</div>
+                        </div>
+                        <div class="demo-divider">
+                            <span>→</span>
+                        </div>
+                        <div class="demo-side demo-after">
+                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&h=500&fit=crop" 
+                                 alt="După rășină UV">
+                            <div class="demo-label">După ✨</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rasina-process">
+                <div class="process-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="process-icon">💧</div>
+                    <div class="process-num">1</div>
+                    <h4>Aplică</h4>
+                    <p>Strat subțire și uniform de rășină UV pe bijuterie</p>
+                    <div class="process-anim">
+                        <div class="drop-animation"></div>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="process-icon">🫧</div>
+                    <div class="process-num">2</div>
+                    <h4>Elimină bulele</h4>
+                    <p>Folosește o scobitor sau un brichetă rapidă</p>
+                    <div class="process-anim">
+                        <div class="bubble-animation">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="process-icon">🔦</div>
+                    <div class="process-num">3</div>
+                    <h4>Expune la UV</h4>
+                    <p>2-3 minute sub lampa UV — rășina devine solidă</p>
+                    <div class="process-anim">
+                        <div class="uv-animation"></div>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="process-icon">💎</div>
+                    <div class="process-num">4</div>
+                    <h4>Gata!</h4>
+                    <p>Finisaj cristalin, rezistent și spectaculos</p>
+                    <div class="process-anim">
+                        <div class="sparkle-animation">
+                            <span>✨</span><span>✨</span><span>✨</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rasina-warnings" data-aos="fade-up">
+                <div class="warning-card warning-do">
+                    <h4>✅ Fă așa</h4>
+                    <ul>
+                        <li>Lucrează într-o cameră ventilată</li>
+                        <li>Poartă mănuși de nitrile</li>
+                        <li>Aplică straturi subțiri</li>
+                        <li>Curăță imediat scurgerile</li>
+                    </ul>
+                </div>
+                <div class="warning-card warning-dont">
+                    <h4>❌ Nu fă așa</h4>
+                    <ul>
+                        <li>Nu atinge rășina cu mâinile goale</li>
+                        <li>Nu aplica straturi groase (= bule)</li>
+                        <li>Nu privi direct în lampa UV</li>
+                        <li>Nu folosi rășina pe suprafețe umede</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SECTION 6: GALERIE ===================== -->
+    <section id="galerie" class="section galerie-section">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">🖼️ Inspirație</span>
+                <h2>Galerie de <span class="highlight-teal">Piese Finite</span></h2>
+                <p class="section-desc">Ce poți crea cu lut polimeric și rășină UV</p>
+                <p class="section-credit" style="margin-top: 12px; font-size: 0.9rem; color: var(--text-medium);">
+                    Fotografii preluate de pe 
+                    <a href="https://rashinathor.ro" target="_blank" 
+                       style="color: var(--purple-dark); font-weight: 700; text-decoration: underline; text-decoration-color: var(--gold);">
+                        rashinathor.ro
+                    </a> — bijuterii artizanale handmade din lut polimeric cu rășină epoxidică 💜
+                </p>
+            </div>
+
+            <div class="swiper gallery-swiper" data-aos="fade-up">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="https://rashinathor.ro/shop/bijuterii/cercei/cercei-feminini-din-lut-polimeric-cu-rasina-epoxidica/" target="_blank" class="gallery-card">
+                            <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05593-ARW_DxO_DeepPRIME-Edit-2-Photoroom.jpg?fit=750%2C750&ssl=1" 
+                                 alt="Cercei Feminini din Lut Polimeric cu Rășină Epoxidică">
+                            <div class="gallery-info">
+                                <h4>Cercei Feminini</h4>
+                                <span class="gallery-tag">Efect marmurat roz & auriu</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://rashinathor.ro/shop/bijuterii/cercei-floare-din-lut-polimeric-cu-rasina-epoxidica/" target="_blank" class="gallery-card">
+                            <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05590-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" 
+                                 alt="Cercei Floare din Lut Polimeric cu Rășină Epoxidică">
+                            <div class="gallery-info">
+                                <h4>Cercei Floare</h4>
+                                <span class="gallery-tag">Design floral geometric</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://rashinathor.ro/shop/bijuterii/cercei-inima-din-lut-polimeric-cu-rasina-epoxidica/" target="_blank" class="gallery-card">
+                            <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05598-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" 
+                                 alt="Cercei Inimă din Lut Polimeric cu Rășină Epoxidică">
+                            <div class="gallery-info">
+                                <h4>Cercei Inimă</h4>
+                                <span class="gallery-tag">Efect marmurat & foiță aurie</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://rashinathor.ro/shop/bijuterii/cercei-picatura-de-ocean-din-lut-polimeric-cu-rasina-epoxidica/" target="_blank" class="gallery-card">
+                            <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05602-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" 
+                                 alt="Cercei Picătură de Ocean din Lut Polimeric cu Rășină Epoxidică">
+                            <div class="gallery-info">
+                                <h4>Cercei Picătură de Ocean</h4>
+                                <span class="gallery-tag">Efect oceanic albastru</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://rashinathor.ro/shop/bijuterii/cercei-trifoi-din-lut-polimeric-cu-rasina-epoxidica/" target="_blank" class="gallery-card">
+                            <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05609-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" 
+                                 alt="Cercei Trifoi din Lut Polimeric cu Rășină Epoxidică">
+                            <div class="gallery-info">
+                                <h4>Cercei Trifoi</h4>
+                                <span class="gallery-tag">Cabochon marmurat & ramă colorată</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://rashinathor.ro/shop/bijuterii/cercei/cercei-stea-din-lut-polimeric-cu-rasina-epoxidica/" target="_blank" class="gallery-card">
+                            <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05571-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" 
+                                 alt="Cercei Stea din Lut Polimeric cu Rășină Epoxidică">
+                            <div class="gallery-info">
+                                <h4>Cercei Stea</h4>
+                                <span class="gallery-tag">Efect marmurat ocean</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SECTION 7: QUIZ INTERACTIV ===================== -->
+    <section id="quiz" class="section quiz-section">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">🧠 Testează</span>
+                <h2>Quiz <span class="highlight-coral">Interactiv</span></h2>
+                <p class="section-desc">Hai să vedem ce ai reținut! 5 întrebări rapide.</p>
+            </div>
+
+            <div class="quiz-container" data-aos="fade-up" id="quizContainer">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" id="quizProgressBar"></div>
+                    <span class="quiz-progress-text" id="quizProgressText">Întrebarea 1 / 5</span>
+                </div>
+                
+                <div class="quiz-card" id="quizCard">
+                    <h3 class="quiz-question" id="quizQuestion"></h3>
+                    <div class="quiz-options" id="quizOptions"></div>
+                    <div class="quiz-feedback" id="quizFeedback"></div>
+                    <button class="quiz-next-btn" id="quizNextBtn" style="display:none;">
+                        Următoarea →
+                    </button>
+                </div>
+
+                <div class="quiz-result" id="quizResult" style="display:none;">
+                    <div class="result-emoji" id="resultEmoji"></div>
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultText"></p>
+                    <button class="quiz-restart-btn" id="quizRestartBtn">🔄 Încearcă din nou</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SECTION 8: RECAP ===================== -->
+    <section id="recap" class="section recap-section">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">📋 Sumar</span>
+                <h2>Ce am <span class="highlight-gold">învățat</span> azi?</h2>
+            </div>
+
+            <div class="recap-timeline" data-aos="fade-up">
+                <div class="recap-item" data-aos="fade-right" data-aos-delay="100">
+                    <div class="recap-icon">🧱</div>
+                    <div class="recap-text">
+                        <h4>Lutul Polimeric</h4>
+                        <p>Material pe bază de PVC, se coace la 110-130°C, disponibil în sute de culori.</p>
+                    </div>
+                </div>
+                <div class="recap-item" data-aos="fade-left" data-aos-delay="200">
+                    <div class="recap-icon">🎨</div>
+                    <div class="recap-text">
+                        <h4>Branduri & Instrumente</h4>
+                        <p>Fimo, Sculpey, Cernit — fiecare cu personalitatea sa. Instrumente simple de acasă.</p>
+                    </div>
+                </div>
+                <div class="recap-item" data-aos="fade-right" data-aos-delay="300">
+                    <div class="recap-icon">🤲</div>
+                    <div class="recap-text">
+                        <h4>Procesul de Modelare</h4>
+                        <p>Condiționare → Mixare culori → Formare → Coacere → Finisare.</p>
+                    </div>
+                </div>
+                <div class="recap-item" data-aos="fade-left" data-aos-delay="400">
+                    <div class="recap-icon">💎</div>
+                    <div class="recap-text">
+                        <h4>Rășina UV</h4>
+                        <p>Finisaj de cristal, se întărește în 2-3 minute. Secretul bijuteriilor premium.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recap-cta" data-aos="zoom-in" data-aos-delay="500">
+                <div class="cta-box">
+                    <h3>🚀 Provocare pentru acasă!</h3>
+                    <p>Creează prima ta bijuterie din lut polimeric săptămâna aceasta!</p>
+                    <div class="cta-checklist">
+                        <label class="cta-check">
+                            <input type="checkbox">
+                            <span>Cumpără un pachet de lut (Fimo Soft — recomandat)</span>
+                        </label>
+                        <label class="cta-check">
+                            <input type="checkbox">
+                            <span>Fă o formă simplă (disc, inimioară)</span>
+                        </label>
+                        <label class="cta-check">
+                            <input type="checkbox">
+                            <span>Coace-o la 110°C, 30 min</span>
+                        </label>
+                        <label class="cta-check">
+                            <input type="checkbox">
+                            <span>Adaugă rășină UV pentru extra WOW</span>
+                        </label>
+                        <label class="cta-check">
+                            <input type="checkbox">
+                            <span>Poartă-o cu mândrie! 🎉</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recap-resources" data-aos="fade-up">
+                <h3>📚 Resurse utile</h3>
+                <div class="resources-grid">
+                    <a href="#" class="resource-card">
+                        <span class="resource-icon">🛒</span>
+                        <h4>Unde cumperi materiale</h4>
+                        <p>Magazine online recomandate</p>
+                    </a>
+                    <a href="#" class="resource-card">
+                        <span class="resource-icon">📺</span>
+                        <h4>Tutoriale video</h4>
+                        <p>Canale YouTube recomandate</p>
+                    </a>
+                    <a href="#" class="resource-card">
+                        <span class="resource-icon">📖</span>
+                        <h4>Cărți & Ghiduri</h4>
+                        <p>Aprofundează tehnicile</p>
+                    </a>
+                    <a href="#" class="resource-card">
+                        <span class="resource-icon">👥</span>
+                        <h4>Comunitate</h4>
+                        <p>Grupuri Facebook & Discord</p>
+                    </a>
+                </div>
+            </div>
+
+            <footer class="site-footer" data-aos="fade-up">
+                <p>Creat cu 💜 pentru Training — <strong>De la Bulgăre la Bijuterie</strong></p>
+                <p class="footer-small">© 2026 | Prezentare interactivă Train the Trainer</p>
+            </footer>
+        </div>
+    </section>
+
+    <!-- ===================== SCRIPTS ===================== -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
