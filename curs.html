@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curs Modelare Lut Polimeric — Suport de Prezentare</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/curs.css">
+</head>
+<body>
+
+    <!-- ===== SLIDE NAVIGATION ===== -->
+    <nav class="slide-nav">
+        <div class="nav-left">
+            <span class="nav-logo">🎨 RashinaThor</span>
+            <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">0</span></span>
+        </div>
+        <div class="nav-center">
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <div class="nav-right">
+            <span class="timer" id="timer">00:00</span>
+            <button class="timer-btn" id="timerBtn" title="Start/Pause Timer">▶</button>
+            <button class="nav-btn" id="prevBtn" title="Slide anterioară">◀</button>
+            <button class="nav-btn" id="nextBtn" title="Slide următoare">▶</button>
+            <button class="nav-btn fullscreen-btn" id="fullscreenBtn" title="Fullscreen">⛶</button>
+        </div>
+    </nav>
+
+    <!-- ===== CHAPTER SIDEBAR ===== -->
+    <aside class="chapter-sidebar" id="sidebar">
+        <button class="sidebar-toggle" id="sidebarToggle">📋</button>
+        <div class="sidebar-content">
+            <h3>Capitole</h3>
+            <ul class="chapter-list" id="chapterList">
+                <li data-chapter="cover" class="active">🎬 Copertă</li>
+                <li data-chapter="ch1">1️⃣ Ce Vrei De La Mine?</li>
+                <li data-chapter="ch2">2️⃣ Ce Îți Pot Oferi</li>
+                <li data-chapter="ch3">3️⃣ Practică</li>
+                <li data-chapter="ch4">4️⃣ Încheiere & Business</li>
+                <li data-chapter="ch5">🎁 PLATA o PLOMO</li>
+                <li data-chapter="end">🎓 Final</li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- ===== SLIDES CONTAINER ===== -->
+    <main class="slides-wrapper" id="slidesWrapper">
+
+        <!-- ======================== COPERTĂ ======================== -->
+        <section class="slide cover-slide" data-chapter="cover">
+            <div class="slide-bg-particles"></div>
+            <div class="cover-content">
+                <span class="cover-tag">Curs Practic — 4 ore</span>
+                <h1>De la Bulgăre<br>la <span class="gold">Bijuterie</span></h1>
+                <p class="cover-sub">Modelare Lut Polimeric & Rășină Epoxidică UV</p>
+                <div class="cover-meta">
+                    <span>👩‍🏫 Trainer: <strong>RashinaThor</strong></span>
+                    <span>🌐 <a href="https://rashinathor.ro" target="_blank">rashinathor.ro</a></span>
+                </div>
+                <div class="cover-images">
+                    <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05593-ARW_DxO_DeepPRIME-Edit-2-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei">
+                    <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05598-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei inimă">
+                    <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05571-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei stea">
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================== AGENDA ======================== -->
+        <section class="slide" data-chapter="cover">
+            <div class="slide-content centered">
+                <h2>📋 Agenda Zilei</h2>
+                <div class="agenda-table">
+                    <div class="agenda-row">
+                        <span class="agenda-time">30 min</span>
+                        <span class="agenda-chapter">1</span>
+                        <div class="agenda-info">
+                            <strong>Ce Vrei De La Mine?</strong>
+                            <p>Cunoaștere, așteptări, reguli de grup</p>
+                        </div>
+                    </div>
+                    <div class="agenda-row">
+                        <span class="agenda-time">45 min</span>
+                        <span class="agenda-chapter">2</span>
+                        <div class="agenda-info">
+                            <strong>Ce Îți Pot Oferi</strong>
+                            <p>Materiale, instrumente, siguranță, demo live</p>
+                        </div>
+                    </div>
+                    <div class="agenda-row highlight-row">
+                        <span class="agenda-time">2 ore</span>
+                        <span class="agenda-chapter">3</span>
+                        <div class="agenda-info">
+                            <strong>Practică — Creezi Prima Bijuterie</strong>
+                            <p>Condiționare → Modelare → Coacere → Finisare → Rășină UV</p>
+                        </div>
+                    </div>
+                    <div class="agenda-row">
+                        <span class="agenda-time">30 min</span>
+                        <span class="agenda-chapter">4</span>
+                        <div class="agenda-info">
+                            <strong>Încheiere & Business</strong>
+                            <p>Monetizare, prețuri, concurență, Q&A</p>
+                        </div>
+                    </div>
+                    <div class="agenda-row bonus-row">
+                        <span class="agenda-time">15 min</span>
+                        <span class="agenda-chapter">🎁</span>
+                        <div class="agenda-info">
+                            <strong>PLATA o PLOMO</strong>
+                            <p>Oferta specială de final</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================== CAPITOLUL 1: CE VREI DE LA MINE ======================== -->
+        <section class="slide chapter-title-slide" data-chapter="ch1">
+            <div class="chapter-number">01</div>
+            <div class="chapter-info">
+                <span class="chapter-duration">⏱️ 30 minute</span>
+                <h1>Ce Vrei De La Mine?</h1>
+                <p>Cunoaștere • Așteptări • Reguli de grup</p>
+            </div>
+        </section>
+
+        <section class="slide" data-chapter="ch1">
+            <div class="slide-content">
+                <h2>👋 Hai să ne cunoaștem!</h2>
+                <div class="two-cols">
+                    <div class="col">
+                        <div class="activity-card">
+                            <h3>🎤 Runda de prezentări</h3>
+                            <p>Fiecare participant spune:</p>
+                            <ul class="checklist">
+                                <li>Cum te cheamă</li>
+                                <li>Cu ce te ocupi</li>
+                                <li>De ce ai venit la curs</li>
+                                <li>Ce așteptări ai</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="info-box tip-box">
+                            <h3>💡 Notă pentru trainer</h3>
+                            <p>Ascultă activ. Nevoile reale le descoperi din răspunsuri:</p>
+                            <ul>
+                                <li><strong>BANI</strong> — vrea monetizare</li>
+                                <li><strong>Hobby</strong> — vrea relaxare</li>
+                                <li><strong>Social</strong> — vrea prieteni noi</li>
+                                <li><strong>Încredere</strong> — vrea să creeze ceva</li>
+                            </ul>
+                            <p class="note">→ Personalizează restul cursului pe nevoile reale!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" data-chapter="ch1">
+            <div class="slide-content centered">
+                <h2>📏 Regulile Atelierului</h2>
+                <div class="rules-grid">
+                    <div class="rule-card">
+                        <span class="rule-icon">🤝</span>
+                        <h3>Respect reciproc</h3>
+                        <p>Fiecare creație e unică. Nu comparăm, apreciem.</p>
+                    </div>
+                    <div class="rule-card">
+                        <span class="rule-icon">❓</span>
+                        <h3>Întreabă oricând</h3>
+                        <p>Nu există întrebări proaste. Întrerupe-mă liber.</p>
+                    </div>
+                    <div class="rule-card">
+                        <span class="rule-icon">⚠️</span>
+                        <h3>Siguranța întâi</h3>
+                        <p>Urmează instrucțiunile la coacere. Ventilație!</p>
+                    </div>
+                    <div class="rule-card">
+                        <span class="rule-icon">🎨</span>
+                        <h3>Greșelile sunt OK</h3>
+                        <p>Lutul se reface. Experimentează liber!</p>
+                    </div>
+                    <div class="rule-card">
+                        <span class="rule-icon">📱</span>
+                        <h3>Telefoane pe silent</h3>
+                        <p>Filmează și pozează cât vrei, dar fără sonor.</p>
+                    </div>
+                    <div class="rule-card">
+                        <span class="rule-icon">😄</span>
+                        <h3>Distracție!</h3>
+                        <p>Suntem aici să ne bucurăm de proces.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================== CAPITOLUL 2: CE ÎȚI POT OFERI ======================== -->
+        <section class="slide chapter-title-slide ch2-bg" data-chapter="ch2">
+            <div class="chapter-number">02</div>
+            <div class="chapter-info">
+                <span class="chapter-duration">⏱️ 45 minute</span>
+                <h1>Ce Îți Pot Oferi</h1>
+                <p>Materiale • Instrumente • Siguranță • Demo live</p>
+            </div>
+        </section>
+
+        <section class="slide" data-chapter="ch2">
+            <div class="slide-content">
+                <h2>🧱 Materialele de Bază</h2>
+                <div class="materials-grid">
+                    <div class="material-card">
+                        <span class="mat-icon">🟤</span>
+                        <h3>Lut Polimeric</h3>
+                        <p>PVC + plastifianți. Se coace la 110-130°C. Mărci: <strong>Fimo, Sculpey, Cernit</strong>.</p>
+                        <div class="mat-tip">✅ Fimo Soft — ideal pentru începători</div>
+                    </div>
+                    <div class="material-card">
+                        <span class="mat-icon">💎</span>
+                        <h3>Rășină UV Epoxidică</h3>
+                        <p>Se întărește în 2-3 min cu lampă UV. Efect de cristal, protecție, strălucire.</p>
+                        <div class="mat-tip">⚠️ Nu inhala vaporii, poartă mănuși!</div>
+                    </div>
+                    <div class="material-card">
+                        <span class="mat-icon">🎨</span>
+                        <h3>Pigmenți & Accesorii</h3>
+                        <p>Pulberi metalice, glitter, foițe de aur, cârlige cercei, tije, inele.</p>
+                        <div class="mat-tip">💡 Puțin pigment = efect mare</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" data-chapter="ch2">
+            <div class="slide-content">
+                <h2>🔧 Instrumentele Necesare</h2>
+                <div class="tools-showcase">
+                    <div class="tool-item">
+                        <span>📏</span>
+                        <p>Rolă acrilică</p>
+                    </div>
+                    <div class="tool-item">
+                        <span>🔪</span>
+                        <p>Cutter / Lamă</p>
+                    </div>
+                    <div class="tool-item">
+                        <span>⭕</span>
+                        <p>Forme (cutters)</p>
+                    </div>
+                    <div class="tool-item">
+                        <span>📐</span>
+                        <p>Suprafață de lucru</p>
+                    </div>
+                    <div class="tool-item">
+                        <span>🖌️</span>
+                        <p>Pensule fine</p>
+                    </div>
+                    <div class="tool-item">
+                        <span>📎</span>
+                        <p>Ac / toothpick</p>
+                    </div>
+                    <div class="tool-item">
+                        <span>🧤</span>
+                        <p>Mănuși latex</p>
+                    </div>
+                    <div class="tool-item">
+                        <span>🔥</span>
+                        <p>Cuptor</p>
+                    </div>
+                    <div class="tool-item">
+                        <span>💡</span>
+                        <p>Lampă UV</p>
+                    </div>
+                    <div class="tool-item">
+                        <span>📄</span>
+                        <p>Hârtie abrazivă</p>
+                    </div>
+                </div>
+                <div class="info-box tip-box" style="margin-top: 2rem;">
+                    <p>💡 <strong>Totul este asigurat de noi.</strong> Cursantul vine doar cu entuziasmul!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" data-chapter="ch2">
+            <div class="slide-content">
+                <h2>⚠️ Norme de Siguranță</h2>
+                <div class="safety-grid">
+                    <div class="safety-card danger">
+                        <h3>🚫 NU face asta!</h3>
+                        <ul>
+                            <li>Nu depăși <strong>130°C</strong> — lutul degajă <strong>fum toxic</strong> (HCl)</li>
+                            <li>Nu coace în <strong>cuptorul de gătit</strong> fără protecție</li>
+                            <li>Nu inhala <strong>vapori de rășină</strong> UV</li>
+                            <li>Nu lăsa lut necopt la <strong>soare direct</strong></li>
+                            <li>Nu folosi instrumente de lut pentru <strong>mâncare</strong></li>
+                        </ul>
+                    </div>
+                    <div class="safety-card safe">
+                        <h3>✅ FA asta!</h3>
+                        <ul>
+                            <li>Ventilează <strong>bine</strong> încăperea la coacere</li>
+                            <li>Folosește <strong>termometru de cuptor</strong> separat</li>
+                            <li>Poartă <strong>mănuși</strong> la lucrul cu rășina</li>
+                            <li>Acoperă tava cu <strong>hârtie de copt</strong></li>
+                            <li>Spală-te pe mâini <strong>înainte</strong> de a mânca</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="info-box warning-box">
+                    <p>⚠️ <strong>Responsabilitatea trainerului:</strong> Asigură-te că FIECARE cursant a înțeles aceste norme ÎNAINTE de a atinge materialele.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================== CAPITOLUL 3: PRACTICĂ ======================== -->
+        <section class="slide chapter-title-slide ch3-bg" data-chapter="ch3">
+            <div class="chapter-number">03</div>
+            <div class="chapter-info">
+                <span class="chapter-duration">⏱️ 2 ore</span>
+                <h1>Practică</h1>
+                <p>Mâinile pe lut! • Creezi prima ta bijuterie</p>
+            </div>
+        </section>
+
+        <!-- PASUL 1: Condiționare -->
+        <section class="slide" data-chapter="ch3">
+            <div class="slide-content">
+                <div class="step-header">
+                    <span class="step-badge-lg">Pasul 1 din 5</span>
+                    <h2>🧱 Condiționarea Lutului</h2>
+                </div>
+                <div class="two-cols">
+                    <div class="col">
+                        <div class="step-visual">
+                            <img src="gif/EVERYTHING_YOU_NEED_TO_KNOW_IN_3_MINUTES_4_DEMOS_HOW_TO_CONDITION_POLYMER_CLAY_FAST.gif" 
+                                 alt="Demo condiționare lut" class="demo-gif">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="step-instructions">
+                            <h3>Ce facem:</h3>
+                            <ol>
+                                <li>Tăie blocul în <strong>felii subțiri</strong></li>
+                                <li>Frământă fiecare felie în mâini</li>
+                                <li>Unește și frământă din nou</li>
+                                <li>Repetă până e <strong>moale și elastic</strong></li>
+                            </ol>
+                            <div class="info-box tip-box">
+                                <p>💡 <strong>De ce?</strong> Activează plastifianții din PVC. Fără condiționare, piesa va fi fragilă după coacere.</p>
+                            </div>
+                            <div class="info-box tip-box">
+                                <p>💡 <strong>Tip:</strong> Dacă e prea tare, tăie-l cu cutter-ul în bucăți mici și lucrează-le pe rând.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="trainer-note">
+                    <p>👩‍🏫 <strong>Trainer:</strong> Demonstrează 2 minute, apoi lasă cursanții să lucreze. Circulă și ajută individual. ~15 min.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PASUL 2: Mixare culori -->
+        <section class="slide" data-chapter="ch3">
+            <div class="slide-content">
+                <div class="step-header">
+                    <span class="step-badge-lg">Pasul 2 din 5</span>
+                    <h2>🎨 Mixarea Culorilor</h2>
+                </div>
+                <div class="two-cols">
+                    <div class="col">
+                        <div class="color-mix-demo">
+                            <div class="color-equation">
+                                <div class="color-circle" style="background: #E74C3C;"></div>
+                                <span class="mix-sign">+</span>
+                                <div class="color-circle" style="background: #F1C40F;"></div>
+                                <span class="mix-sign">=</span>
+                                <div class="color-circle" style="background: #E67E22;"></div>
+                            </div>
+                            <div class="color-equation">
+                                <div class="color-circle" style="background: #3498DB;"></div>
+                                <span class="mix-sign">+</span>
+                                <div class="color-circle" style="background: #F1C40F;"></div>
+                                <span class="mix-sign">=</span>
+                                <div class="color-circle" style="background: #2ECC71;"></div>
+                            </div>
+                            <div class="color-equation">
+                                <div class="color-circle" style="background: #ffffff; border: 2px solid #ddd;"></div>
+                                <span class="mix-sign">+</span>
+                                <div class="color-circle" style="background: #E74C3C;"></div>
+                                <span class="mix-sign">=</span>
+                                <div class="color-circle" style="background: #F5B7B1;"></div>
+                            </div>
+                        </div>
+                        <div class="info-box tip-box">
+                            <p>💡 <strong>Skinner Blend:</strong> Suprapune 2 culori în triunghi, rulează și pliază de ~20 ori. Rezultat: gradient spectaculos!</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="step-instructions">
+                            <h3>Ce facem:</h3>
+                            <ol>
+                                <li>Alege <strong>2-3 culori</strong> care îți plac</li>
+                                <li>Amestecă proporții <strong>mici</strong> întâi (test)</li>
+                                <li>Frământă până la culoare <strong>uniformă</strong></li>
+                                <li>Sau lasă <strong>semi-amestecat</strong> pentru efect marmorat</li>
+                            </ol>
+                            <div class="key-point">
+                                <p>🔑 <strong>Regulă de aur:</strong> Culorile deschise + puțin închis = OK. Invers = dezastru. Adaugă puțin câte puțin!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="trainer-note">
+                    <p>👩‍🏫 <strong>Trainer:</strong> Arată Skinner Blend live. Lasă cursanții să experimenteze liber cu culorile. ~20 min.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PASUL 3: Formare -->
+        <section class="slide" data-chapter="ch3">
+            <div class="slide-content">
+                <div class="step-header">
+                    <span class="step-badge-lg">Pasul 3 din 5</span>
+                    <h2>✂️ Formarea Piesei</h2>
+                </div>
+                <div class="two-cols">
+                    <div class="col">
+                        <div class="step-instructions">
+                            <h3>Etapele:</h3>
+                            <ol>
+                                <li>Întinde lutul cu <strong>rola acrilică</strong> (grosime uniformă)</li>
+                                <li><strong>Decupează</strong> forma dorită (cutters sau manual)</li>
+                                <li>Adaugă <strong>texturi</strong> (ștampile, frunze, țesături)</li>
+                                <li>Fă <strong>găurile</strong> pentru cârlige/tije ACUM</li>
+                                <li>Netezește <strong>marginile</strong> cu degetul umed</li>
+                            </ol>
+                        </div>
+                        <div class="key-point">
+                            <p>📏 <strong>Grosimi recomandate:</strong></p>
+                            <ul>
+                                <li>Cercei: <strong>2-3mm</strong> (să fie ușori)</li>
+                                <li>Pandantive: <strong>4-5mm</strong></li>
+                                <li>Inele/broșe: <strong>5-6mm</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="shapes-gallery">
+                            <div class="shape-item">⭕ Disc</div>
+                            <div class="shape-item">❤️ Inimă</div>
+                            <div class="shape-item">⭐ Stea</div>
+                            <div class="shape-item">🍃 Frunză</div>
+                            <div class="shape-item">💧 Picătură</div>
+                            <div class="shape-item">🌸 Floare</div>
+                            <div class="shape-item">🌙 Semilună</div>
+                            <div class="shape-item">🔷 Geometric</div>
+                        </div>
+                        <div class="info-box tip-box">
+                            <p>🎨 <strong>Arta este diferită de la om la om.</strong><br>Nu există „greșit" în modelare. Fiecare piesă e unică.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="trainer-note">
+                    <p>👩‍🏫 <strong>Trainer:</strong> Prima piesă simplă (disc/inimă). Apoi lasă-i liberi. Circulă, ajută, încurajează. ~40 min.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PASUL 4: Coacere -->
+        <section class="slide" data-chapter="ch3">
+            <div class="slide-content">
+                <div class="step-header">
+                    <span class="step-badge-lg">Pasul 4 din 5</span>
+                    <h2>🔥 Coacerea</h2>
+                </div>
+                <div class="two-cols">
+                    <div class="col">
+                        <div class="baking-chart">
+                            <h3>📊 Temperatură & Timp</h3>
+                            <table class="data-table">
+                                <thead>
+                                    <tr><th>Marcă</th><th>Temp.</th><th>Timp</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Fimo Soft</td><td>110°C</td><td>30 min</td></tr>
+                                    <tr><td>Fimo Professional</td><td>110°C</td><td>30 min</td></tr>
+                                    <tr><td>Sculpey III</td><td>130°C</td><td>15 min/6mm</td></tr>
+                                    <tr><td>Premo Sculpey</td><td>130°C</td><td>30 min/6mm</td></tr>
+                                    <tr><td>Cernit</td><td>130°C</td><td>30 min</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="step-visual" style="margin-top:1rem;">
+                            <img src="https://media1.tenor.com/m/Acw0MiUDE-QAAAAd/%EA%BC%AC%EC%95%BC%EB%B9%B5%EC%95%BC%EC%82%90%EC%95%84%ED%94%BC%EC%9E%90%EA%B5%BD%EA%B8%B0%EA%B5%BD%EB%8B%A4%EC%98%A4%EB%B8%90%EB%8B%AB%EA%B8%B0-tv%EC%9C%A0%EC%B9%98%EC%9B%90.gif" 
+                                 alt="Coacere GIF" class="demo-gif" style="max-height:160px;">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="step-instructions">
+                            <h3>Procedura:</h3>
+                            <ol>
+                                <li>Preîncălzește cuptorul (termometru separat!)</li>
+                                <li>Pune piesele pe <strong>hârtie de copt</strong> pe tavă</li>
+                                <li>Coace conform tabelului</li>
+                                <li><strong>Nu deschide ușa</strong> în timpul coacerii</li>
+                                <li>Lasă să se <strong>răcească complet</strong> în cuptor</li>
+                            </ol>
+                        </div>
+                        <div class="safety-card danger" style="margin-top:1rem;">
+                            <h3>🚨 CRITICE:</h3>
+                            <ul>
+                                <li>Nu depăși temperatura — <strong>fum toxic!</strong></li>
+                                <li>Ventilează zona</li>
+                                <li>Nu lăsa fără supraveghere</li>
+                                <li>Piesa e MOALE la ieșire — se întărește la răcire</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="trainer-note">
+                    <p>👩‍🏫 <strong>Trainer:</strong> Pune piesele la copt (timer!). În timpul coacerii — pauză 10 min sau discuție despre monetizare. ~25 min total.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PASUL 5: Finisare + Rășină UV -->
+        <section class="slide" data-chapter="ch3">
+            <div class="slide-content">
+                <div class="step-header">
+                    <span class="step-badge-lg">Pasul 5 din 5</span>
+                    <h2>💎 Finisare & Rășină UV</h2>
+                </div>
+                <div class="two-cols">
+                    <div class="col">
+                        <div class="step-instructions">
+                            <h3>A. Finisare mecanică:</h3>
+                            <ol>
+                                <li>Șlefuiește cu hârtie <strong>400</strong> (grosieră)</li>
+                                <li>Apoi <strong>800</strong> (medie)</li>
+                                <li>Apoi <strong>1200</strong> (fină) — efect de oglindă</li>
+                                <li>Opcional: lustruiește cu <strong>pânză</strong> moale</li>
+                            </ol>
+                            <h3 style="margin-top:1.5rem;">B. Rășină UV:</h3>
+                            <ol>
+                                <li>Aplică strat <strong>subțire uniform</strong></li>
+                                <li>Scapă de bule cu <strong>ac</strong></li>
+                                <li>Expune la <strong>lampă UV</strong> 2-3 minute</li>
+                                <li>Repetă pentru <strong>al doilea strat</strong> (opțional)</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="before-after">
+                            <div class="ba-item">
+                                <span class="ba-label">Înainte</span>
+                                <div class="ba-visual ba-before">Mat, brut</div>
+                            </div>
+                            <div class="ba-arrow">→</div>
+                            <div class="ba-item">
+                                <span class="ba-label">După</span>
+                                <div class="ba-visual ba-after">✨ Cristal, lucios</div>
+                            </div>
+                        </div>
+                        <div class="info-box warning-box">
+                            <p>🧤 <strong>MĂNUȘI OBLIGATORII</strong> la lucrul cu rășina UV. Nu atinge cu mâna goală!</p>
+                        </div>
+                        <div class="info-box tip-box">
+                            <p>💡 <strong>Asamblare:</strong> Lipim cârligele de cercei, montăm tija, fixăm inelul — cu adeziv sau rășină ca liant.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="trainer-note">
+                    <p>👩‍🏫 <strong>Trainer:</strong> Demonstrează fiecare etapă. Asistă la aplicarea rășinei (moment delicat). ~30 min.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rezultat practic -->
+        <section class="slide" data-chapter="ch3">
+            <div class="slide-content centered">
+                <h2>🎉 Rezultatul — Bijuteria Ta!</h2>
+                <p class="subtitle">Galerie de inspirație — produse reale RashinaThor</p>
+                <div class="result-gallery">
+                    <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05593-ARW_DxO_DeepPRIME-Edit-2-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei feminini">
+                    <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05590-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei floare">
+                    <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05598-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei inimă">
+                    <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05602-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei ocean">
+                    <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05609-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei trifoi">
+                    <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05571-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei stea">
+                </div>
+                <p class="gallery-credit">Toate bijuteriile sunt create de <a href="https://rashinathor.ro" target="_blank">RashinaThor.ro</a></p>
+            </div>
+        </section>
+
+        <!-- ======================== CAPITOLUL 4: ÎNCHEIERE ======================== -->
+        <section class="slide chapter-title-slide ch4-bg" data-chapter="ch4">
+            <div class="chapter-number">04</div>
+            <div class="chapter-info">
+                <span class="chapter-duration">⏱️ 30 minute</span>
+                <h1>Încheiere & Business</h1>
+                <p>Monetizare • Prețuri • Concurență • Q&A</p>
+            </div>
+        </section>
+
+        <section class="slide" data-chapter="ch4">
+            <div class="slide-content">
+                <h2>💰 Cum Pui Preț pe Bijuterii?</h2>
+                <div class="two-cols">
+                    <div class="col">
+                        <div class="pricing-formula">
+                            <h3>Formula de bază:</h3>
+                            <div class="formula">
+                                <div class="formula-line"><span>Materiale</span><span class="formula-ex">lut + rășină + accesorii</span></div>
+                                <div class="formula-line"><span>+ Timp de lucru</span><span class="formula-ex">ore × tarif/oră</span></div>
+                                <div class="formula-line"><span>+ Costuri fixe</span><span class="formula-ex">curent, instrumente, ambalaj</span></div>
+                                <div class="formula-line"><span>+ Profit</span><span class="formula-ex">min. 30-50% markup</span></div>
+                                <div class="formula-total"><span>= Preț de vânzare</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="info-box tip-box">
+                            <h3>💡 Insight-uri rapide</h3>
+                            <ul>
+                                <li>Nu subestima <strong>timpul tău</strong> — e cea mai scumpă resursă</li>
+                                <li>Include <strong>ambalajul</strong> frumos — este parte din produs</li>
+                                <li>Prețul prea mic = <strong>percepție de calitate slabă</strong></li>
+                                <li>Calculează <strong>per lot</strong>, nu per bucată</li>
+                            </ul>
+                        </div>
+                        <div class="info-box warning-box">
+                            <p>⚠️ <strong>Fiecare își calculează prețul individual.</strong> Depinde de materiale, timp, piață, brand. Nu copii de la alții!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" data-chapter="ch4">
+            <div class="slide-content">
+                <h2>🤝 Despre Concurență</h2>
+                <div class="two-cols">
+                    <div class="col">
+                        <div class="quote-card">
+                            <blockquote>
+                                „Concurența <strong>trebuie să existe</strong>. Validează piața. Dacă nimeni nu vinde bijuterii artizanale — poate nu e cerere."
+                            </blockquote>
+                        </div>
+                        <div class="key-point" style="margin-top:1.5rem;">
+                            <h3>🔑 Cum te diferențiezi:</h3>
+                            <ul>
+                                <li><strong>Stilul tău unic</strong> — arta e diferită de la om la om</li>
+                                <li><strong>Povestea bijuteriei</strong> — de ce ai creat-o</li>
+                                <li><strong>Calitatea finisajului</strong> — rășina UV face diferența</li>
+                                <li><strong>Ambalajul & prezentarea</strong> — prima impresie</li>
+                                <li><strong>Relația cu clientul</strong> — personalizare, atenție</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3>📣 Unde vinzi:</h3>
+                        <div class="channels-list">
+                            <div class="channel-item">📸 <strong>Instagram</strong> — poze, reels, stories</div>
+                            <div class="channel-item">📘 <strong>Facebook</strong> — grupuri handmade, marketplace</div>
+                            <div class="channel-item">🛍️ <strong>Etsy</strong> — piață internațională</div>
+                            <div class="channel-item">🏪 <strong>Târguri</strong> — contact direct, feedback</div>
+                            <div class="channel-item">🌐 <strong>Site propriu</strong> — WordPress + WooCommerce</div>
+                            <div class="channel-item">🎁 <strong>Comenzi personalizate</strong> — cea mai profitabilă</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" data-chapter="ch4">
+            <div class="slide-content centered">
+                <h2>❓ Q&A — Întrebări & Răspunsuri</h2>
+                <p class="subtitle">Acum e momentul tău. Întreabă orice!</p>
+                <div class="qa-grid">
+                    <div class="qa-card">
+                        <div class="qa-q">„Cum fac față concurenței?"</div>
+                        <div class="qa-a">Concurența validează piața. Diferențiază-te prin stil și calitate, nu prin preț mic.</div>
+                    </div>
+                    <div class="qa-card">
+                        <div class="qa-q">„Câți bani pot face?"</div>
+                        <div class="qa-a">Depinde de volum și preț. Unele persoane câștigă 500-2000+ lei/lună ca side-hustle din bijuterii.</div>
+                    </div>
+                    <div class="qa-card">
+                        <div class="qa-q">„Ce marcă de lut e cea mai bună?"</div>
+                        <div class="qa-a">Fimo Soft pentru începători. Premo Sculpey pentru avanzzați. Cernit pentru culori speciale.</div>
+                    </div>
+                    <div class="qa-card">
+                        <div class="qa-q">„Pot folosi cuptorul de acasă?"</div>
+                        <div class="qa-a">Da, dar dedicat. Sau acoperă piesele și ventilează. Ideal: cuptor mic separat.</div>
+                    </div>
+                </div>
+                <div class="trainer-note">
+                    <p>👩‍🏫 <strong>Trainer:</strong> Răspunde deschis. Întrebările controversate despre preț/concurență sunt cele mai valoroase!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================== CAPITOLUL 5: PLATA O PLOMO ======================== -->
+        <section class="slide chapter-title-slide ch5-bg" data-chapter="ch5">
+            <div class="chapter-number">🎁</div>
+            <div class="chapter-info">
+                <span class="chapter-duration">⏱️ 15 minute</span>
+                <h1>PLATA o PLOMO</h1>
+                <p>Bonusul de final • Oferta specială</p>
+            </div>
+        </section>
+
+        <section class="slide" data-chapter="ch5">
+            <div class="slide-content centered">
+                <h2>🎁 Oferta Specială</h2>
+                <p class="subtitle">Doar pentru participanții la curs — doar azi</p>
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <h3>Pachet Continuare Avansată</h3>
+                    </div>
+                    <div class="offer-body">
+                        <ul>
+                            <li>🎓 Acces la cursul avansat (tehnici complexe)</li>
+                            <li>📦 Kit de materiale pentru acasă</li>
+                            <li>👥 Grup privat de suport & inspirație</li>
+                            <li>📧 Consultanță online 30 zile</li>
+                            <li>💎 Discount la materiale de la furnizori</li>
+                        </ul>
+                    </div>
+                    <div class="offer-footer">
+                        <p>Detalii și preț — discutăm individual.</p>
+                        <p class="offer-cta">Produsul finit vorbește de la sine. 💎</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================== FINAL ======================== -->
+        <section class="slide chapter-title-slide end-bg" data-chapter="end">
+            <div class="chapter-number">🎓</div>
+            <div class="chapter-info">
+                <h1>Mulțumesc!</h1>
+                <p>Ai creat prima ta bijuterie. Restul e doar repetiție & creativitate.</p>
+            </div>
+        </section>
+
+        <section class="slide" data-chapter="end">
+            <div class="slide-content centered">
+                <h2>📱 Rămânem în legătură!</h2>
+                <div class="final-links">
+                    <a href="https://rashinathor.ro" target="_blank" class="final-link">🌐 rashinathor.ro</a>
+                    <a href="https://www.instagram.com/rashinathor/" target="_blank" class="final-link">📸 @rashinathor</a>
+                    <a href="https://www.facebook.com/rashinathor" target="_blank" class="final-link">📘 RashinaThor</a>
+                </div>
+                <div class="final-qr-row">
+                    <div class="final-qr">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://rashinathor.ro&color=6C5CE7&bgcolor=FFFFFF&margin=10" alt="QR">
+                        <p>rashinathor.ro</p>
+                    </div>
+                    <div class="final-qr">
+                        <img src="gif/TTT202602-qr.png" alt="QR Curs">
+                        <p>Prezentare Curs</p>
+                    </div>
+                </div>
+                <div class="final-message">
+                    <p>„<strong>Arta este diferită de la om la om.</strong><br>Bijuteria ta e unică — pentru că <em>tu</em> ești unică."</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== KEYBOARD HELP ===== -->
+    <div class="keyboard-help" id="keyboardHelp">
+        <p>⌨️ <strong>←→</strong> navigare &nbsp;|&nbsp; <strong>F</strong> fullscreen &nbsp;|&nbsp; <strong>T</strong> timer &nbsp;|&nbsp; <strong>S</strong> sidebar &nbsp;|&nbsp; <strong>ESC</strong> închide</p>
+    </div>
+
+    <script src="js/curs.js"></script>
+</body>
+</html>
