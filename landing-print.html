@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>De la Bulgăre la Bijuterie — Curs Practic (Landing)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --purple: #6C5CE7;
+            --purple-light: #A29BFE;
+            --gold: #FDCB6E;
+            --coral: #FF6B6B;
+            --pink: #FD79A8;
+            --teal: #00CEC9;
+            --dark: #2d3436;
+            --gray: #636e72;
+            --light: #f8f9fa;
+        }
+
+        @page { size: A4; margin: 15mm; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background: white;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Fredoka', sans-serif; line-height: 1.3; }
+
+        a { color: var(--purple); text-decoration: none; }
+
+        .container { max-width: 100%; padding: 0; }
+
+        /* ===== SECTION STYLING ===== */
+        section {
+            padding: 2rem 0;
+            page-break-inside: avoid;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: var(--purple);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        section > h2, .container > h2 {
+            font-size: 1.6rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #f3f0ff 0%, #fce4ec 100%);
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            page-break-after: always;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--coral);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero h1 .highlight { color: var(--purple); }
+        .hero h1 .highlight-gold { color: var(--gold); }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero-images {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .hero-images img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 3px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .hero-brand {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* ===== TRAINER ===== */
+        .trainer-section {
+            page-break-after: always;
+        }
+
+        .trainer-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 16px;
+            border-left: 5px solid var(--purple);
+        }
+
+        .trainer-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .trainer-name { font-size: 1.5rem; color: var(--purple); margin-bottom: 0.2rem; }
+        .trainer-title { font-size: 0.95rem; color: var(--gray); }
+
+        .trainer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .trainer-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 1.2rem;
+            border-top: 3px solid var(--purple-light);
+        }
+
+        .trainer-card-wide { grid-column: 1 / -1; }
+
+        .trainer-card h4 { font-size: 1rem; color: var(--purple); margin-bottom: 0.5rem; }
+        .trainer-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+
+        .trainer-fun {
+            background: linear-gradient(135deg, var(--purple-light), var(--pink));
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .trainer-card-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+        .trainer-benefits-list { list-style: none; padding: 0; }
+        .trainer-benefits-list li { padding: 0.3rem 0; font-size: 0.88rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
+
+        .trainer-story {
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            border-left: 4px solid var(--gold);
+            padding: 0.8rem 1.2rem;
+            background: rgba(253, 203, 110, 0.08);
+            border-radius: 0 8px 8px 0;
+            margin: 0;
+        }
+
+        .trainer-results {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .result-stat { text-align: center; flex: 1; padding: 0.8rem; background: white; border-radius: 8px; }
+        .result-number { display: block; font-family: 'Fredoka'; font-size: 1.5rem; font-weight: 700; color: var(--purple); }
+        .result-label { display: block; font-size: 0.75rem; color: var(--gray); }
+
+        /* ===== INTRO ===== */
+        .intro-section {
+            page-break-after: always;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .intro-text h2 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text h2 em { color: var(--purple); font-style: normal; }
+        .intro-text p { font-size: 0.92rem; color: var(--gray); margin-bottom: 0.8rem; }
+
+        .intro-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .stat { text-align: center; }
+        .stat-number { display: block; font-family: 'Fredoka'; font-size: 1.8rem; font-weight: 700; color: var(--purple); }
+        .stat-label { font-size: 0.8rem; color: var(--gray); }
+
+        .intro-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .intro-card h3 { font-size: 1rem; color: var(--purple); margin-bottom: 0.3rem; }
+        .intro-card p { font-size: 0.85rem; color: var(--gray); }
+
+        /* ===== STRUCTURE ===== */
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .timeline-marker {
+            flex-shrink: 0;
+        }
+
+        .marker-number {
+            width: 35px;
+            height: 35px;
+            background: var(--purple);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .timeline-duration {
+            font-size: 0.82rem;
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        .timeline-content h3 { font-size: 1rem; margin-bottom: 0.2rem; }
+        .timeline-content p { font-size: 0.85rem; color: var(--gray); margin: 0; }
+
+        /* ===== THREAD ===== */
+        .thread-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .thread-step {
+            text-align: center;
+            padding: 0.8rem;
+            background: var(--light);
+            border-radius: 10px;
+            min-width: 100px;
+        }
+
+        .thread-icon { font-size: 1.8rem; display: block; }
+        .thread-step p { font-size: 0.8rem; margin-top: 0.3rem; font-weight: 600; }
+        .thread-arrow { font-size: 1.2rem; color: var(--purple); }
+
+        /* ===== BENEFITS ===== */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .benefit-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 1.2rem;
+            border-left: 4px solid var(--teal);
+        }
+
+        .benefit-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .benefit-card h3 { font-size: 0.95rem; color: var(--purple); margin-bottom: 0.3rem; }
+        .benefit-card p { font-size: 0.85rem; color: var(--gray); }
+
+        /* ===== FOMO ===== */
+        .fomo-section {
+            background: linear-gradient(135deg, #f3f0ff, #fce4ec);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .fomo-section h2 { color: var(--dark); }
+
+        .objections-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+            text-align: left;
+        }
+
+        .objection-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .objection { font-weight: 700; color: var(--coral); font-size: 0.9rem; margin-bottom: 0.3rem; }
+        .answer { font-size: 0.85rem; color: var(--gray); }
+
+        /* ===== AUDIENCE ===== */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .audience-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 1.2rem;
+        }
+
+        .audience-card h3 { font-size: 0.95rem; color: var(--purple); margin-bottom: 0.3rem; }
+        .audience-card p { font-size: 0.85rem; color: var(--gray); }
+
+        /* ===== PRICING ===== */
+        .price-card {
+            max-width: 500px;
+            margin: 0 auto;
+            border: 3px solid var(--gold);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: var(--purple);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .price-amount { margin-bottom: 0.5rem; }
+        .price-from { font-size: 0.85rem; color: var(--gray); }
+        .price-value { font-size: 3.5rem; font-family: 'Fredoka'; font-weight: 700; color: var(--purple); }
+        .price-currency { font-size: 1.2rem; color: var(--purple); font-weight: 700; }
+        .price-per { color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem; }
+
+        .price-includes { list-style: none; padding: 0; text-align: left; }
+        .price-includes li { padding: 0.4rem 0; font-size: 0.9rem; border-bottom: 1px solid #eee; }
+        .price-note { font-size: 0.8rem; color: var(--gray); margin-top: 1rem; font-style: italic; }
+
+        /* ===== INFO ===== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .info-card {
+            text-align: center;
+            background: var(--light);
+            border-radius: 12px;
+            padding: 1.2rem;
+        }
+
+        .info-icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+        .info-card h3 { font-size: 0.95rem; color: var(--purple); }
+        .info-card p { font-size: 0.9rem; margin: 0.2rem 0; }
+        .info-small { font-size: 0.75rem; color: var(--gray); }
+
+        /* ===== CONTACT ===== */
+        .cta-section {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f3f0ff, #e0f7fa);
+            border-radius: 16px;
+        }
+
+        .cta-section h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .cta-section > p { color: var(--gray); margin-bottom: 1.5rem; }
+
+        .cta-channels {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-channel {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: white;
+            border-radius: 10px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .cta-qr-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .cta-qr-item { text-align: center; }
+        .cta-qr-item img { width: 120px; height: 120px; border-radius: 10px; }
+        .cta-qr-item p { font-size: 0.8rem; color: var(--gray); margin-top: 0.3rem; }
+
+        .cta-final { font-size: 0.9rem; color: var(--gray); margin-top: 1rem; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--gray);
+            border-top: 1px solid #eee;
+            margin-top: 2rem;
+        }
+
+        /* Print */
+        @media print {
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+            section { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <div class="hero">
+        <span class="hero-badge">🔥 Curs Practic — Locuri Limitate</span>
+        <h1>De la <span class="highlight">Bulgăre</span> la <span class="highlight-gold">Bijuterie</span></h1>
+        <p class="hero-subtitle">Curs intensiv de 4 ore în care transformi un simplu bulgăre de lut în prima ta bijuterie artizanală — gata de purtat și de vânzare.</p>
+        <div class="hero-images">
+            <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05593-ARW_DxO_DeepPRIME-Edit-2-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei">
+            <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05598-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei inimă">
+            <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05571-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei stea">
+        </div>
+        <p class="hero-brand">Creat de <a href="https://rashinathor.ro">RashinaThor.ro</a> — bijuterii artizanale cu suflet</p>
+    </div>
+
+    <!-- ===== TRAINER ===== -->
+    <section class="trainer-section">
+        <span class="section-tag">🧑‍🏫 Cine predă?</span>
+        <h2>Hai să ne cunoaștem</h2>
+
+        <div class="trainer-header">
+            <div class="trainer-avatar">🧛</div>
+            <div>
+                <div class="trainer-name">Cosmin Ilie</div>
+                <p class="trainer-title">Trainer & Artisan — <a href="https://rashinathor.ro">RashinaThor.ro</a></p>
+            </div>
+        </div>
+
+        <div class="trainer-grid">
+            <div class="trainer-card">
+                <div class="trainer-card-icon">⏳</div>
+                <h4>Specializare & Experiență</h4>
+                <p class="trainer-fun">280 de ani de experiență</p>
+                <p>Modelare lut polimeric, rășină epoxidică UV, bijuterii artizanale. Sute de piese create, zeci de tehnici testate, o pasiune care refuză să moară — <em>literal</em>.</p>
+            </div>
+
+            <div class="trainer-card">
+                <div class="trainer-card-icon">💡</div>
+                <h4>De ce am devenit trainer?</h4>
+                <p class="trainer-fun">Trebuia să trăiesc din ceva — vampirismul nu mai merge.</p>
+                <p>Într-o lume în care energia se consumă mai repede decât se regenerează, am descoperit că împărtășirea cunoștințelor îmi dă mai multă viață decât orice altceva.</p>
+            </div>
+
+            <div class="trainer-card">
+                <div class="trainer-card-icon">🎁</div>
+                <h4>Ce primești tu din asta?</h4>
+                <ul class="trainer-benefits-list">
+                    <li>🤲 Înveți să creezi bijuterii <strong>de la zero</strong></li>
+                    <li>💎 Pleci acasă cu <strong>prima ta bijuterie</strong></li>
+                    <li>💰 Primești un <strong>plan de monetizare</strong></li>
+                    <li>🔒 Cunoștințe de <strong>siguranță</strong></li>
+                    <li>🧠 O experiență terapeutică și creativă</li>
+                </ul>
+            </div>
+
+            <div class="trainer-card trainer-card-wide">
+                <div class="trainer-card-icon">📖</div>
+                <h4>O poveste personală</h4>
+                <blockquote class="trainer-story">
+                    „La primul meu curs, o cursantă mi-a spus: «Nu am mai creat nimic cu mâinile de la grădiniță.» După 3 ore, ținea în mâini o pereche de cercei cu flori, cu ochii plini de lumină. Mi-a zis: «Asta e magie.» Nu e magie — e lut, căldură și răbdare. Dar efectul? Acela e magic."
+                </blockquote>
+            </div>
+
+            <div class="trainer-card">
+                <div class="trainer-card-icon">📊</div>
+                <h4>Rezultate de până acum</h4>
+                <p class="trainer-fun">100% din cursanți au ieșit vii de la cursurile mele.</p>
+                <div class="trainer-results">
+                    <div class="result-stat"><span class="result-number">100%</span><span class="result-label">Rată de supraviețuire</span></div>
+                    <div class="result-stat"><span class="result-number">100%</span><span class="result-label">Au plecat cu bijuterie</span></div>
+                    <div class="result-stat"><span class="result-number">0</span><span class="result-label">Reclamații la poliție</span></div>
+                </div>
+            </div>
+
+            <div class="trainer-card">
+                <div class="trainer-card-icon">❓</div>
+                <h4>Ai întrebări?</h4>
+                <p>Orice curiozitate, nelămurire sau teamă — eu sunt aici. Nu mușc. <em>De obicei.</em></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DESPRE CURS ===== -->
+    <section class="intro-section">
+        <span class="section-tag">✨ De ce acest curs?</span>
+        <div class="intro-grid">
+            <div class="intro-text">
+                <h2>Ai visat vreodată să creezi <em>ceva frumos</em> cu mâinile tale — și să faci bani din asta?</h2>
+                <p>Nu ai nevoie de talent artistic, de studii speciale sau de echipament scump. Ai nevoie doar de <strong>4 ore, un bulgăre de lut</strong> și pe cineva care să-ți arate exact cum se face.</p>
+                <p>La finalul cursului vei pleca acasă cu <strong>prima ta bijuterie artizanală</strong> — creată de tine, de la zero, cu mâinile tale.</p>
+                <div class="intro-stats">
+                    <div class="stat"><span class="stat-number">4h</span><span class="stat-label">Curs intensiv</span></div>
+                    <div class="stat"><span class="stat-number">100%</span><span class="stat-label">Practic</span></div>
+                    <div class="stat"><span class="stat-number">1</span><span class="stat-label">Bijuterie gata</span></div>
+                </div>
+            </div>
+            <div class="intro-visual">
+                <div class="intro-card"><div class="card-icon">🤲</div><h3>Înveți prin practică</h3><p>Cursul este 100% kinestezic — frămânți, modelezi, coaci, finisezi.</p></div>
+                <div class="intro-card"><div class="card-icon">💎</div><h3>Pleci cu bijuteria ta</h3><p>La final, ai o bijuterie gata de purtat sau de vândut.</p></div>
+                <div class="intro-card"><div class="card-icon">💰</div><h3>Plan de monetizare</h3><p>Cum calculezi prețul, cum vinzi pe social media.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STRUCTURA ===== -->
+    <section>
+        <span class="section-tag">📋 Ce faci la curs?</span>
+        <h2>Structura cursului — 4 ore de la zero la bijuterie</h2>
+
+        <div class="timeline-item">
+            <div class="timeline-marker"><span class="marker-number">1</span></div>
+            <div class="timeline-content">
+                <span class="timeline-duration">⏱️ 30 min</span>
+                <h3>Ce Vrei De La Mine?</h3>
+                <p>Prezentări, așteptări, reguli de grup. Ne cunoaștem și stabilim ce vrem de la curs.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"><span class="marker-number">2</span></div>
+            <div class="timeline-content">
+                <span class="timeline-duration">⏱️ 45 min</span>
+                <h3>Ce Îți Pot Oferi</h3>
+                <p>Materiale, instrumente, tehnici. Normele de siguranță și periculozitate. Demonstrație live.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"><span class="marker-number">3</span></div>
+            <div class="timeline-content">
+                <span class="timeline-duration">⏱️ 2 ore</span>
+                <h3>Practică — Creezi Prima Bijuterie 🔥</h3>
+                <p>Condiționare → Mixare culori → Modelare → Coacere → Finisare cu rășină UV.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"><span class="marker-number">4</span></div>
+            <div class="timeline-content">
+                <span class="timeline-duration">⏱️ 30 min</span>
+                <h3>Încheiere & Business</h3>
+                <p>Cum pui preț, unde vinzi, cum te diferențiezi. Q&A deschis.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"><span class="marker-number">🎁</span></div>
+            <div class="timeline-content">
+                <span class="timeline-duration">⏱️ 15 min</span>
+                <h3>PLATA o PLOMO — Bonus</h3>
+                <p>Oferta specială doar pentru participanți.</p>
+            </div>
+        </div>
+
+        <div class="thread-flow">
+            <div class="thread-step"><span class="thread-icon">🧱</span><p>Condiționare</p></div>
+            <span class="thread-arrow">→</span>
+            <div class="thread-step"><span class="thread-icon">🎨</span><p>Culoare</p></div>
+            <span class="thread-arrow">→</span>
+            <div class="thread-step"><span class="thread-icon">✂️</span><p>Formare</p></div>
+            <span class="thread-arrow">→</span>
+            <div class="thread-step"><span class="thread-icon">🔥</span><p>Coacere</p></div>
+            <span class="thread-arrow">→</span>
+            <div class="thread-step"><span class="thread-icon">💎</span><p>Finisare</p></div>
+        </div>
+    </section>
+
+    <!-- ===== BENEFICII ===== -->
+    <section>
+        <span class="section-tag">🎯 Ce câștigi?</span>
+        <h2>Beneficii concrete</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card"><div class="benefit-icon">🤲</div><h3>Experiență practică reală</h3><p>Nu teorie — frămânți, modelezi, coaci, finisezi. Pleci cu skill-uri reale.</p></div>
+            <div class="benefit-card"><div class="benefit-icon">💎</div><h3>Prima ta bijuterie</h3><p>Creația ta, gata de purtat sau de oferit cadou. Produsul finit vorbește de la sine.</p></div>
+            <div class="benefit-card"><div class="benefit-icon">💰</div><h3>Plan de monetizare</h3><p>Formula de preț, canale de vânzare, sfaturi de diferențiere pe piață.</p></div>
+            <div class="benefit-card"><div class="benefit-icon">🔒</div><h3>Siguranță & norme</h3><p>Temperaturi, toxicitate, echipament. Știi exact ce e sigur și ce nu.</p></div>
+            <div class="benefit-card"><div class="benefit-icon">🧠</div><h3>Terapie prin artă</h3><p>Lutul e terapeutic. 4 ore de relaxare creativă, fără ecrane.</p></div>
+            <div class="benefit-card"><div class="benefit-icon">👥</div><h3>Comunitate</h3><p>Cunoști oameni cu aceeași pasiune. Grup de suport post-curs.</p></div>
+        </div>
+    </section>
+
+    <!-- ===== FOMO ===== -->
+    <section class="fomo-section">
+        <h2>„Da, dar..."</h2>
+        <p style="color: var(--gray); margin-bottom: 1rem;">Răspunsuri la cele mai frecvente obiecții:</p>
+        <div class="objections-grid">
+            <div class="objection-card">
+                <p class="objection">„Nu am talent artistic"</p>
+                <p class="answer">Nu ai nevoie. Ai nevoie de lut, mâini și instrucțiuni clare. Restul vine din practică.</p>
+            </div>
+            <div class="objection-card">
+                <p class="objection">„E scump"</p>
+                <p class="answer">De la 80 lei primești 4 ore de curs + materiale + bijuteria gata. Cât costă un brunch?</p>
+            </div>
+            <div class="objection-card">
+                <p class="objection">„Nu am timp"</p>
+                <p class="answer">4 ore într-o zi. Atât. Și pleci cu o competență nouă pentru totdeauna.</p>
+            </div>
+            <div class="objection-card">
+                <p class="objection">„Pot învăța de pe YouTube"</p>
+                <p class="answer">Poți. Dar nu ai pe nimeni să-ți corecteze greșelile, să-ți dea materialele, sau să te motiveze.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PUBLIC TINTA ===== -->
+    <section>
+        <span class="section-tag">🎯 Pentru cine e?</span>
+        <h2>Publicul țintă</h2>
+        <div class="audience-grid">
+            <div class="audience-card"><h3>👩‍🎨 Femei 18-80 ani</h3><p>Pasionate de artă, handmade, creativitate. Fie ca hobby, fie ca afacere.</p></div>
+            <div class="audience-card"><h3>🤲 Învață kinestezic</h3><p>Preferă să învețe făcând, nu citind sau ascultând.</p></div>
+            <div class="audience-card"><h3>💼 Antreprenoare</h3><p>Vor un side-hustle creativ cu investiție mică și potențial de profit.</p></div>
+            <div class="audience-card"><h3>🧘 Căutătoare de relaxare</h3><p>Lutul e terapeutic. O modalitate de a deconecta de la rutină.</p></div>
+        </div>
+    </section>
+
+    <!-- ===== PREȚ ===== -->
+    <section>
+        <span class="section-tag">💳 Investiția ta</span>
+        <h2>Cât costă?</h2>
+        <div class="price-card">
+            <div class="price-badge">Curs Complet</div>
+            <div class="price-amount">
+                <span class="price-from">de la</span>
+                <span class="price-value">80</span>
+                <span class="price-currency">LEI</span>
+            </div>
+            <p class="price-per">/ persoană / zi de curs</p>
+            <ul class="price-includes">
+                <li>✅ 4 ore de curs intensiv practic</li>
+                <li>✅ Toate materialele incluse</li>
+                <li>✅ Bijuteria ta gata de luat acasă</li>
+                <li>✅ Norme de siguranță & ghid tehnic</li>
+                <li>✅ Sfaturi de monetizare & pricing</li>
+                <li>✅ Comunitate & suport post-curs</li>
+                <li>✅ Bonus: Oferta specială la final</li>
+            </ul>
+            <p class="price-note">* Prețul variază între 80-160 LEI în funcție de complexitatea cursului și materialele alese.</p>
+        </div>
+    </section>
+
+    <!-- ===== INFO ===== -->
+    <section>
+        <span class="section-tag">📍 Informații practice</span>
+        <h2>Detalii organizatorice</h2>
+        <div class="info-grid">
+            <div class="info-card"><span class="info-icon">📅</span><h3>Data</h3><p>Se anunță</p><span class="info-small">Urmărește social media</span></div>
+            <div class="info-card"><span class="info-icon">🕐</span><h3>Durata</h3><p>4 ore</p><span class="info-small">Cu pauze incluse</span></div>
+            <div class="info-card"><span class="info-icon">📍</span><h3>Locație</h3><p>Se anunță</p><span class="info-small">Fizic, față-în-față</span></div>
+            <div class="info-card"><span class="info-icon">🎒</span><h3>Ce aduci?</h3><p>Doar entuziasm!</p><span class="info-small">Materialele asigurate</span></div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <div class="cta-section">
+        <h2>Ești gata să transformi lutul în bijuterii?</h2>
+        <p>Locurile sunt limitate. Scrie-ne acum!</p>
+        <div class="cta-channels">
+            <span class="cta-channel"><span>🌐</span> rashinathor.ro</span>
+            <span class="cta-channel"><span>📸</span> @rashinathor</span>
+            <span class="cta-channel"><span>📘</span> RashinaThor</span>
+        </div>
+        <div class="cta-qr-row">
+            <div class="cta-qr-item">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://rashinathor.ro&color=6C5CE7&bgcolor=FFFFFF&margin=10" alt="QR">
+                <p>rashinathor.ro</p>
+            </div>
+            <div class="cta-qr-item">
+                <img src="gif/TTT202602-qr.png" alt="QR Curs">
+                <p>Prezentare Curs</p>
+            </div>
+        </div>
+        <p class="cta-final">Sau vino direct la un <strong>târg de specialitate</strong> și hai să ne cunoaștem! 🕊️</p>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+        <p>© 2026 RashinaThor — Creat cu 💜 pentru pasionați de manufactură artizanală</p>
+    </div>
+
+</body>
+</html>
