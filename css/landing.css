@@ -1522,3 +1522,43 @@ img {
         align-items: center;
     }
 }
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    body { overflow: visible !important; }
+    
+    .landing-nav,
+    .hero-particles,
+    .btn-glow::before,
+    .hero-social-proof .proof-avatars {
+        display: none !important;
+    }
+
+    * {
+        color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    section {
+        page-break-inside: avoid;
+    }
+
+    .hero-section {
+        min-height: auto !important;
+        padding: 3rem 2rem !important;
+    }
+
+    img {
+        max-width: 250px !important;
+        height: auto !important;
+    }
+
+    .hero-image-stack {
+        display: none !important;
+    }
+
+    .container {
+        max-width: 100% !important;
+    }
+}
