@@ -124,7 +124,7 @@ header p{font-size:clamp(.9rem,2.5vw,1.1rem);opacity:.85;position:relative;z-ind
   <div class="test-grid" id="test-grid"></div>
 </div>
 
-<div class="container" id="test-screen">
+<div class="container" id="test-screen" style="display:none">
   <div class="question-header">
     <span class="question-counter" id="q-counter"></span>
     <span class="timer" id="timer">10:00</span>
@@ -133,7 +133,7 @@ header p{font-size:clamp(.9rem,2.5vw,1.1rem);opacity:.85;position:relative;z-ind
   <div class="question-box" id="question-box"></div>
 </div>
 
-<div class="container" id="results-screen">
+<div class="container" id="results-screen" style="display:none">
   <div class="results-card" id="results-card"></div>
 </div>
 
@@ -223,7 +223,8 @@ function saveScore(id,sc){var s=getScores();if(!s[id]||sc>s[id])s[id]=sc;localSt
 
 // ====================== MENU ======================
 function renderMenu(){
-  document.getElementById("menu-screen").style.display="";
+  window.scrollTo(0,0);
+  document.getElementById("menu-screen").style.display="block";
   document.getElementById("test-screen").style.display="none";
   document.getElementById("results-screen").style.display="none";
   clearInterval(timerInterval);
@@ -247,9 +248,9 @@ function startTest(testId){
   for(var i=0;i<currentTest.intrebari.length;i++){answers.push(null);locked.push(false)}
   timeLeft=600;
   document.getElementById("menu-screen").style.display="none";
-  document.getElementById("test-screen").style.display="";
+  document.getElementById("test-screen").style.display="block";
   document.getElementById("results-screen").style.display="none";
-  renderQuestion();startTimer();
+  window.scrollTo(0,0);renderQuestion();startTimer();
 }
 
 // ====================== TIMER ======================
@@ -308,8 +309,8 @@ function showFeedback(container,q,chosen){
 function showResults(){
   clearInterval(timerInterval);
   document.getElementById("test-screen").style.display="none";
-  document.getElementById("results-screen").style.display="";
-  var total=currentTest.intrebari.length,correct=0;
+  document.getElementById("results-screen").style.display="block";
+  window.scrollTo(0,0);var total=currentTest.intrebari.length,correct=0;
   currentTest.intrebari.forEach(function(q,i){if(answers[i]===q.corect)correct++});
   saveScore(currentTest.id,correct);
   var pct=Math.round(correct/total*100),pass=pct>=70;
