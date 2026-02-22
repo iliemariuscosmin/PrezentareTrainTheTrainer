@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testare — Train The Trainers</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#1F3864;
+  --accent:#2E75B6;
+  --correct:#375623;
+  --incorrect:#C00000;
+  --bg:#F5F7FA;
+  --card:#ffffff;
+  --text:#1a1a2e;
+  --text-light:#555;
+  --radius:14px;
+  --shadow:0 4px 20px rgba(0,0,0,.08);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;
+}
+header{
+  background:linear-gradient(135deg,var(--primary) 0%,#2a4a7f 100%);
+  color:#fff;text-align:center;padding:2rem 1rem 1.8rem;position:relative;overflow:hidden;
+}
+header::after{
+  content:"";position:absolute;bottom:-30px;left:0;right:0;height:60px;
+  background:var(--bg);border-radius:50% 50% 0 0;
+}
+header h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;margin-bottom:.3rem;position:relative;z-index:1}
+header p{font-size:clamp(.9rem,2.5vw,1.1rem);opacity:.85;position:relative;z-index:1}
+.container{max-width:800px;margin:0 auto;padding:1.5rem 1rem 3rem}
+.intro-text{color:var(--text-light);margin-bottom:1.2rem;text-align:center}
+.test-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;margin-top:.5rem}
+.test-card{
+  background:var(--card);border-radius:var(--radius);padding:1.5rem;
+  box-shadow:var(--shadow);cursor:pointer;transition:transform .25s,box-shadow .25s;
+  position:relative;overflow:hidden;border-left:5px solid var(--accent);
+}
+.test-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.12)}
+.test-card h3{font-size:1.05rem;color:var(--primary);margin-bottom:.4rem}
+.test-card p{font-size:.85rem;color:var(--text-light);line-height:1.5}
+.test-card .badge{display:inline-block;font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:20px;margin-top:.7rem}
+.badge.done{background:#e8f5e9;color:var(--correct)}
+.badge.not-done{background:#e3f2fd;color:var(--accent)}
+.best-score{font-size:.78rem;color:var(--text-light);margin-top:.35rem}
+#test-screen{display:none}
+.progress-bar-wrap{background:#e0e0e0;border-radius:20px;height:10px;margin-bottom:1.2rem;overflow:hidden}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--primary));border-radius:20px;transition:width .4s ease}
+.question-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
+.question-counter{font-weight:700;color:var(--primary);font-size:1rem}
+.timer{font-weight:700;font-size:1rem;color:var(--accent);background:#e3f2fd;padding:.3rem .8rem;border-radius:8px}
+.timer.warning{color:var(--incorrect);background:#ffeaea;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.question-box{background:var(--card);border-radius:var(--radius);padding:1.8rem;box-shadow:var(--shadow);animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.question-text{font-size:1.1rem;font-weight:600;margin-bottom:1.3rem;line-height:1.5}
+.option-btn{
+  display:block;width:100%;text-align:left;background:#f8f9fb;
+  border:2px solid #e0e4ea;border-radius:10px;padding:.9rem 1.1rem;
+  margin-bottom:.65rem;font-size:.95rem;cursor:pointer;transition:all .2s;
+  font-family:inherit;color:var(--text);line-height:1.45;
+}
+.option-btn:hover:not(.locked){background:#eef2f7;border-color:var(--accent)}
+.option-btn.selected{border-color:var(--accent);background:#e3f2fd}
+.option-btn.correct-answer{border-color:var(--correct);background:#e8f5e9;color:var(--correct);font-weight:600}
+.option-btn.wrong-answer{border-color:var(--incorrect);background:#ffeaea;color:var(--incorrect);font-weight:600}
+.option-btn.locked{cursor:default;opacity:.85}
+.option-btn.locked:hover{background:inherit}
+.feedback-box{margin-top:1rem;padding:1rem 1.2rem;border-radius:10px;font-size:.9rem;line-height:1.55;animation:fadeIn .3s ease}
+.feedback-box.correct{background:#e8f5e9;border-left:4px solid var(--correct);color:#2e5016}
+.feedback-box.incorrect{background:#ffeaea;border-left:4px solid var(--incorrect);color:#8b0000}
+.feedback-box strong{display:block;margin-bottom:.3rem;font-size:.95rem}
+.feedback-box .ref{font-style:italic;opacity:.8;margin-top:.4rem;font-size:.82rem}
+.nav-btn{
+  display:inline-flex;align-items:center;gap:.4rem;margin-top:1.3rem;
+  padding:.7rem 1.6rem;background:var(--accent);color:#fff;border:none;
+  border-radius:10px;font-size:.95rem;font-weight:600;cursor:pointer;
+  transition:background .2s;font-family:inherit;
+}
+.nav-btn:hover{background:var(--primary)}
+.nav-btn:disabled{opacity:.5;cursor:not-allowed}
+#results-screen{display:none}
+.results-card{background:var(--card);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);text-align:center;animation:fadeIn .4s ease}
+.score-circle{
+  width:130px;height:130px;border-radius:50%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;margin:1rem auto 1.2rem;
+  font-size:2rem;font-weight:800;border:6px solid;
+}
+.score-circle.pass{border-color:var(--correct);color:var(--correct);background:#f0f9f0}
+.score-circle.fail{border-color:var(--incorrect);color:var(--incorrect);background:#fff5f5}
+.score-circle small{font-size:.75rem;font-weight:400;opacity:.7}
+.motivation{font-size:1.05rem;margin-bottom:1.5rem;color:var(--text-light)}
+.recap{text-align:left;margin-top:1.5rem}
+.recap-item{padding:1rem;margin-bottom:.8rem;border-radius:10px;font-size:.9rem;line-height:1.5}
+.recap-item.ok{background:#f0f9f0;border-left:4px solid var(--correct)}
+.recap-item.nok{background:#fff5f5;border-left:4px solid var(--incorrect)}
+.recap-item .q-label{font-weight:700;margin-bottom:.3rem}
+.recap-item .q-detail{color:var(--text-light);font-size:.83rem;margin-top:.25rem}
+.btn-row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.hidden{display:none!important}
+@media(max-width:500px){
+  .test-grid{grid-template-columns:1fr}
+  .question-box{padding:1.2rem}
+  .results-card{padding:1.3rem}
+  header{padding:1.5rem 1rem 1.4rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>&#x1F4DD; Testare &mdash; Train The Trainers</h1>
+  <p>Certificare ANC FORMATOR &bull; 6 Teste &bull; 60 &#xCE;ntreb&#x103;ri</p>
+</header>
+
+<div class="container" id="menu-screen">
+  <p class="intro-text">
+    Alege un test pentru a &#xEE;ncepe. Fiecare test con&#x21B;ine 10 &#xEE;ntreb&#x103;ri cu 3 variante de r&#x103;spuns &#x219;i o limit&#x103; de 10 minute.
+  </p>
+  <div class="test-grid" id="test-grid"></div>
+</div>
+
+<div class="container" id="test-screen">
+  <div class="question-header">
+    <span class="question-counter" id="q-counter"></span>
+    <span class="timer" id="timer">10:00</span>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="question-box" id="question-box"></div>
+</div>
+
+<div class="container" id="results-screen">
+  <div class="results-card" id="results-card"></div>
+</div>
+
+<script>
+// ====================== DATA ======================
+var TESTS=[
+{id:1,titlu:"Ziua 1 \u2014 Comunicarea \xeen Training",descriere:"Defini\u021bia trainingului, stiluri de comunicare, mesaj, \xeentreb\u0103ri, empatie",intrebari:[
+{text:"Ce rol are trainerul \xeen cadrul unui training?",variante:["a) Pred\u0103 informa\u021bii \xeentr-un mod unilateral","b) Este mediator, facilit\xe2nd un proces puternic interactiv","c) Cite\u0219te materialul de curs \xeen fa\u021ba participan\u021bilor"],corect:1,referinta:"Ziua 1, Pagina 6",explicatie:"Trainingul este un tip de instruire \xeen care rolul trainerului este cel de mediator, procesul av\xe2nd caracter puternic interactiv \u0219i f\u0103c\xe2nd apel la psihologia experien\u021bial\u0103."},
+{text:"Care este diferen\u021ba principal\u0103 dintre instruirea tradi\u021bional\u0103 \u0219i training?",variante:["a) Training-ul se concentreaz\u0103 pe memorare","b) Training-ul este interactiv \u0219i experien\u021bial, spre deosebire de instruirea clasic\u0103 unidirec\u021bional\u0103","c) Nu exist\u0103 nicio diferen\u021b\u0103 semnificativ\u0103"],corect:1,referinta:"Ziua 1, Pagina 5-6",explicatie:"Training-ul este interactiv, face apel la psihologia experien\u021bial\u0103, iar trainerul este mediator, nu doar transmi\u021b\u0103tor de informa\u021bii."},
+{text:"Stilul de comunicare ACTIV se caracterizeaz\u0103 prin:",variante:["a) R\u0103bdare, analiz\u0103 detaliat\u0103 \u0219i planificare pe termen lung","b) Pragmatism, decizii rapide, energie \u0219i orientare spre rezultate","c) Empatie, sensibilitate \u0219i accent pe rela\u021bii"],corect:1,referinta:"Ziua 1, Pagina 14",explicatie:"Stilul Activ are ca tr\u0103s\u0103turi: pragmatic, direct, ner\u0103bd\u0103tor, decisiv, rapid, energic. Priorit\u0103\u021bile sunt ac\u021biunea \u0219i realizarea."},
+{text:"Ce prioritate are stilul de comunicare SISTEMIC?",variante:["a) Rela\u021bii \u0219i oameni","b) Fapte, ordine \u0219i detalii","c) Inova\u021bie \u0219i creativitate"],corect:1,referinta:"Ziua 1, Pagina 15",explicatie:"Stilul Sistemic are ca priorit\u0103\u021bi faptele, ordinea \u0219i detaliile. Se bazeaz\u0103 pe logic\u0103, analiz\u0103, proceduri \u0219i dovezi."},
+{text:"Conform comunic\u0103rii non-verbale, ce procent din mesaj este transmis prin limbajul corpului?",variante:["a) 7%","b) 38%","c) 55%"],corect:2,referinta:"Ziua 1, Pagina 18",explicatie:"Comunicarea non-verbal\u0103: 55% limbajul corpului, 38% intona\u021bia vocii, 7% cuvintele."},
+{text:"Care dintre urm\u0103toarele NU este o regul\u0103 a mesajului?",variante:["a) Regula Cantit\u0103\u021bii","b) Regula Vitezei","c) Regula Calit\u0103\u021bii"],corect:1,referinta:"Ziua 1, Pagina 10",explicatie:"Regulile mesajului sunt: Cantit\u0103\u021bii, Stilului, Calit\u0103\u021bii, Rela\u021biei, Semnifica\u021biei \u0219i Receptivit\u0103\u021bii. \xabRegula Vitezei\xbb nu exist\u0103."},
+{text:"Comunicarea asertiv\u0103 combinat\u0103 cu empatia este cea mai potrivit\u0103 pentru a combate:",variante:["a) Comunicarea pasiv\u0103, agresiv\u0103 \u0219i manipulativ\u0103","b) Doar comunicarea agresiv\u0103","c) Comunicarea formal\u0103"],corect:0,referinta:"Ziua 1, Pagina 26",explicatie:"Asertivitatea \u0219i empatia sunt instrumente pentru a combate comunicarea pasiv\u0103, agresiv\u0103, pasiv-agresiv\u0103 \u0219i manipulativ\u0103."},
+{text:"Ce tip de comunicare se exprim\u0103 prin formularea \xab\xcenteleg \u0219i apreciez ce spui, \xeens\u0103...\xbb?",variante:["a) Agresiv\u0103","b) Pasiv\u0103","c) Asertiv\u0103"],corect:2,referinta:"Ziua 1, Pagina 27",explicatie:"Formularea recunoa\u0219te punctul de vedere al celuilalt \u0219i exprim\u0103 propriul punct de vedere, ceea ce este specific comunic\u0103rii asertive."},
+{text:"Care sunt cele trei tipuri de empatie men\u021bionate \xeen curs?",variante:["a) Compasiune, Cognitiv\u0103, Emo\u021bional\u0103","b) Activ\u0103, Pasiv\u0103, Neutr\u0103","c) Verbal\u0103, Non-verbal\u0103, Scris\u0103"],corect:0,referinta:"Ziua 1, Pagina 28",explicatie:"Cele trei tipuri de empatie sunt: Compasiune, Cognitiv\u0103 \u0219i Emo\u021bional\u0103, fiecare cu nuan\u021be diferite."},
+{text:"C\xe2nd construie\u0219ti un mesaj, \xeentrebarea \xabDe ce?\xbb se refer\u0103 la:",variante:["a) Stilul de comunicare","b) Scopul mesajului","c) Locul de transmitere"],corect:1,referinta:"Ziua 1, Pagina 8",explicatie:"\xcen schema mesajului: De ce = Scopul, Cine = Interlocutor, Unde = Loc, C\xe2nd = Context, Ce = Subiect, Cum = Stil/Ton, C\xe2t = Durata."}
+]},
+{id:2,titlu:"Ziua 1 \u2014 Feedback \u0219i Limbaj Non-verbal",descriere:"Tehnici de feedback, emo\u021bii, gesturi, contact vizual, spa\u021biu personal",intrebari:[
+{text:"Tehnica de feedback AID este de tip:",variante:["a) Evaluativ","b) Prescriptiv","c) Descriptiv"],corect:2,referinta:"Ziua 1, Pagina 37",explicatie:"AID (Ac\u021biune-Impact-Dorin\u021b\u0103) este o tehnic\u0103 de feedback descriptiv: descrie ac\u021biunea, impactul asupra ta \u0219i dorin\u021ba de schimbare."},
+{text:"Ce tip de feedback este tehnica TOTI (Testare-Operare-Testare-Ie\u0219ire)?",variante:["a) Descriptiv","b) Evaluativ","c) Prescriptiv"],corect:1,referinta:"Ziua 1, Pagina 38",explicatie:"Tehnica TOTI este evaluativ\u0103: evalueaz\u0103 rezultatele ob\u021binute comparativ cu un standard sau un obiectiv."},
+{text:"Tehnica Feedforward se concentreaz\u0103 pe:",variante:["a) Analizarea gre\u0219elilor din trecut","b) Oferirea de solu\u021bii orientate spre viitor","c) Evaluarea performan\u021bei curente"],corect:1,referinta:"Ziua 1, Pagina 39",explicatie:"Feedforward este prescriptiv \u0219i se orienteaz\u0103 pe VIITOR, nu pe TRECUT. Exemplu: \xabData viitoare ar fi bine s\u0103...\xbb \xeen loc de a critica trecutul."},
+{text:"Care sunt cele 6 emo\u021bii de baz\u0103 identificate \xeen cadrul cursului?",variante:["a) Triste\u021be, Bucurie, Fric\u0103, Dezgust, Furie, Surpriz\u0103","b) Fericire, Team\u0103, Ru\u0219ine, Mil\u0103, Uimire, M\xe2nie","c) Triste\u021be, Bucurie, Anxietate, Gelozie, Furie, Confuzie"],corect:0,referinta:"Ziua 1, Pagina 52",explicatie:"Cele 6 emo\u021bii de baz\u0103 sunt: Triste\u021be, Bucurie, Fric\u0103, Dezgust, Furie \u0219i Surpriz\u0103, fiecare cu tr\u0103s\u0103turi faciale specifice."},
+{text:"Ce indic\u0103 gestul de atingere a b\u0103rbiei la un interlocutor?",variante:["a) Plictiseal\u0103","b) Analizeaz\u0103 avantajele \u0219i dezavantajele","c) Nesinceritate"],corect:1,referinta:"Ziua 1, Pagina 60",explicatie:"Atingerea b\u0103rbiei indic\u0103 faptul c\u0103 persoana analizeaz\u0103 avantaje \u0219i dezavantaje, este \xeen proces de luare a deciziei."},
+{text:"Care este distan\u021ba spa\u021biului personal, conform cursului?",variante:["a) Sub 0,5 metri","b) 0,5 \u2013 1,2 metri","c) 1,2 \u2013 3,7 metri"],corect:1,referinta:"Ziua 1, Pagina 78",explicatie:"Spa\u021biul intim: sub 0,5m; Spa\u021biul personal: 0,5-1,2m; Spa\u021biul social: 1,2-3,7m; Spa\u021biul public: 3,7-7,6m."},
+{text:"Contactul vizual cu participan\u021bii ar trebui men\u021binut cel pu\u021bin:",variante:["a) 2 secunde","b) 5 secunde","c) 10 secunde"],corect:1,referinta:"Ziua 1, Pagina 57",explicatie:"Contactul vizual trebuie men\u021binut cu to\u021bi participan\u021bii, cel pu\u021bin 5 secunde, cu privirea la baza nasului."},
+{text:"Ce gesturi indic\u0103 plictiseala participan\u021bilor?",variante:["a) Contact vizual fix \u0219i postur\u0103 dreapt\u0103","b) Cap \xeen palme, privire \xeen jos, corp orientat spre ie\u0219ire","c) Bra\u021be \xeenclinate \xeenainte \u0219i z\xe2mbet frecvent"],corect:1,referinta:"Ziua 1, Pagina 64",explicatie:"Semnele plictisealei: cap \xeen palme, ochii \xeen jos, se uit\u0103 \xeen jur frecvent, trag de urechi, clic pix non-stop, corp orientat spre ie\u0219ire."},
+{text:"Culoarea ALBASTRU pentru hainele trainerului comunic\u0103:",variante:["a) Agresivitate \u0219i intimidare","b) Calm, deschidere \u0219i atractivitate","c) Bucurie \u0219i prietenie"],corect:1,referinta:"Ziua 1, Pagina 82",explicatie:"Albastru = calm, deschis, atractiv. Negru = \xeencredere, putere. Ro\u0219u = agresiv, intimidare, memorabil. Galben = bucurie, prietenie."},
+{text:"\xcen tehnica Feedback 5,5, care sunt cele 5 elemente structurale?",variante:["a) Motive, Curiozitate, Atenuare, Ascult\u0103, Sfat","b) Ac\u021biune, Impact, Dorin\u021b\u0103, Feedback, Rezultat","c) Testare, Operare, Verificare, Corectare, Ie\u0219ire"],corect:0,referinta:"Ziua 1, Pagina 40-41",explicatie:"Feedback 5,5 folose\u0219te: Motive, Curiozitate, Atenuare, Ascult\u0103 \u0219i Sfat, plus Non-verbal ca element suplimentar."}
+]},
+{id:3,titlu:"Ziua 2 \u2014 Andragogia \u0219i Preg\u0103tirea Cursului",descriere:"\xcenv\u0103\u021barea la adul\u021bi, ciclul Kolb, stiluri de \xeenv\u0103\u021bare, analiza nevoilor, obiective SMARTER",intrebari:[
+{text:"Ce este andragogia?",variante:["a) \u0218tiin\u021ba de a-i \xeenv\u0103\u021ba pe copii","b) Arta \u0219i \u0219tiin\u021ba de a-i \xeenv\u0103\u021ba pe adul\u021bi","c) Metoda de evaluare a cursan\u021bilor"],corect:1,referinta:"Ziua 2, Pagina 6",explicatie:"Andragogia este arta \u0219i \u0219tiin\u021ba de a-i \xeenv\u0103\u021ba pe adul\u021bi, unde \xeenv\u0103\u021barea este un parteneriat \xeentre trainer \u0219i cursant."},
+{text:"Care sunt cele 4 etape ale ciclului \xeenv\u0103\u021b\u0103rii Kolb?",variante:["a) Planificare, Execu\u021bie, Verificare, Corectare","b) Experien\u021b\u0103 concret\u0103, Observa\u021bii, Formare concepte, Testare \xeen situa\u021bii noi","c) Ascultare, Citire, Practic\u0103, Evaluare"],corect:1,referinta:"Ziua 2, Pagina 7",explicatie:"Ciclul Kolb: Experien\u021b\u0103 concret\u0103 \u2192 Observa\u021bii \u2192 Formarea conceptelor \u2192 Testare \xeen situa\u021bii noi."},
+{text:"Cursantul cu stil REFLEXIV \xeenva\u021b\u0103 mai bine atunci c\xe2nd:",variante:["a) Are experien\u021be noi \u0219i exerci\u021bii rapide de grup","b) Are posibilitatea s\u0103 observe, s\u0103 reflecteze \u0219i s\u0103 aib\u0103 timp de g\xe2ndire","c) \xcE\u0219i poate testa ideile \xeen practic\u0103 imediat"],corect:1,referinta:"Ziua 2, Pagina 20",explicatie:"Stilul Reflexiv: \xabNu fi prea gr\u0103bit!\xbb \u2014 are nevoie de timp pentru observare, reflec\u021bie \u0219i preg\u0103tire \xeenainte de a participa activ."},
+{text:"\xcen teoria \xeenv\u0103\u021b\u0103rii adul\u021bilor, cursantul \xabturist\xbb corespunde teoriei:",variante:["a) Transfer","b) Modelare","c) C\u0103l\u0103torie"],corect:2,referinta:"Ziua 2, Pagina 14",explicatie:"Teoria C\u0103l\u0103torie: cursantul \xabturist\xbb \u2014 \xeenva\u021b\u0103 prin curiozitate \u0219i independen\u021b\u0103, dar necesit\u0103 motivare."},
+{text:"Ce reprezint\u0103 \xabE\xbb din acronimul SMARTER pentru obiective?",variante:["a) Evaluabil","b) Exciting (Stimulator)","c) Eficient"],corect:1,referinta:"Ziua 2, Pagina 8",explicatie:"SMARTER: Specifice, M\u0103surabile, Acceptate, Realizabile, Timebound, Exciting (Stimulator), Recorded (Consemnabil)."},
+{text:"Care sunt cele 4 instrumente de identificare a nevoilor de formare?",variante:["a) Testul, Proiectul, Simularea, Eseul","b) Chestionarul, Interviul, Discu\u021biile libere, Evalu\u0103ri anterioare","c) Observarea, Ancheta, Experimentul, Convorbirea"],corect:1,referinta:"Ziua 2, Pagina 14",explicatie:"Cele 4 instrumente sunt: Chestionarul, Interviul, Discu\u021biile libere \u0219i Evalu\u0103ri anterioare."},
+{text:"Conform piramidei \xeenv\u0103\u021b\u0103rii, cea mai eficient\u0103 metod\u0103 de reten\u021bie a informa\u021biilor este:",variante:["a) Citirea","b) \xcenv\u0103\u021barea altora / Aplicarea imediat\u0103","c) Ascultarea prelegerilor"],corect:1,referinta:"Ziua 2, Pagina 13",explicatie:"Piramida \xeenv\u0103\u021b\u0103rii (Dale): Citire aproximativ 10%, Prelegere aproximativ 5%, dar \xeenv\u0103\u021barea altora \u0219i aplicarea practic\u0103 ajung la aproximativ 90% reten\u021bie."},
+{text:"Care este prima etap\u0103 din efectul domino \xeen formare?",variante:["a) Proiectare formare","b) Identificare \u0219i analiz\u0103 nevoilor de formare","c) Desf\u0103\u0219urare formare"],corect:1,referinta:"Ziua 2, Pagina 7",explicatie:"Efectul domino: Identificare \u0219i analiz\u0103 nevoilor \u2192 Proiectare formare \u2192 Desf\u0103\u0219urare formare \u2192 Evaluare proces de formare."},
+{text:"Stilul de \xeenv\u0103\u021bare PRAGMATIC se rezum\u0103 la motto-ul:",variante:["a) \xabVoi \xeencerca totul!\xbb","b) \xabDac\u0103 este logic trebuie s\u0103 fie corect!\xbb","c) \xabNu este de folos dac\u0103 nu func\u021bioneaz\u0103!\xbb"],corect:2,referinta:"Ziua 2, Pagina 22",explicatie:"Stilul Pragmatic \u2014 \xabNu este de folos dac\u0103 nu func\u021bioneaz\u0103!\xbb \u2014 \xeenva\u021b\u0103 prin aplicabilitate practic\u0103 evident\u0103."},
+{text:"Ce concept descrie \xabun cocon de siguran\u021b\u0103 unde gre\u0219elile sunt permise \u0219i \xeencurajate\xbb?",variante:["a) Andragogia","b) Holding Environment","c) Heutagogia"],corect:1,referinta:"Ziua 2, Pagina 6",explicatie:"Holding Environment = un cocon de siguran\u021b\u0103 unde gre\u0219elile sunt permise \u0219i \xeencurajate. Heutagogia = cursantul alege totul."}
+]},
+{id:4,titlu:"Ziua 2 \u2014 Suportul de Prezentare",descriere:"Regulile lui Cicero, structurare, culori, text, reguli camer\u0103, grafice",intrebari:[
+{text:"C\xe2te reguli are discursul lui Cicero?",variante:["a) 4","b) 6","c) 8"],corect:1,referinta:"Ziua 2, Pagina 39",explicatie:"Cele 6 reguli: Introducerea, Enun\u021barea ideilor, Diviziunea, Dovada, Combaterea, Concluzia."},
+{text:"Conform regulilor de text, c\xe2te fonturi ar trebui utilizate \xeentr-o prezentare?",variante:["a) Doar 2","b) Maxim 4","c) C\xe2te sunt necesare"],corect:0,referinta:"Ziua 2, Pagina 58",explicatie:"Regula 1: Doar dou\u0103 fonturi. Regula 2: Limiteaz\u0103 la dou\u0103 familii (sans serif sau serif)."},
+{text:"Care este regula \xab6\xd76\xbb din prezent\u0103ri?",variante:["a) 6 slide-uri \xd7 6 prezent\u0103ri","b) 6 r\xe2nduri \xd7 6 cuvinte pe slide","c) 6 culori \xd7 6 imagini"],corect:1,referinta:"Ziua 2, Pagina 59",explicatie:"Regula 9: 6 r\xe2nduri \xd7 6 cuvinte (sau 8\xd78) pentru a men\u021bine lizibilitatea \u0219i simplitatea slide-urilor."},
+{text:"La nivelul ochilor, camera pozi\u021bionat\u0103 u\u0219or de jos transmite:",variante:["a) Vulnerabilitate","b) Egalitate","c) Autoritate"],corect:2,referinta:"Ziua 2, Pagina 55",explicatie:"Camera la nivelul ochilor = Egalitate. U\u0219or de jos = Autoritate. De sus = Vulnerabilitate."},
+{text:"Ce tip de structurare a prezent\u0103rii merge \xabde la cunoscut la necunoscut\xbb?",variante:["a) Cronologic\u0103","b) Problem\u0103 \u2013 solu\u021bie","c) Una dintre cele 6 variante clasice de structurare"],corect:2,referinta:"Ziua 2, Pagina 40",explicatie:"Structurarea prezent\u0103rii: cronologic\u0103, problem\u0103-solu\u021bie, de la complex la simplu, de la general la particular, de la cunoscut la necunoscut, pas cu pas."},
+{text:"Conform regulilor de culori, culorile calde au efectul de a:",variante:["a) Determina monotonia","b) Stimula comunicarea","c) Distrage aten\u021bia"],corect:1,referinta:"Ziua 2, Pagina 42",explicatie:"Culorile calde stimuleaz\u0103 comunicarea, culorile reci determin\u0103 monotonia, iar excesul de culoare distrage aten\u021bia."},
+{text:"Care dintre urm\u0103toarele aranjamente ale s\u0103lii este potrivit pentru lucrul \xeen echip\u0103?",variante:["a) Conferin\u021b\u0103","b) Amfiteatru","c) Grupuri"],corect:2,referinta:"Ziua 2, Pagina 30",explicatie:"Tipuri de organizare: Conferin\u021b\u0103, Forma U, Echip\u0103, Grupuri, Amfiteatru \u2014 Grupuri este ideal pentru lucrul colaborativ."},
+{text:"Pe camera video, trebuie s\u0103 ai cu c\xe2t mai mult\u0103 energie dec\xe2t \xeen discu\u021bia fa\u021b\u0103 \xeen fa\u021b\u0103?",variante:["a) 10% mai mult\u0103","b) 20% mai mult\u0103","c) 50% mai mult\u0103"],corect:1,referinta:"Ziua 2, Pagina 55",explicatie:"Regula 3: cu 20% mai mult\u0103 energie (voce, mimic\u0103) dec\xe2t \xeentr-o discu\u021bie fa\u021b\u0103 \xeen fa\u021b\u0103, pentru a p\u0103rea normal pe video."},
+{text:"Ce combina\u021bie de culori trebuie evitat\u0103 pentru persoanele cu probleme vizuale?",variante:["a) Albastru \u0219i galben","b) Ro\u0219u \u0219i verde","c) Negru \u0219i alb"],corect:1,referinta:"Ziua 2, Pagina 51",explicatie:"Regula 8: Pentru a evita disconfortul persoanelor cu probleme vizuale, evita\u021bi combina\u021bia de ro\u0219u \u0219i verde (daltonism)."},
+{text:"Conform regulilor graficelor, menirea regulii 7 este:",variante:["a) Include doar diferen\u021be relevante","b) M\u0103re\u0219te capacitatea de memorare prin utilizarea unei scheme compacte","c) Dispune at\xe2tea informa\u021bii c\xe2te sunt necesare"],corect:1,referinta:"Ziua 2, Pagina 76",explicatie:"Regula 7 din grafice: M\u0103re\u0219te capacitatea de memorare prin utilizarea unei scheme compacte."}
+]},
+{id:5,titlu:"Ziua 3 \u2014 Sus\u021binerea Cursului",descriere:"Calit\u0103\u021bi trainer, icebreakere, emo\u021bii, Podul, categorii de cursan\u021bi, debriefing, evaluare",intrebari:[
+{text:"C\xe2\u021bi pa\u0219i are structura \xabPodul\xbb pentru sus\u021binerea unui curs?",variante:["a) 3","b) 4","c) 5"],corect:1,referinta:"Ziua 3, Pagina 6",explicatie:"Podul are 4 pa\u0219i: 1. Spune-le despre ce le vei vorbi, 2. Vorbe\u0219te-le, 3. Spune-le despre ce le-ai vorbit, 4. Mul\u021bume\u0219te."},
+{text:"Ce sunt icebreaker-ele \xeen contextul unui training?",variante:["a) Teste de evaluare a cuno\u0219tin\u021belor","b) Activit\u0103\u021bi de \xeenc\u0103lzire care destind atmosfera \u0219i creeaz\u0103 leg\u0103tura cu trainerul","c) Metode de predare formale"],corect:1,referinta:"Ziua 3, Pagina 7",explicatie:"Icebreaker-ele servesc la \xeenc\u0103lzirea atmosferei, destinderea participan\u021bilor, eliminarea barierelor formale \u0219i crearea unei leg\u0103turi cu trainerul."},
+{text:"Cum ar trebui s\u0103 gestionezi \xabDl. \u0218tie Tot\xbb ca \u0219i categorie de cursant?",variante:["a) \xcEl ignori complet","b) \xcEl \xeencurajezi s\u0103 \xeemp\u0103rt\u0103\u0219easc\u0103 din experien\u021b\u0103 \u0219i \xeei preg\u0103te\u0219ti exerci\u021bii de avansat","c) \xcEl mu\u021bi \xeentr-un alt grup"],corect:1,referinta:"Ziua 3, Pagina 13",explicatie:"Pentru Dl. \u0218tie Tot: \xeencurajeaz\u0103-l s\u0103 \xeemp\u0103rt\u0103\u0219easc\u0103 din experien\u021b\u0103, preg\u0103te\u0219te-i exerci\u021bii de avansat, solicit\u0103 sursele sale de informare."},
+{text:"Ce acronim descrie structura debriefing-ului \xeen training?",variante:["a) AID","b) CISR","c) TOTI"],corect:1,referinta:"Ziua 3, Pagina 24",explicatie:"Debriefing: C = Comportament, I = Impact, S = Sentiment, R = Recomand\u0103ri \u2014 conversa\u021bie semi-structurat\u0103 pentru facilitarea \xeen\u021belegerii."},
+{text:"Care este primul lucru recomandat pentru gestionarea emo\u021biilor \xeentr-un curs?",variante:["a) S\u0103 ceri scuze publicului","b) S\u0103 respiri","c) S\u0103 apelezi la memorie"],corect:1,referinta:"Ziua 3, Pagina 13",explicatie:"Prima recomandare: Respir\u0103. De asemenea: nu apela la memorie, nu cere scuze, nu te ascunde, \xeencepe cu o \xeentrebare, f\u0103 pauze."},
+{text:"Cum gestionezi \xabDl. T\u0103cut\xbb \xeen cadrul trainingului?",variante:["a) \xcEl for\u021bezi s\u0103 vorbeasc\u0103 \xeen fa\u021ba tuturor","b) \xcEi pui \xeentreb\u0103ri simple (Da/Nu) \u0219i accep\u021bi c\u0103 unele persoane se simt bine f\u0103r\u0103 s\u0103 vorbeasc\u0103","c) \xcEl elimini din activit\u0103\u021bi"],corect:1,referinta:"Ziua 3, Pagina 13",explicatie:"Pentru Dl. T\u0103cut: \xeentreb\u0103ri simple Da/Nu, sugereaz\u0103 r\u0103spunsul \xeen \xeentrebare, accept\u0103 stilul t\u0103cut, organizeaz\u0103 sesiuni de motivare."},
+{text:"Conform cursului, sesiunile de predare ar trebui s\u0103 dureze c\xe2te:",variante:["a) 45 de minute","b) 20 de minute","c) 60 de minute"],corect:1,referinta:"Ziua 3, Pagina 16",explicatie:"Sesiuni de c\xe2te 20 de minute \u2014 aceasta este durata optim\u0103 de aten\u021bie recomandat\u0103 pentru predare."},
+{text:"Ce metod\u0103 de evaluare a cursan\u021bilor NU este men\u021bionat\u0103 \xeen curs?",variante:["a) Proiect","b) Studiu de caz","c) Examen oral public"],corect:2,referinta:"Ziua 3, Pagina 27",explicatie:"Metodele de evaluare din curs: Proiect, Testare, Eseu, Studiu de caz, Simul\u0103ri, Interviu, Observare."},
+{text:"Ce face AI-ul ca \u0219i Co-Facilitator \xeen cadrul unui training?",variante:["a) \xcEnlocuie\u0219te complet trainerul","b) Urm\u0103re\u0219te timpul, grupeaz\u0103 post-it-uri, identific\u0103 cursan\u021bii confu\u0219i, traduce instant","c) Doar \xeenregistreaz\u0103 sesiunea"],corect:1,referinta:"Ziua 3, Pagina 26",explicatie:"AI-ul: urm\u0103re\u0219te timpul, grupeaz\u0103 sute de post-it-uri pe teme, identific\u0103 cursan\u021bii confu\u0219i, traduce instant, adapteaz\u0103 con\u021binutul prin Adaptive Learning."},
+{text:"La autoevaluarea post-prezentare, \xeentrebarea \xabAm oferit valoare clien\u021bilor mei?\xbb se refer\u0103 la criteriul:",variante:["a) Integritate","b) Valoare","c) Relevan\u021b\u0103"],corect:1,referinta:"Ziua 3, Pagina 35",explicatie:"Criteriile autoevalu\u0103rii: Integritate, A\u0219tept\u0103ri, Relevan\u021b\u0103, Valoare, Partea practic\u0103, Schimbare."}
+]},
+{id:6,titlu:"Ziua 3 \u2014 Metode de Predare",descriere:"Metode clasice, moderne, brainstorming, gamification, Art of Hosting, teatrul lui Boal",intrebari:[
+{text:"Care metod\u0103 clasic\u0103 de predare justific\u0103 concluzia dar nu implic\u0103 participan\u021bii?",variante:["a) Expunerea","b) Demonstra\u021bia","c) Chestionarele"],corect:1,referinta:"Ziua 3, Pagina 38",explicatie:"Demonstra\u021bia: + Justific\u0103 concluzia, - Nu implic\u0103 participan\u021bii. Este potrivit\u0103 pentru Teoreticieni, Reflexivi \u0219i Pragmatici."},
+{text:"Ce varia\u021bie de brainstorming presupune Substitute, Combin\u0103, Adapteaz\u0103, Modific\u0103 perspectiva, Elimin\u0103, Rearanjaz\u0103?",variante:["a) Popcorn","b) SCAMPER","c) Direc\u021bionat"],corect:1,referinta:"Ziua 3, Pagina 43",explicatie:"SCAMPER: Substitute, Combin\u0103, Adapteaz\u0103, Modific\u0103 perspectiva, Elimin\u0103, Rearanjaz\u0103 \u2014 o variant\u0103 structurat\u0103 de brainstorming."},
+{text:"Ce metod\u0103 de predare presupune Tehnica acvariului (Fishbowl)?",variante:["a) Un grup discut\u0103 \xeen centru, ceilal\u021bi observ\u0103 din jur","b) Participan\u021bii lucreaz\u0103 individual la proiecte","c) Trainerul expune teoria la flipchart"],corect:0,referinta:"Ziua 3, Pagina 45",explicatie:"Fishbowl stimuleaz\u0103 aten\u021bia: un grup discut\u0103 activ (\xeen acvariu), ceilal\u021bi urm\u0103resc. Potrivit pentru Reflexivi \u0219i Teoreticieni."},
+{text:"Metodele teatrale din formare (Teatrul forum, labirint, playback, scris) apar\u021bin lui:",variante:["a) Robert Kienzle","b) Augusto Boal","c) David Kolb"],corect:1,referinta:"Ziua 3, Pagina 52",explicatie:"Augusto Boal \u2014 formele de teatru \xeen training: Teatrul forum, labirint, playback \u0219i scris."},
+{text:"Ce presupune metoda World Caf\xe9?",variante:["a) Participan\u021bii sus\u021bin prezent\u0103ri individuale","b) Runde de conversa\u021bie la mese rotunde, \xeentr-un spa\u021biu relaxant, cu cafea","c) Exerci\u021bii fizice de energizare"],corect:1,referinta:"Ziua 3, Pagina 58",explicatie:"World Caf\xe9: spa\u021biu relaxant cu mese rotunde, cafea, runde de conversa\u021bie de aproximativ 20 minute, reguli ale casei, context adaptat, reflec\u021bie \u0219i sharing."},
+{text:"Ce elemente fac un joc s\u0103 fie joc, conform cursului?",variante:["a) Doar comunicare \u0219i evaluare","b) Poveste, Timp, Emo\u021bie, Feedback, Obiectiv, Premiu, Penaliz\u0103ri, Echipa, Probleme, Provoc\u0103ri","c) Test, Not\u0103, Clasificare"],corect:1,referinta:"Ziua 3, Pagina 50",explicatie:"Elementele jocului: Povestea, Timp, Emo\u021bia, Feedback, Obiectiv, Premiu, Penaliz\u0103ri, Echipa, Probleme, Provoc\u0103ri, Relevan\u021b\u0103, Piese."},
+{text:"Metoda Pro Action Caf\xe9 presupune 3 runde de \xeentreb\u0103ri. Care este ordinea?",variante:["a) Ce lipse\u0219te? \u2192 Care este scopul? \u2192 Care este pasul urm\u0103tor?","b) Care este scopul? \u2192 Ce lipse\u0219te? \u2192 Care este pasul urm\u0103tor?","c) Care este pasul urm\u0103tor? \u2192 Ce lipse\u0219te? \u2192 Care este scopul?"],corect:1,referinta:"Ziua 3, Pagina 56",explicatie:"Pro Action Caf\xe9: Runda 1 = Care este scopul?, Runda 2 = Ce lipse\u0219te?, Runda 3 = Care este pasul urm\u0103tor?"},
+{text:"Care metod\u0103 de predare modern\u0103 este descris\u0103 ca \xabPunct ochit, punct lovit\xbb \u0219i se adreseaz\u0103 unui termen scurt?",variante:["a) Blended learning","b) Micro-learning","c) Gamification"],corect:1,referinta:"Ziua 3, Pagina 47",explicatie:"Micro-learning: + Punct ochit, punct lovit; - Termen scurt \u0219i pu\u021bini oameni. Potrivit pentru stilurile Activi \u0219i Pragmatici."},
+{text:"Metoda Appreciative Inquiry porne\u0219te de la:",variante:["a) Ce nu func\u021bioneaz\u0103","b) Ce func\u021bioneaz\u0103 (Descoper\u0103 \u2192 Viseaz\u0103 \u2192 Design \u2192 Planific\u0103)","c) Probleme nerezolvate din trecut"],corect:1,referinta:"Ziua 3, Pagina 57",explicatie:"Appreciative Inquiry: Descoper\u0103 ce func\u021bioneaz\u0103 \u2192 Viseaz\u0103 \u2192 Design (dezvolt\u0103 ipoteze) \u2192 Planific\u0103 ac\u021biunea."},
+{text:"Ce dezavantaj are metoda Gamification?",variante:["a) Nu este interactiv\u0103","b) Necesit\u0103 un c\xe2\u0219tig\u0103tor \u0219i are durat\u0103 mare de dezvoltare","c) Nu se potrive\u0219te niciunui stil de \xeenv\u0103\u021bare"],corect:1,referinta:"Ziua 3, Pagina 47",explicatie:"Gamification: + stimulant; - Durat\u0103 mare de dezvoltare, necesit\u0103 un c\xe2\u0219tig\u0103tor. Potrivit pentru stilurile Activi \u0219i Reflexivi."}
+]}
+];
+
+// ====================== STATE ======================
+var currentTest=null,currentQ=0,answers=[],locked=[],timerInterval=null,timeLeft=600;
+
+// ====================== LOCALSTORAGE ======================
+function getScores(){try{return JSON.parse(localStorage.getItem("ttt_scores")||"{}")}catch(e){return{}}}
+function saveScore(id,sc){var s=getScores();if(!s[id]||sc>s[id])s[id]=sc;localStorage.setItem("ttt_scores",JSON.stringify(s))}
+
+// ====================== MENU ======================
+function renderMenu(){
+  document.getElementById("menu-screen").style.display="";
+  document.getElementById("test-screen").style.display="none";
+  document.getElementById("results-screen").style.display="none";
+  clearInterval(timerInterval);
+  var grid=document.getElementById("test-grid"),scores=getScores();
+  grid.innerHTML="";
+  TESTS.forEach(function(t){
+    var best=scores[t.id],done=best!==undefined;
+    var card=document.createElement("div");
+    card.className="test-card";
+    card.innerHTML="<h3>Test "+t.id+"</h3><p>"+t.titlu+"</p><p style='font-size:.8rem;color:var(--text-light);margin-top:.3rem'>"+t.descriere+"</p><span class='badge "+(done?"done":"not-done")+"'>"+(done?"\u2713 Completat":"\u25CB Ne\xeenceput")+"</span>"+(done?"<div class='best-score'>Cel mai bun scor: "+best+"/10</div>":"");
+    card.onclick=function(){startTest(t.id)};
+    grid.appendChild(card);
+  });
+}
+
+// ====================== START TEST ======================
+function startTest(testId){
+  currentTest=TESTS.filter(function(t){return t.id===testId})[0];
+  currentQ=0;
+  answers=[];locked=[];
+  for(var i=0;i<currentTest.intrebari.length;i++){answers.push(null);locked.push(false)}
+  timeLeft=600;
+  document.getElementById("menu-screen").style.display="none";
+  document.getElementById("test-screen").style.display="";
+  document.getElementById("results-screen").style.display="none";
+  renderQuestion();startTimer();
+}
+
+// ====================== TIMER ======================
+function startTimer(){
+  clearInterval(timerInterval);updateTimerDisplay();
+  timerInterval=setInterval(function(){timeLeft--;updateTimerDisplay();if(timeLeft<=0){clearInterval(timerInterval);showResults()}},1000);
+}
+function updateTimerDisplay(){
+  var m=Math.floor(timeLeft/60),s=timeLeft%60;
+  var el=document.getElementById("timer");
+  el.textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+  if(timeLeft<=120)el.classList.add("warning");else el.classList.remove("warning");
+}
+
+// ====================== RENDER QUESTION ======================
+function renderQuestion(){
+  var q=currentTest.intrebari[currentQ],total=currentTest.intrebari.length;
+  document.getElementById("q-counter").textContent="\xcEntrebarea "+(currentQ+1)+" / "+total;
+  document.getElementById("progress-fill").style.width=((currentQ+1)/total*100)+"%";
+  var box=document.getElementById("question-box");box.innerHTML="";
+  var qText=document.createElement("div");qText.className="question-text";qText.textContent=q.text;box.appendChild(qText);
+  q.variante.forEach(function(v,i){
+    var btn=document.createElement("button");btn.className="option-btn";btn.textContent=v;
+    if(locked[currentQ]){btn.classList.add("locked");if(i===q.corect)btn.classList.add("correct-answer");if(i===answers[currentQ]&&i!==q.corect)btn.classList.add("wrong-answer")}
+    else if(answers[currentQ]===i)btn.classList.add("selected");
+    btn.onclick=function(){if(!locked[currentQ])selectOption(i)};
+    box.appendChild(btn);
+  });
+  if(locked[currentQ])showFeedback(box,q,answers[currentQ]);
+  var navDiv=document.createElement("div");navDiv.style.cssText="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem";
+  if(!locked[currentQ]){
+    var cb=document.createElement("button");cb.className="nav-btn";cb.textContent="Confirm\u0103 r\u0103spunsul";cb.disabled=answers[currentQ]===null;cb.onclick=function(){confirmAnswer()};navDiv.appendChild(cb);
+  }else{
+    var isLast=currentQ===total-1;
+    if(!isLast){var nb=document.createElement("button");nb.className="nav-btn";nb.innerHTML="Urm\u0103toarea \u2192";nb.onclick=function(){currentQ++;renderQuestion()};navDiv.appendChild(nb)}
+    else{var fb=document.createElement("button");fb.className="nav-btn";fb.textContent="Vezi rezultatele";fb.onclick=function(){showResults()};navDiv.appendChild(fb)}
+  }
+  box.appendChild(navDiv);
+}
+
+// ====================== SELECT & CONFIRM ======================
+function selectOption(idx){answers[currentQ]=idx;renderQuestion()}
+function confirmAnswer(){locked[currentQ]=true;renderQuestion()}
+
+// ====================== FEEDBACK ======================
+function showFeedback(container,q,chosen){
+  var ok=chosen===q.corect;
+  var fb=document.createElement("div");fb.className="feedback-box "+(ok?"correct":"incorrect");
+  var html="<strong>"+(ok?"\u2705 Corect!":"\u274C Incorect!")+"</strong>";
+  if(!ok)html+="<div>R\u0103spunsul corect era: <b>"+q.variante[q.corect]+"</b></div>";
+  html+="<div>"+q.explicatie+"</div><div class='ref'>\uD83D\uDCD8 "+q.referinta+"</div>";
+  fb.innerHTML=html;container.appendChild(fb);
+}
+
+// ====================== RESULTS ======================
+function showResults(){
+  clearInterval(timerInterval);
+  document.getElementById("test-screen").style.display="none";
+  document.getElementById("results-screen").style.display="";
+  var total=currentTest.intrebari.length,correct=0;
+  currentTest.intrebari.forEach(function(q,i){if(answers[i]===q.corect)correct++});
+  saveScore(currentTest.id,correct);
+  var pct=Math.round(correct/total*100),pass=pct>=70;
+  var mot;
+  if(pct===100)mot="\uD83C\uDFC6 Excelent! Perfec\u021biune absolut\u0103!";
+  else if(pct>=80)mot="\uD83C\uDF1F Foarte bine! E\u0219ti aproape de perfec\u021biune!";
+  else if(pct>=70)mot="\uD83D\uDC4F Bine! Ai trecut testul. Mai exerseaz\u0103 pu\u021bin!";
+  else if(pct>=50)mot="\uD83D\uDCD6 Nu ai trecut, dar e\u0219ti pe drumul cel bun. Recite\u0219te materialul!";
+  else mot="\uD83D\uDCAA Nu renun\u021ba! Recite\u0219te materialul \u0219i re\xeencearc\u0103!";
+  var card=document.getElementById("results-card");
+  var html="<h2 style='color:var(--primary);margin-bottom:.5rem'>Rezultate \u2014 Test "+currentTest.id+"</h2>";
+  html+="<p style='color:var(--text-light);font-size:.9rem'>"+currentTest.titlu+"</p>";
+  html+="<div class='score-circle "+(pass?"pass":"fail")+"'>"+correct+"/"+total+"<small>"+pct+"%</small></div>";
+  html+="<div class='motivation'>"+mot+"</div>";
+  html+="<div class='recap'><h3 style='margin-bottom:.8rem;font-size:1rem;color:var(--primary)'>Recapitulare</h3>";
+  currentTest.intrebari.forEach(function(q,i){
+    var ok=answers[i]===q.corect;
+    html+="<div class='recap-item "+(ok?"ok":"nok")+"'>";
+    html+="<div class='q-label'>"+(ok?"\u2705":"\u274C")+" \xcE"+(i+1)+": "+q.text+"</div>";
+    if(!ok)html+="<div class='q-detail'>R\u0103spunsul t\u0103u: "+(answers[i]!==null?q.variante[answers[i]]:"<i>f\u0103r\u0103 r\u0103spuns</i>")+"<br>Corect: <b>"+q.variante[q.corect]+"</b></div>";
+    html+="<div class='q-detail'>"+q.explicatie+"<br><i>"+q.referinta+"</i></div></div>";
+  });
+  html+="</div><div class='btn-row'>";
+  html+="<button class='nav-btn' onclick='startTest("+currentTest.id+")'>\uD83D\uDD04 Re\xeencearc\u0103</button>";
+  html+="<button class='nav-btn' style='background:var(--primary)' onclick='renderMenu()'>\u2190 \xcEnapoi la meniu</button>";
+  html+="</div>";
+  card.innerHTML=html;
+}
+
+// ====================== INIT ======================
+renderMenu();
+</script>
+</body>
+</html>
+
