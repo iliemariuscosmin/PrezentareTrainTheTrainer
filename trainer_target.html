@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calități Trainer – Țintă</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0d13;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Barlow Condensed', sans-serif;
+    color: #e8e0d0;
+    padding: 30px 20px;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.6rem;
+    letter-spacing: 0.18em;
+    color: #e8c87a;
+    text-align: center;
+    margin-bottom: 6px;
+    text-shadow: 0 0 30px rgba(232,200,122,0.4);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    letter-spacing: 0.25em;
+    color: #6b7a90;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .chart-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg {
+    filter: drop-shadow(0 0 40px rgba(0,0,0,0.8));
+    max-width: 100%;
+    height: auto;
+  }
+
+  .legend {
+    display: flex;
+    gap: 28px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9aa3b5;
+  }
+
+  .legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const svg = document.querySelector('svg');
+    let currentRotation = 0;
+    let autoSpeed = 0.03;
+    let isUserScrolling = false;
+    let scrollTimeout = null;
+
+    function autoRotate() {
+      if (!isUserScrolling) {
+        currentRotation += autoSpeed;
+        svg.style.transform = `rotate(${currentRotation}deg)`;
+        svg.style.transition = 'none';
+      }
+      requestAnimationFrame(autoRotate);
+    }
+    requestAnimationFrame(autoRotate);
+
+    window.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      isUserScrolling = true;
+      clearTimeout(scrollTimeout);
+      const delta = e.deltaY > 0 ? 2 : -2;
+      currentRotation += delta;
+      svg.style.transform = `rotate(${currentRotation}deg)`;
+      svg.style.transition = 'transform 0.1s ease-out';
+      scrollTimeout = setTimeout(() => { isUserScrolling = false; }, 1000);
+    }, { passive: false });
+
+    let lastY = null;
+    window.addEventListener('touchmove', function(e) {
+      isUserScrolling = true;
+      clearTimeout(scrollTimeout);
+      if (lastY !== null) {
+        const deltaY = lastY - e.touches[0].clientY;
+        currentRotation += deltaY * 0.5;
+        svg.style.transform = `rotate(${currentRotation}deg)`;
+      }
+      lastY = e.touches[0].clientY;
+    });
+    window.addEventListener('touchend', function() {
+      lastY = null;
+      scrollTimeout = setTimeout(() => { isUserScrolling = false; }, 1000);
+    });
+  });
+</script>
+<body>
+
+<h1>Calitățile Trainerului</h1>
+<div class="subtitle">Harta Competențelor · Țintă de Prioritizare</div>
+
+<div class="chart-wrapper">
+<svg viewBox="0 0 960 960" width="860" height="860" xmlns="http://www.w3.org/2000/svg" style="background:transparent">
+  <defs>
+    <!-- Outer ring gradient -->
+    <radialGradient id="outerGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a2a1a"/>
+      <stop offset="100%" stop-color="#0f1a0f"/>
+    </radialGradient>
+    <!-- Middle ring gradient -->
+    <radialGradient id="midGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a2010"/>
+      <stop offset="100%" stop-color="#1a1508"/>
+    </radialGradient>
+    <!-- Inner ring gradient -->
+    <radialGradient id="innerGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3a1008"/>
+      <stop offset="100%" stop-color="#220a04"/>
+    </radialGradient>
+    <!-- Bullseye gradient -->
+    <radialGradient id="bullGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#cc2200"/>
+      <stop offset="100%" stop-color="#8a1500"/>
+    </radialGradient>
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="textGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="subtleGlow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+
+
+  <!-- Subtle grid lines for target feel -->
+  <g stroke="#1a2030" stroke-width="0.5" opacity="0.6">
+    <line x1="480" y1="0" x2="480" y2="960"/>
+    <line x1="0" y1="480" x2="960" y2="480"/>
+    <line x1="480" y1="0" x2="480" y2="960" transform="rotate(45 480 480)"/>
+    <line x1="480" y1="0" x2="480" y2="960" transform="rotate(-45 480 480)"/>
+  </g>
+
+  <!-- OUTER RING (r=400) - least important -->
+  <circle cx="480" cy="480" r="400" fill="url(#outerGrad)" stroke="#2a4a2a" stroke-width="1.5"/>
+
+  <!-- MIDDLE RING (r=270) -->
+  <circle cx="480" cy="480" r="270" fill="url(#midGrad)" stroke="#5a4a1a" stroke-width="1.5"/>
+
+  <!-- INNER RING (r=160) -->
+  <circle cx="480" cy="480" r="160" fill="url(#innerGrad)" stroke="#8a2a15" stroke-width="1.5"/>
+
+  <!-- BULLSEYE (r=70) -->
+  <circle cx="480" cy="480" r="70" fill="url(#bullGrad)" stroke="#ff4422" stroke-width="2" filter="url(#glow)"/>
+
+  <!-- Crosshair lines -->
+  <g stroke="#ff6644" stroke-width="1" opacity="0.35" filter="url(#glow)">
+    <line x1="480" y1="80" x2="480" y2="410"/>
+    <line x1="480" y1="550" x2="480" y2="880"/>
+    <line x1="80" y1="480" x2="410" y2="480"/>
+    <line x1="550" y1="480" x2="880" y2="480"/>
+  </g>
+
+  <!-- Ring distance ticks -->
+  <g stroke="#3a5a3a" stroke-width="1" opacity="0.5">
+    <!-- outer ring ticks -->
+    <line x1="480" y1="76" x2="480" y2="90"/>
+    <line x1="480" y1="870" x2="480" y2="884"/>
+    <line x1="76" y1="480" x2="90" y2="480"/>
+    <line x1="870" y1="480" x2="884" y2="480"/>
+  </g>
+
+  <!-- ============================= -->
+  <!-- ZONE LABELS (ring indicators) -->
+  <text x="480" y="64" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="11" fill="#2a5a2a" letter-spacing="3" font-weight="600">UTIL</text>
+  <text x="480" y="46" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="9" fill="#1e3e1e" letter-spacing="2">ZONA 3</text>
+
+  <text x="480" y="200" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="11" fill="#7a5a1a" letter-spacing="3" font-weight="600">IMPORTANT</text>
+
+  <text x="480" y="306" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="11" fill="#aa3a20" letter-spacing="3" font-weight="600">ESENȚIAL</text>
+
+  <!-- ============================= -->
+  <!-- OUTER RING LABELS (r≈335, 12 items) -->
+  <!-- Items: Networking, Negociator, Coaching, Designer de formare, Managementul timpului,
+       Proiectează exerciții, Cunoaște tendințele, Tolerant la schimbare,
+       Managementul emoțiilor, Persuasiv, Cunoaște evoluțiile tehnologiei, Inovativ -->
+
+  <g font-family="'Barlow Condensed',sans-serif" font-size="14.5" fill="#5aaa5a" font-weight="600" letter-spacing="0.08em" filter="url(#subtleGlow)">
+
+    <!-- 0° top -->
+    <text transform="translate(480,145) rotate(0)" text-anchor="middle">NETWORKING</text>
+
+    <!-- 30° -->
+    <text transform="translate(647.5,192.5) rotate(30)" text-anchor="middle">NEGOCIATOR</text>
+
+    <!-- 60° -->
+    <text transform="translate(770,315) rotate(60)" text-anchor="middle">COACHING</text>
+
+    <!-- 90° right -->
+    <text transform="translate(815,480) rotate(90)" text-anchor="middle">DESIGNER DE FORMARE</text>
+
+    <!-- 120° -->
+    <text transform="translate(770,645) rotate(120)" text-anchor="middle">MANAGEMENTUL TIMPULUI</text>
+
+    <!-- 150° -->
+    <text transform="translate(647.5,767.5) rotate(150)" text-anchor="middle">PROIECTEAZĂ EXERCIȚII</text>
+
+    <!-- 180° bottom -->
+    <text transform="translate(480,815) rotate(180)" text-anchor="middle">CUNOAȘTE TENDINȚELE ACTUALE</text>
+
+    <!-- 210° -->
+    <text transform="translate(312.5,767.5) rotate(210)" text-anchor="middle">TOLERANT LA SCHIMBARE</text>
+
+    <!-- 240° -->
+    <text transform="translate(190,645) rotate(240)" text-anchor="middle">MANAGEMENTUL EMOȚIILOR</text>
+
+    <!-- 270° left -->
+    <text transform="translate(145,480) rotate(270)" text-anchor="middle">PERSUASIV</text>
+
+    <!-- 300° -->
+    <text transform="translate(190,315) rotate(300)" text-anchor="middle">EVOLUȚII TEHNOLOGIE</text>
+
+    <!-- 330° -->
+    <text transform="translate(312.5,192.5) rotate(330)" text-anchor="middle">INOVATIV</text>
+  </g>
+
+  <!-- ============================= -->
+  <!-- MIDDLE RING LABELS (r≈215, 12 items) -->
+  <!-- Items: Adapteaza tehnicile, Flexibil, Gestioneaza conflicte, Organizat, Planifica,
+       Public Speaking, Colaborativ, Cunoaste metode invatare, Orientat spre rezultate,
+       Etic, Invata continuu, Gandire critica -->
+
+  <g font-family="'Barlow Condensed',sans-serif" font-size="13.5" fill="#d4960a" font-weight="700" letter-spacing="0.06em" filter="url(#subtleGlow)">
+
+    <!-- 0° -->
+    <text transform="translate(480,250) rotate(0)" text-anchor="middle">ADAPTEAZĂ TEHNICILE</text>
+
+    <!-- 30° -->
+    <text transform="translate(586.5,293.5) rotate(30)" text-anchor="middle">FLEXIBIL</text>
+
+    <!-- 60° -->
+    <text transform="translate(659,390) rotate(60)" text-anchor="middle">GESTIONEAZĂ CONFLICTE</text>
+
+    <!-- 90° -->
+    <text transform="translate(695,480) rotate(90)" text-anchor="middle">ORGANIZAT</text>
+
+    <!-- 120° -->
+    <text transform="translate(659,570) rotate(120)" text-anchor="middle">PLANIFICĂ</text>
+
+    <!-- 150° -->
+    <text transform="translate(586.5,666.5) rotate(150)" text-anchor="middle">PUBLIC SPEAKING</text>
+
+    <!-- 180° -->
+    <text transform="translate(480,710) rotate(180)" text-anchor="middle">COLABORATIV</text>
+
+    <!-- 210° -->
+    <text transform="translate(373.5,666.5) rotate(210)" text-anchor="middle">METODE DE ÎNVĂȚARE</text>
+
+    <!-- 240° -->
+    <text transform="translate(301,570) rotate(240)" text-anchor="middle">ORIENTAT REZULTATE</text>
+
+    <!-- 270° -->
+    <text transform="translate(265,480) rotate(270)" text-anchor="middle">ETIC</text>
+
+    <!-- 300° -->
+    <text transform="translate(301,390) rotate(300)" text-anchor="middle">ÎNVAȚĂ CONTINUU</text>
+
+    <!-- 330° -->
+    <text transform="translate(373.5,293.5) rotate(330)" text-anchor="middle">GÂNDIRE CRITICĂ</text>
+  </g>
+
+  <!-- ============================= -->
+  <!-- INNER RING LABELS (r≈110, 8 items) -->
+  <!-- Items: Comunicare verbala, Asculta, Empatic, Facilitator,
+       Ofera feedback, Abilitati de prezentare, Format pe subiect, Motivator -->
+
+  <g font-family="'Barlow Condensed',sans-serif" font-size="13" fill="#ff9977" font-weight="700" letter-spacing="0.05em" filter="url(#textGlow)">
+
+    <!-- 0° -->
+    <text transform="translate(480,355) rotate(0)" text-anchor="middle">COMUNICARE VERBALĂ</text>
+
+    <!-- 45° -->
+    <text transform="translate(557.8,402.2) rotate(45)" text-anchor="middle">ASCULTĂ</text>
+
+    <!-- 90° -->
+    <text transform="translate(590,480) rotate(90)" text-anchor="middle">EMPATIC</text>
+
+    <!-- 135° -->
+    <text transform="translate(557.8,557.8) rotate(135)" text-anchor="middle">FACILITATOR</text>
+
+    <!-- 180° -->
+    <text transform="translate(480,605) rotate(180)" text-anchor="middle">OFERĂ FEEDBACK</text>
+
+    <!-- 225° -->
+    <text transform="translate(402.2,557.8) rotate(225)" text-anchor="middle">PREZENTARE</text>
+
+    <!-- 270° -->
+    <text transform="translate(370,480) rotate(270)" text-anchor="middle">FORMAT PE SUBIECT</text>
+
+    <!-- 315° -->
+    <text transform="translate(402.2,402.2) rotate(315)" text-anchor="middle">MOTIVATOR</text>
+
+  </g>
+
+  <!-- Bullseye center dot -->
+  <circle cx="480" cy="480" r="8" fill="#ff2200" filter="url(#glow)"/>
+  <circle cx="480" cy="480" r="3" fill="#ffffff"/>
+
+
+
+  <!-- Ring distance markers -->
+  <g font-family="'Barlow Condensed',sans-serif" font-size="9" fill="#2a3a2a" text-anchor="middle" letter-spacing="1">
+    <text x="500" y="83">400</text>
+    <text x="500" y="214">270</text>
+    <text x="500" y="324">160</text>
+  </g>
+
+</svg>
+</div>
+
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#cc2200; box-shadow: 0 0 8px #cc2200;"></div>
+    <span>Zona 1 – Esențial (centru)</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#d4960a; box-shadow: 0 0 8px #d4960a66;"></div>
+    <span>Zona 2 – Important</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#5aaa5a; box-shadow: 0 0 8px #5aaa5a66;"></div>
+    <span>Zona 3 – Util</span>
+  </div>
+</div>
+
+</body>
+</html>

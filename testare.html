@@ -35,6 +35,19 @@ header h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;margin-bottom:.3rem
 header p{font-size:clamp(.9rem,2.5vw,1.1rem);opacity:.85;position:relative;z-index:1}
 .container{max-width:800px;margin:0 auto;padding:1.5rem 1rem 3rem}
 .intro-text{color:var(--text-light);margin-bottom:1.2rem;text-align:center}
+.study-helper{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.2rem;margin-bottom:1.2rem;border-left:5px solid var(--primary)}
+.study-helper h2{font-size:1.05rem;color:var(--primary);margin-bottom:.35rem}
+.study-helper p{font-size:.88rem;color:var(--text-light);margin-bottom:.8rem}
+.study-input-row{display:flex;gap:.6rem;flex-wrap:wrap}
+#study-question-input{flex:1;min-width:240px;border:2px solid #d9e0ea;border-radius:10px;padding:.7rem .85rem;font:inherit;color:var(--text);background:#fff}
+#study-question-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(46,117,182,.15)}
+.study-btn{border:none;border-radius:10px;background:var(--primary);color:#fff;padding:.72rem 1rem;font:inherit;font-size:.9rem;font-weight:700;cursor:pointer;transition:background .2s}
+.study-btn:hover{background:var(--accent)}
+.study-result{margin-top:.8rem;border-radius:10px;padding:.9rem 1rem;background:#f6f9ff;border-left:4px solid var(--accent);line-height:1.5}
+.study-result .label{font-weight:700;color:var(--primary);display:block;margin-bottom:.15rem}
+.study-result .answer{margin-top:.45rem;padding:.5rem .6rem;background:#e8f5e9;border-radius:8px;color:#234414}
+.study-result .meta{margin-top:.5rem;font-size:.82rem;color:var(--text-light)}
+.study-result .warn{margin-top:.45rem;font-size:.82rem;color:#8b0000}
 .test-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;margin-top:.5rem}
 .test-card{
   background:var(--card);border-radius:var(--radius);padding:1.5rem;
@@ -112,6 +125,7 @@ header p{font-size:clamp(.9rem,2.5vw,1.1rem);opacity:.85;position:relative;z-ind
 </style>
 </head>
 <body>
+<script src="js/docx_data.js"></script>
 <header>
   <h1>&#x1F4DD; Testare &mdash; Train The Trainers</h1>
   <p>Certificare ANC FORMATOR &bull; 6 Teste &bull; 60 &#xCE;ntreb&#x103;ri</p>
@@ -121,6 +135,15 @@ header p{font-size:clamp(.9rem,2.5vw,1.1rem);opacity:.85;position:relative;z-ind
   <p class="intro-text">
     Alege un test pentru a &#xEE;ncepe. Fiecare test con&#x21B;ine 10 &#xEE;ntreb&#x103;ri cu 3 variante de r&#x103;spuns &#x219;i o limit&#x103; de 10 minute.
   </p>
+  <div class="study-helper">
+    <h2>&#x1F50E;&#xFE0F; Asistent de studiu (&#xEE;ntrebare &#x2192 r&#x103;spuns)</h2>
+    <p>Scrie &#xEE;ntrebarea ta din material, iar sistemul caut&#x103; cea mai apropiat&#x103; &#xEE;ntrebare &#x219;i returneaz&#x103; r&#x103;spunsul corect.</p>
+    <div class="study-input-row">
+      <input id="study-question-input" type="text" placeholder="Ex: Care este rolul trainerului in cadrul unui training?" autocomplete="off">
+      <button id="study-search-btn" class="study-btn" type="button">Caut&#x103; r&#x103;spuns</button>
+    </div>
+    <div id="study-result" class="study-result hidden" aria-live="polite"></div>
+  </div>
   <div class="test-grid" id="test-grid"></div>
 </div>
 
@@ -220,6 +243,164 @@ var currentTest=null,currentQ=0,answers=[],locked=[],timerInterval=null,timeLeft
 // ====================== LOCALSTORAGE ======================
 function getScores(){try{return JSON.parse(localStorage.getItem("ttt_scores")||"{}")}catch(e){return{}}}
 function saveScore(id,sc){var s=getScores();if(!s[id]||sc>s[id])s[id]=sc;localStorage.setItem("ttt_scores",JSON.stringify(s))}
+
+// ====================== STUDY ASSISTANT ======================
+var DOCX_INDEX=[];
+var TESTS_INDEX=[];
+
+function normalizeText(text){
+  return (text||"")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g," ")
+    .replace(/\s+/g," ")
+    .trim();
+}
+
+function uniqueTokens(text){
+  var src=(text||"").split(" "),seen={},out=[];
+  src.forEach(function(token){
+    if(token.length<3)return;
+    if(!seen[token]){seen[token]=1;out.push(token)}
+  });
+  return out;
+}
+
+function escapeHtml(value){
+  return String(value||"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/\"/g,"&quot;")
+    .replace(/'/g,"&#39;");
+}
+
+function makeEntry(text, options, correctIndices, extra){
+  var qNorm=normalizeText(text),tokens=uniqueTokens(qNorm),tokenMap={};
+  tokens.forEach(function(t){tokenMap[t]=1});
+  var e={text:text,options:options,correctIndices:correctIndices,norm:qNorm,tokenMap:tokenMap};
+  if(extra) for(var k in extra) e[k]=extra[k];
+  return e;
+}
+
+function buildAllIndices(){
+  DOCX_INDEX=[];
+  TESTS_INDEX=[];
+  if(typeof DOCX_QUESTIONS!=="undefined"){
+    DOCX_QUESTIONS.forEach(function(dq){
+      DOCX_INDEX.push(makeEntry(dq.q, dq.o, dq.c, {source:"docx"}));
+    });
+  }
+  TESTS.forEach(function(test){
+    test.intrebari.forEach(function(q){
+      TESTS_INDEX.push(makeEntry(q.text, q.variante, [q.corect], {
+        source:"tests",testId:test.id,titlu:test.titlu,
+        explicatie:q.explicatie,referinta:q.referinta
+      }));
+    });
+  });
+}
+
+function scoreMatch(queryNorm,queryTokens,entry){
+  var score=0;
+  if(entry.norm===queryNorm)return 10000;
+  if(entry.norm.indexOf(queryNorm)!==-1)score+=Math.min(360,queryNorm.length*4);
+  if(queryNorm.indexOf(entry.norm)!==-1)score+=Math.min(200,entry.norm.length*2);
+  var overlap=0;
+  queryTokens.forEach(function(t){if(entry.tokenMap[t])overlap++});
+  score+=overlap*28;
+  if(queryTokens.length>0)score+=Math.round((overlap/queryTokens.length)*120);
+  return score;
+}
+
+function findBestInList(queryNorm,queryTokens,list){
+  var best=null;
+  list.forEach(function(entry){
+    var score=scoreMatch(queryNorm,queryTokens,entry);
+    if(!best||score>best.score)best={entry:entry,score:score};
+  });
+  return best;
+}
+
+function renderStudyMessage(html){
+  var box=document.getElementById("study-result");
+  box.classList.remove("hidden");
+  box.innerHTML=html;
+}
+
+function handleStudySearch(){
+  var input=document.getElementById("study-question-input"),raw=(input.value||"").trim();
+  if(!raw){
+    renderStudyMessage("<span class='label'>Te rog introdu o intrebare.</span>");
+    return;
+  }
+  var queryNorm=normalizeText(raw);
+  if(!queryNorm){renderStudyMessage("<span class='label'>Te rog introdu o intrebare.</span>");return;}
+  var queryTokens=uniqueTokens(queryNorm);
+
+  var docxMatch=findBestInList(queryNorm,queryTokens,DOCX_INDEX);
+  var testsMatch=findBestInList(queryNorm,queryTokens,TESTS_INDEX);
+
+  var html="";
+  var used=null;
+  var hasDocxAnswer=docxMatch&&docxMatch.score>=45&&docxMatch.entry.correctIndices.length>0;
+  var hasTestsAnswer=testsMatch&&testsMatch.score>=45;
+
+  if(hasDocxAnswer&&(!hasTestsAnswer||docxMatch.score>=testsMatch.score*0.7)){
+    used=docxMatch;used.src="docx";
+  }else if(hasTestsAnswer){
+    used=testsMatch;used.src="tests";
+  }else if(docxMatch&&docxMatch.score>=45){
+    used=docxMatch;used.src="docx-noans";
+  }
+
+  if(!used||used.score<45){
+    renderStudyMessage("<span class='label'>Nu am gasit o potrivire suficient de buna.</span><div class='meta'>Incearca formularea cu termeni-cheie din intrebare.</div>");
+    return;
+  }
+
+  var entry=used.entry;
+  var confidence=used.score>=260?"foarte buna":used.score>=160?"buna":"aproximativa";
+
+  html+="<span class='label'>Potrivire: "+escapeHtml(entry.text)+"</span>";
+
+  if(used.src==="docx"&&entry.correctIndices.length>0){
+    var ans=entry.options[entry.correctIndices[0]];
+    html+="<div class='answer'><strong>Raspuns corect (din DOCX, marcat bold/galben):</strong> "+escapeHtml(ans)+"</div>";
+    html+="<div class='meta'>Sursa: Intrebari TEST.docx · Incredere: "+confidence+"</div>";
+  }else if(used.src==="tests"){
+    var ans2=entry.options[entry.correctIndices[0]];
+    html+="<div class='answer'><strong>Raspuns corect (din material curs):</strong> "+escapeHtml(ans2)+"</div>";
+    html+="<div class='meta'>"+escapeHtml(entry.explicatie||"")+"<br>📘 "+escapeHtml(entry.referinta||"")+" · Test "+entry.testId+" · Incredere: "+confidence+"</div>";
+  }else{
+    html+="<div class='meta' style='margin-top:.5rem'>⚠️ Aceasta intrebare nu are raspunsul marcat (bold/galben) in DOCX.</div>";
+    html+="<div style='margin-top:.5rem'>Variante:</div>";
+    entry.options.forEach(function(opt){
+      html+="<div style='padding:.3rem .5rem;margin:.2rem 0;background:#f0f0f0;border-radius:6px;font-size:.9rem'>"+escapeHtml(opt)+"</div>";
+    });
+    if(hasTestsAnswer&&testsMatch.score>=100){
+      var hint=testsMatch.entry;
+      html+="<div class='answer' style='margin-top:.6rem'><strong>Posibil raspuns (din materialul de curs):</strong> "+escapeHtml(hint.options[hint.correctIndices[0]])+"</div>";
+      html+="<div class='meta'>"+escapeHtml(hint.explicatie||"")+"<br>📘 "+escapeHtml(hint.referinta||"")+"</div>";
+    }
+  }
+
+  var warning=used.score<160?"<div class='warn'>Potrivirea este aproximativa. Verifica formularea.</div>":"";
+  html+=warning;
+  renderStudyMessage(html);
+}
+
+function initStudyAssistant(){
+  buildAllIndices();
+  var btn=document.getElementById("study-search-btn");
+  var input=document.getElementById("study-question-input");
+  if(!btn||!input)return;
+  btn.onclick=handleStudySearch;
+  input.addEventListener("keydown",function(e){
+    if(e.key==="Enter")handleStudySearch();
+  });
+}
 
 // ====================== MENU ======================
 function renderMenu(){
@@ -342,6 +523,7 @@ function showResults(){
 
 // ====================== INIT ======================
 renderMenu();
+initStudyAssistant();
 </script>
 </body>
 </html>

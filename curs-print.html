@@ -2,6 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>De la Bulgăre la Bijuterie — Suport de Curs (Print)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,29 +20,31 @@
             --light: #f8f9fa;
         }
 
-        @page { size: A4 landscape; margin: 15mm; }
+        @page { size: A4 landscape; margin: 12mm 15mm; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Nunito', sans-serif;
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.45;
             background: white;
+            font-size: 9.5pt;
         }
 
         h1, h2, h3, h4 { font-family: 'Fredoka', sans-serif; line-height: 1.3; }
 
-        /* ===== SLIDE (each is a page) ===== */
+        /* ===== SLIDE = ONE PAGE ===== */
         .slide {
             width: 100%;
-            min-height: calc(100vh - 30mm);
-            padding: 2rem 2.5rem;
+            height: 186mm; /* A4 landscape: 210mm - 2×12mm margins */
             page-break-after: always;
             page-break-inside: avoid;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            padding: 1.2rem 1.5rem;
         }
 
         .slide:last-child { page-break-after: auto; }
@@ -52,89 +55,45 @@
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #f3f0ff 0%, #fce4ec 100%);
-            border-radius: 16px;
+            border-radius: 14px;
         }
 
         .cover-slide .cover-tag {
             display: inline-block;
-            background: var(--purple);
-            color: white;
-            padding: 0.4rem 1.5rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+            background: var(--purple); color: white;
+            padding: 0.35rem 1.2rem; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 700; margin-bottom: 0.8rem;
         }
 
-        .cover-slide h1 {
-            font-size: 3rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
+        .cover-slide h1 { font-size: 2.6rem; color: var(--dark); margin-bottom: 0.3rem; }
+        .cover-slide h1 .gold { color: #d4a017; }
+        .cover-slide .cover-sub { font-size: 1rem; color: var(--gray); margin-bottom: 1rem; }
 
-        .cover-slide h1 .gold { color: var(--gold); }
-
-        .cover-slide .cover-sub {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .cover-meta {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            font-size: 0.95rem;
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
+        .cover-meta { display: flex; gap: 1.5rem; justify-content: center; font-size: 0.85rem; color: var(--gray); margin-bottom: 1rem; }
         .cover-meta a { color: var(--purple); }
 
-        .cover-images {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
+        .cover-images { display: flex; gap: 0.8rem; justify-content: center; }
         .cover-images img {
-            width: 130px;
-            height: 130px;
-            object-fit: cover;
-            border-radius: 16px;
+            width: 110px; height: 110px;
+            object-fit: cover; border-radius: 14px;
             border: 3px solid white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         /* ===== CHAPTER TITLE ===== */
         .chapter-title-slide {
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            justify-content: center; align-items: center; text-align: center;
             background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%);
-            color: white;
-            border-radius: 16px;
+            color: white; border-radius: 14px;
         }
-
-        .chapter-number {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 4rem;
-            font-weight: 700;
-            opacity: 0.4;
-            margin-bottom: 0.5rem;
-        }
-
-        .chapter-title-slide h1 { font-size: 2.5rem; color: white; }
-        .chapter-title-slide p { font-size: 1.1rem; opacity: 0.85; margin-top: 0.5rem; }
+        .chapter-number { font-family: 'Fredoka'; font-size: 3.5rem; font-weight: 700; opacity: 0.4; margin-bottom: 0.3rem; }
+        .chapter-title-slide h1 { font-size: 2.2rem; color: white; }
+        .chapter-title-slide p { font-size: 1rem; opacity: 0.85; margin-top: 0.3rem; }
         .chapter-duration {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 0.8rem;
+            display: inline-block; background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.8rem; border-radius: 20px;
+            font-size: 0.8rem; margin-bottom: 0.5rem;
         }
-
         .ch2-bg { background: linear-gradient(135deg, #00CEC9, #6C5CE7); }
         .ch3-bg { background: linear-gradient(135deg, #FF6B6B, #FDCB6E); }
         .ch4-bg { background: linear-gradient(135deg, #6C5CE7, #FD79A8); }
@@ -142,454 +101,181 @@
         .end-bg { background: linear-gradient(135deg, #00CEC9, #6C5CE7, #FD79A8); }
 
         /* ===== CONTENT ===== */
-        .slide-content { max-width: 100%; width: 100%; }
+        .slide-content { max-width: 100%; width: 100%; flex: 1; overflow: hidden; }
         .centered { text-align: center; }
 
         .slide-content h2 {
-            font-size: 1.6rem;
-            color: var(--purple);
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid var(--gold);
-            display: inline-block;
+            font-size: 1.35rem; color: var(--purple);
+            margin-bottom: 0.8rem; padding-bottom: 0.3rem;
+            border-bottom: 3px solid var(--gold); display: inline-block;
         }
+        .centered h2 { display: block; }
 
-        .centered h2 {
-            display: block;
-        }
+        .subtitle { color: var(--gray); font-size: 0.88rem; margin-bottom: 1rem; }
 
-        .subtitle { color: var(--gray); font-size: 1rem; margin-bottom: 1.5rem; }
-
-        /* Two columns */
-        .two-cols {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
+        .two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 0.5rem; }
 
         /* Agenda */
-        .agenda-table { max-width: 700px; margin: 0 auto; }
-
-        .agenda-row {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.7rem 1rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .agenda-time {
-            font-family: 'Fredoka'; font-weight: 700;
-            color: var(--purple);
-            min-width: 60px;
-        }
-
+        .agenda-table { max-width: 650px; margin: 0 auto; }
+        .agenda-row { display: flex; align-items: center; gap: 0.8rem; padding: 0.5rem 0.8rem; border-bottom: 1px solid #eee; }
+        .agenda-time { font-family: 'Fredoka'; font-weight: 700; color: var(--purple); min-width: 55px; font-size: 0.88rem; }
         .agenda-chapter {
-            width: 30px; height: 30px;
-            background: var(--purple);
-            color: white;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 0.85rem;
+            width: 26px; height: 26px; background: var(--purple); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.78rem;
         }
-
-        .highlight-row { background: rgba(253, 203, 110, 0.15); border-radius: 8px; }
-        .bonus-row { background: rgba(253, 121, 168, 0.1); border-radius: 8px; }
-
-        .agenda-info strong { display: block; font-size: 0.95rem; }
-        .agenda-info p { font-size: 0.8rem; color: var(--gray); margin: 0; }
+        .highlight-row { background: rgba(253, 203, 110, 0.15); border-radius: 6px; }
+        .bonus-row { background: rgba(253, 121, 168, 0.1); border-radius: 6px; }
+        .agenda-info strong { display: block; font-size: 0.85rem; }
+        .agenda-info p { font-size: 0.75rem; color: var(--gray); margin: 0; }
 
         /* Cards */
         .activity-card, .info-box, .key-point, .quote-card {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 1.2rem;
-            margin-bottom: 1rem;
+            background: var(--light); border-radius: 10px; padding: 0.8rem; margin-bottom: 0.6rem;
         }
-
         .tip-box { border-left: 4px solid var(--teal); }
         .warning-box { border-left: 4px solid var(--coral); background: #fff5f5; }
+        .info-box h3 { font-size: 0.88rem; margin-bottom: 0.3rem; color: var(--purple); }
+        .info-box ul { padding-left: 1rem; }
+        .info-box li { font-size: 0.82rem; margin-bottom: 0.2rem; }
+        .info-box p { font-size: 0.82rem; }
+        .note { font-style: italic; color: var(--purple); margin-top: 0.3rem; }
 
-        .info-box h3 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--purple); }
-        .info-box ul { padding-left: 1.2rem; }
-        .info-box li { font-size: 0.9rem; margin-bottom: 0.3rem; }
-        .info-box p { font-size: 0.9rem; }
-
-        .note { font-style: italic; color: var(--purple); margin-top: 0.5rem; }
-
-        /* Rules grid */
-        .rules-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .rule-card {
-            text-align: center;
-            padding: 1rem;
-            background: var(--light);
-            border-radius: 12px;
-        }
-
-        .rule-icon { font-size: 2rem; display: block; margin-bottom: 0.4rem; }
-        .rule-card h3 { font-size: 0.95rem; color: var(--purple); }
-        .rule-card p { font-size: 0.82rem; color: var(--gray); }
+        /* Rules */
+        .rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; margin-top: 0.7rem; }
+        .rule-card { text-align: center; padding: 0.7rem; background: var(--light); border-radius: 10px; }
+        .rule-icon { font-size: 1.6rem; display: block; margin-bottom: 0.2rem; }
+        .rule-card h3 { font-size: 0.85rem; color: var(--purple); }
+        .rule-card p { font-size: 0.75rem; color: var(--gray); }
 
         /* Materials */
-        .materials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .material-card {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 1.2rem;
-        }
-
-        .mat-icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
-        .material-card h3 { font-size: 1rem; color: var(--purple); margin-bottom: 0.3rem; }
-        .material-card p { font-size: 0.85rem; color: var(--gray); }
-
-        .mat-tip {
-            margin-top: 0.5rem;
-            font-size: 0.82rem;
-            padding: 0.4rem 0.8rem;
-            background: rgba(108,92,231,0.08);
-            border-radius: 8px;
-            font-weight: 600;
-        }
+        .materials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.7rem; }
+        .material-card { background: var(--light); border-radius: 10px; padding: 0.8rem; }
+        .mat-icon { font-size: 1.6rem; display: block; margin-bottom: 0.3rem; }
+        .material-card h3 { font-size: 0.88rem; color: var(--purple); margin-bottom: 0.2rem; }
+        .material-card p { font-size: 0.78rem; color: var(--gray); }
+        .mat-tip { margin-top: 0.3rem; font-size: 0.75rem; padding: 0.3rem 0.6rem; background: rgba(108,92,231,0.08); border-radius: 6px; font-weight: 600; }
 
         /* Tools */
-        .tools-showcase {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .tool-item {
-            text-align: center;
-            padding: 0.8rem;
-            background: var(--light);
-            border-radius: 10px;
-        }
-
-        .tool-item span { font-size: 1.8rem; display: block; }
-        .tool-item p { font-size: 0.82rem; margin-top: 0.3rem; font-weight: 600; }
+        .tools-showcase { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.7rem; margin-top: 0.7rem; }
+        .tool-item { text-align: center; padding: 0.5rem; background: var(--light); border-radius: 8px; }
+        .tool-item span { font-size: 1.5rem; display: block; }
+        .tool-item p { font-size: 0.75rem; margin-top: 0.2rem; font-weight: 600; }
 
         /* Safety */
-        .safety-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .safety-card {
-            padding: 1.2rem;
-            border-radius: 12px;
-        }
-
-        .safety-card.danger {
-            background: #fff5f5;
-            border-left: 4px solid #E74C3C;
-        }
-
-        .safety-card.safe {
-            background: #f0fff4;
-            border-left: 4px solid #2ECC71;
-        }
-
-        .safety-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
-        .safety-card ul { padding-left: 1.2rem; }
-        .safety-card li { font-size: 0.87rem; margin-bottom: 0.3rem; }
+        .safety-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.7rem; }
+        .safety-card { padding: 0.8rem; border-radius: 10px; }
+        .safety-card.danger { background: #fff5f5; border-left: 4px solid #E74C3C; }
+        .safety-card.safe { background: #f0fff4; border-left: 4px solid #2ECC71; }
+        .safety-card h3 { font-size: 0.88rem; margin-bottom: 0.3rem; }
+        .safety-card ul { padding-left: 1rem; }
+        .safety-card li { font-size: 0.78rem; margin-bottom: 0.15rem; }
 
         /* Steps */
-        .step-header {
-            margin-bottom: 1rem;
-        }
-
+        .step-header { margin-bottom: 0.6rem; }
         .step-badge-lg {
-            display: inline-block;
-            background: var(--purple);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            display: inline-block; background: var(--purple); color: white;
+            padding: 0.2rem 0.8rem; border-radius: 20px;
+            font-size: 0.78rem; font-weight: 700; margin-bottom: 0.3rem;
         }
+        .step-instructions ol { padding-left: 1rem; }
+        .step-instructions li { font-size: 0.82rem; margin-bottom: 0.25rem; }
+        .step-instructions h3 { font-size: 0.9rem; color: var(--purple); margin-bottom: 0.3rem; }
 
-        .step-instructions ol { padding-left: 1.2rem; }
-        .step-instructions li { font-size: 0.9rem; margin-bottom: 0.4rem; }
-        .step-instructions h3 { font-size: 1rem; color: var(--purple); margin-bottom: 0.5rem; }
-
-        .demo-gif {
-            max-width: 100%;
-            max-height: 180px;
-            border-radius: 12px;
-            border: 2px solid #eee;
-        }
+        .demo-gif { max-width: 100%; max-height: 140px; border-radius: 10px; border: 2px solid #eee; }
 
         .checklist { list-style: none; padding: 0; }
-        .checklist li { padding: 0.3rem 0; font-size: 0.9rem; }
+        .checklist li { padding: 0.2rem 0; font-size: 0.82rem; }
         .checklist li::before { content: '✓ '; color: var(--teal); font-weight: 700; }
 
         /* Color mixing */
-        .color-equation {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .color-circle {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-        }
-
-        .mix-sign { font-weight: 700; font-size: 1.2rem; color: var(--gray); }
+        .color-equation { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.5rem; }
+        .color-circle { width: 28px; height: 28px; border-radius: 50%; }
+        .mix-sign { font-weight: 700; font-size: 1rem; color: var(--gray); }
 
         /* Shapes */
-        .shapes-gallery {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .shape-item {
-            text-align: center;
-            padding: 0.6rem;
-            background: var(--light);
-            border-radius: 8px;
-            font-size: 0.85rem;
-        }
+        .shapes-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 0.6rem; }
+        .shape-item { text-align: center; padding: 0.4rem; background: var(--light); border-radius: 6px; font-size: 0.78rem; }
 
         /* Baking table */
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 0.5rem;
-        }
-
-        .data-table th {
-            background: var(--purple);
-            color: white;
-            padding: 0.5rem;
-            font-size: 0.85rem;
-        }
-
-        .data-table td {
-            padding: 0.5rem;
-            border-bottom: 1px solid #eee;
-            font-size: 0.85rem;
-        }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 0.3rem; }
+        .data-table th { background: var(--purple); color: white; padding: 0.35rem; font-size: 0.78rem; }
+        .data-table td { padding: 0.35rem; border-bottom: 1px solid #eee; font-size: 0.78rem; }
 
         /* Before/After */
-        .before-after {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
+        .before-after { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; }
         .ba-item { text-align: center; flex: 1; }
-        .ba-label { font-weight: 700; font-size: 0.85rem; color: var(--purple); display: block; margin-bottom: 0.3rem; }
-        .ba-visual { padding: 1.5rem; border-radius: 12px; font-weight: 700; }
+        .ba-label { font-weight: 700; font-size: 0.78rem; color: var(--purple); display: block; margin-bottom: 0.2rem; }
+        .ba-visual { padding: 1rem; border-radius: 10px; font-weight: 700; font-size: 0.85rem; }
         .ba-before { background: #e0e0e0; color: var(--gray); }
         .ba-after { background: linear-gradient(135deg, var(--gold), var(--pink)); color: white; }
-        .ba-arrow { font-size: 2rem; font-weight: 700; color: var(--purple); }
+        .ba-arrow { font-size: 1.5rem; font-weight: 700; color: var(--purple); }
 
         /* Gallery */
-        .result-gallery {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 0.8rem;
-            margin: 1rem 0;
-        }
-
-        .result-gallery img {
-            width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
-            border-radius: 12px;
-            border: 2px solid #eee;
-        }
-
-        .gallery-credit { font-size: 0.85rem; color: var(--gray); }
+        .result-gallery { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.6rem; margin: 0.8rem 0; }
+        .result-gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; border: 2px solid #eee; }
+        .gallery-credit { font-size: 0.78rem; color: var(--gray); }
         .gallery-credit a { color: var(--purple); }
 
-        /* Pricing formula */
-        .pricing-formula { background: var(--light); border-radius: 12px; padding: 1.5rem; }
-        .pricing-formula h3 { color: var(--purple); margin-bottom: 0.8rem; }
-
-        .formula-line {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.4rem 0;
-            border-bottom: 1px dashed #ddd;
-            font-size: 0.9rem;
-        }
-
-        .formula-ex { color: var(--gray); font-size: 0.82rem; }
-
-        .formula-total {
-            padding-top: 0.8rem;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--purple);
-            border-top: 2px solid var(--purple);
-            margin-top: 0.5rem;
-        }
+        /* Pricing */
+        .pricing-formula { background: var(--light); border-radius: 10px; padding: 1rem; }
+        .pricing-formula h3 { color: var(--purple); margin-bottom: 0.5rem; font-size: 0.92rem; }
+        .formula-line { display: flex; justify-content: space-between; padding: 0.3rem 0; border-bottom: 1px dashed #ddd; font-size: 0.82rem; }
+        .formula-ex { color: var(--gray); font-size: 0.75rem; }
+        .formula-total { padding-top: 0.5rem; font-weight: 700; font-size: 1rem; color: var(--purple); border-top: 2px solid var(--purple); margin-top: 0.3rem; }
 
         /* Q&A */
-        .qa-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .qa-card {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 1rem;
-        }
-
-        .qa-q { font-weight: 700; color: var(--purple); margin-bottom: 0.3rem; font-size: 0.92rem; }
-        .qa-a { font-size: 0.85rem; color: var(--gray); }
+        .qa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-top: 0.7rem; }
+        .qa-card { background: var(--light); border-radius: 10px; padding: 0.7rem; }
+        .qa-q { font-weight: 700; color: var(--purple); margin-bottom: 0.2rem; font-size: 0.85rem; }
+        .qa-a { font-size: 0.78rem; color: var(--gray); }
 
         /* Quote */
-        .quote-card blockquote {
-            font-style: italic;
-            font-size: 1rem;
-            line-height: 1.7;
-            border-left: 4px solid var(--gold);
-            padding-left: 1rem;
-        }
+        .quote-card blockquote { font-style: italic; font-size: 0.88rem; line-height: 1.6; border-left: 4px solid var(--gold); padding-left: 0.8rem; }
 
         /* Channels */
-        .channels-list { display: flex; flex-direction: column; gap: 0.5rem; }
-        .channel-item {
-            padding: 0.5rem 0.8rem;
-            background: var(--light);
-            border-radius: 8px;
-            font-size: 0.9rem;
-        }
+        .channels-list { display: flex; flex-direction: column; gap: 0.35rem; }
+        .channel-item { padding: 0.35rem 0.6rem; background: var(--light); border-radius: 6px; font-size: 0.82rem; }
 
         /* Offer */
-        .offer-card {
-            max-width: 600px;
-            margin: 1.5rem auto;
-            border: 3px solid var(--gold);
-            border-radius: 16px;
-            overflow: hidden;
-        }
+        .offer-card { max-width: 500px; margin: 1rem auto; border: 3px solid var(--gold); border-radius: 14px; overflow: hidden; }
+        .offer-header { background: linear-gradient(135deg, var(--purple), var(--pink)); color: white; padding: 0.7rem; text-align: center; }
+        .offer-body { padding: 1rem; }
+        .offer-body li { padding: 0.25rem 0; font-size: 0.85rem; }
+        .offer-footer { padding: 0.7rem 1rem; background: var(--light); text-align: center; }
+        .offer-cta { font-weight: 700; color: var(--purple); font-size: 1rem; }
 
-        .offer-header {
-            background: linear-gradient(135deg, var(--purple), var(--pink));
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .offer-body {
-            padding: 1.5rem;
-        }
-
-        .offer-body li {
-            padding: 0.4rem 0;
-            font-size: 0.92rem;
-        }
-
-        .offer-footer {
-            padding: 1rem 1.5rem;
-            background: var(--light);
-            text-align: center;
-        }
-
-        .offer-cta {
-            font-weight: 700;
-            color: var(--purple);
-            font-size: 1.1rem;
-        }
-
-        /* Final links */
-        .final-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin: 1.5rem 0;
-        }
-
-        .final-link {
-            display: inline-block;
-            padding: 0.6rem 1.5rem;
-            background: var(--light);
-            border-radius: 10px;
-            font-weight: 700;
-            color: var(--purple);
-            text-decoration: none;
-            font-size: 0.95rem;
-        }
-
-        .final-qr-row {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin: 1.5rem 0;
-        }
-
+        /* Final */
+        .final-links { display: flex; gap: 1rem; justify-content: center; margin: 1rem 0; }
+        .final-link { display: inline-block; padding: 0.4rem 1.2rem; background: var(--light); border-radius: 8px; font-weight: 700; color: var(--purple); font-size: 0.88rem; }
+        .final-qr-row { display: flex; gap: 1.5rem; justify-content: center; margin: 1rem 0; }
         .final-qr { text-align: center; }
-        .final-qr img { width: 120px; height: 120px; border-radius: 10px; }
-        .final-qr p { font-size: 0.82rem; color: var(--gray); margin-top: 0.3rem; }
-
-        .final-message {
-            margin-top: 1.5rem;
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--purple);
-        }
+        .final-qr img { width: 100px; height: 100px; border-radius: 8px; }
+        .final-qr p { font-size: 0.75rem; color: var(--gray); margin-top: 0.2rem; }
+        .final-message { margin-top: 1rem; font-size: 1rem; font-style: italic; color: var(--purple); }
 
         /* Trainer note */
         .trainer-note {
-            margin-top: 1.2rem;
-            padding: 0.8rem 1rem;
-            background: #fff8e1;
-            border-left: 4px solid var(--gold);
-            border-radius: 0 8px 8px 0;
-            font-size: 0.85rem;
+            margin-top: auto; padding: 0.5rem 0.8rem;
+            background: #fff8e1; border-left: 4px solid var(--gold);
+            border-radius: 0 6px 6px 0; font-size: 0.78rem;
         }
+        .key-point { background: rgba(253, 203, 110, 0.15); border-radius: 8px; padding: 0.7rem; }
+        .key-point h3 { font-size: 0.85rem; color: var(--purple); margin-bottom: 0.2rem; }
+        .key-point ul { padding-left: 1rem; }
+        .key-point li { font-size: 0.8rem; margin-bottom: 0.15rem; }
+        .key-point p { font-size: 0.82rem; }
 
-        .key-point {
-            background: rgba(253, 203, 110, 0.15);
-            border-radius: 10px;
-            padding: 1rem;
-        }
-
-        .key-point h3 { font-size: 0.95rem; color: var(--purple); margin-bottom: 0.3rem; }
-        .key-point ul { padding-left: 1.2rem; }
-        .key-point li { font-size: 0.88rem; margin-bottom: 0.2rem; }
-        .key-point p { font-size: 0.9rem; }
-
-        /* Print specific */
+        /* Print */
         @media print {
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
-            body { -webkit-print-color-adjust: exact; }
-            .slide { break-after: page; break-inside: avoid; }
+            .slide { break-after: page; break-inside: avoid; overflow: hidden; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ======================== COPERTĂ ======================== -->
+    <!-- ====== COPERTĂ ====== -->
     <div class="slide cover-slide">
         <span class="cover-tag">Curs Practic — 4 ore</span>
         <h1>De la Bulgăre<br>la <span class="gold">Bijuterie</span></h1>
@@ -605,50 +291,27 @@
         </div>
     </div>
 
-    <!-- ======================== AGENDA ======================== -->
+    <!-- ====== AGENDA ====== -->
     <div class="slide">
         <div class="slide-content centered">
             <h2>📋 Agenda Zilei</h2>
             <div class="agenda-table">
-                <div class="agenda-row">
-                    <span class="agenda-time">30 min</span>
-                    <span class="agenda-chapter">1</span>
-                    <div class="agenda-info"><strong>Ce Vrei De La Mine?</strong><p>Cunoaștere, așteptări, reguli de grup</p></div>
-                </div>
-                <div class="agenda-row">
-                    <span class="agenda-time">45 min</span>
-                    <span class="agenda-chapter">2</span>
-                    <div class="agenda-info"><strong>Ce Îți Pot Oferi</strong><p>Materiale, instrumente, siguranță, demo live</p></div>
-                </div>
-                <div class="agenda-row highlight-row">
-                    <span class="agenda-time">2 ore</span>
-                    <span class="agenda-chapter">3</span>
-                    <div class="agenda-info"><strong>Practică — Creezi Prima Bijuterie</strong><p>Condiționare → Modelare → Coacere → Finisare → Rășină UV</p></div>
-                </div>
-                <div class="agenda-row">
-                    <span class="agenda-time">30 min</span>
-                    <span class="agenda-chapter">4</span>
-                    <div class="agenda-info"><strong>Încheiere & Business</strong><p>Monetizare, prețuri, concurență, Q&A</p></div>
-                </div>
-                <div class="agenda-row bonus-row">
-                    <span class="agenda-time">15 min</span>
-                    <span class="agenda-chapter">🎁</span>
-                    <div class="agenda-info"><strong>PLATA o PLOMO</strong><p>Oferta specială de final</p></div>
-                </div>
+                <div class="agenda-row"><span class="agenda-time">30 min</span><span class="agenda-chapter">1</span><div class="agenda-info"><strong>Ce Vrei De La Mine?</strong><p>Cunoaștere, așteptări, reguli de grup</p></div></div>
+                <div class="agenda-row"><span class="agenda-time">45 min</span><span class="agenda-chapter">2</span><div class="agenda-info"><strong>Ce Îți Pot Oferi</strong><p>Materiale, instrumente, siguranță, demo live</p></div></div>
+                <div class="agenda-row highlight-row"><span class="agenda-time">2 ore</span><span class="agenda-chapter">3</span><div class="agenda-info"><strong>Practică — Creezi Prima Bijuterie</strong><p>Condiționare → Modelare → Coacere → Finisare → Rășină UV</p></div></div>
+                <div class="agenda-row"><span class="agenda-time">30 min</span><span class="agenda-chapter">4</span><div class="agenda-info"><strong>Încheiere & Business</strong><p>Monetizare, prețuri, concurență, Q&A</p></div></div>
+                <div class="agenda-row bonus-row"><span class="agenda-time">15 min</span><span class="agenda-chapter">🎁</span><div class="agenda-info"><strong>PLATA o PLOMO</strong><p>Oferta specială de final</p></div></div>
             </div>
         </div>
     </div>
 
-    <!-- ======================== CAPITOLUL 1 ======================== -->
+    <!-- ====== CAP 1: TITLU ====== -->
     <div class="slide chapter-title-slide">
         <div class="chapter-number">01</div>
-        <div class="chapter-info">
-            <span class="chapter-duration">⏱️ 30 minute</span>
-            <h1>Ce Vrei De La Mine?</h1>
-            <p>Cunoaștere • Așteptări • Reguli de grup</p>
-        </div>
+        <div class="chapter-info"><span class="chapter-duration">⏱️ 30 minute</span><h1>Ce Vrei De La Mine?</h1><p>Cunoaștere • Așteptări • Reguli de grup</p></div>
     </div>
 
+    <!-- CAP 1: Prezentări -->
     <div class="slide">
         <div class="slide-content">
             <h2>👋 Hai să ne cunoaștem!</h2>
@@ -657,31 +320,23 @@
                     <div class="activity-card">
                         <h3>🎤 Runda de prezentări</h3>
                         <p>Fiecare participant spune:</p>
-                        <ul class="checklist">
-                            <li>Cum te cheamă</li>
-                            <li>Cu ce te ocupi</li>
-                            <li>De ce ai venit la curs</li>
-                            <li>Ce așteptări ai</li>
-                        </ul>
+                        <ul class="checklist"><li>Cum te cheamă</li><li>Cu ce te ocupi</li><li>De ce ai venit la curs</li><li>Ce așteptări ai</li></ul>
                     </div>
                 </div>
                 <div class="col">
                     <div class="info-box tip-box">
                         <h3>💡 Notă pentru trainer</h3>
                         <p>Ascultă activ. Nevoile reale le descoperi din răspunsuri:</p>
-                        <ul>
-                            <li><strong>BANI</strong> — vrea monetizare</li>
-                            <li><strong>Hobby</strong> — vrea relaxare</li>
-                            <li><strong>Social</strong> — vrea prieteni noi</li>
-                            <li><strong>Încredere</strong> — vrea să creeze ceva</li>
-                        </ul>
+                        <ul><li><strong>BANI</strong> — vrea monetizare</li><li><strong>Hobby</strong> — vrea relaxare</li><li><strong>Social</strong> — vrea prieteni noi</li><li><strong>Încredere</strong> — vrea să creeze ceva</li></ul>
                         <p class="note">→ Personalizează restul cursului pe nevoile reale!</p>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="trainer-note"><p>👩‍🏫 <strong>Trainer:</strong> Ascultă activ. Notează nevoile dominante. Personalizează cursul! ~15 min.</p></div>
     </div>
 
+    <!-- CAP 1: Reguli -->
     <div class="slide">
         <div class="slide-content centered">
             <h2>📏 Regulile Atelierului</h2>
@@ -696,42 +351,25 @@
         </div>
     </div>
 
-    <!-- ======================== CAPITOLUL 2 ======================== -->
+    <!-- ====== CAP 2: TITLU ====== -->
     <div class="slide chapter-title-slide ch2-bg">
         <div class="chapter-number">02</div>
-        <div class="chapter-info">
-            <span class="chapter-duration">⏱️ 45 minute</span>
-            <h1>Ce Îți Pot Oferi</h1>
-            <p>Materiale • Instrumente • Siguranță • Demo live</p>
-        </div>
+        <div class="chapter-info"><span class="chapter-duration">⏱️ 45 minute</span><h1>Ce Îți Pot Oferi</h1><p>Materiale • Instrumente • Siguranță • Demo live</p></div>
     </div>
 
+    <!-- CAP 2: Materiale -->
     <div class="slide">
         <div class="slide-content">
             <h2>🧱 Materialele de Bază</h2>
             <div class="materials-grid">
-                <div class="material-card">
-                    <span class="mat-icon">🟤</span>
-                    <h3>Lut Polimeric</h3>
-                    <p>PVC + plastifianți. Se coace la 110-130°C. Mărci: <strong>Fimo, Sculpey, Cernit</strong>.</p>
-                    <div class="mat-tip">✅ Fimo Soft — ideal pentru începători</div>
-                </div>
-                <div class="material-card">
-                    <span class="mat-icon">💎</span>
-                    <h3>Rășină UV Epoxidică</h3>
-                    <p>Se întărește în 2-3 min cu lampă UV. Efect de cristal, protecție, strălucire.</p>
-                    <div class="mat-tip">⚠️ Nu inhala vaporii, poartă mănuși!</div>
-                </div>
-                <div class="material-card">
-                    <span class="mat-icon">🎨</span>
-                    <h3>Pigmenți & Accesorii</h3>
-                    <p>Pulberi metalice, glitter, foițe de aur, cârlige cercei, tije, inele.</p>
-                    <div class="mat-tip">💡 Puțin pigment = efect mare</div>
-                </div>
+                <div class="material-card"><span class="mat-icon">🟤</span><h3>Lut Polimeric</h3><p>PVC + plastifianți. Se coace la 110-130°C. Mărci: <strong>Fimo, Sculpey, Cernit</strong>.</p><div class="mat-tip">✅ Fimo Soft — ideal pentru începători</div></div>
+                <div class="material-card"><span class="mat-icon">💎</span><h3>Rășină UV Epoxidică</h3><p>Se întărește în 2-3 min cu lampă UV. Efect de cristal, protecție.</p><div class="mat-tip">⚠️ Nu inhala vaporii, poartă mănuși!</div></div>
+                <div class="material-card"><span class="mat-icon">🎨</span><h3>Pigmenți & Accesorii</h3><p>Pulberi metalice, glitter, foițe de aur, cârlige cercei, tije.</p><div class="mat-tip">💡 Puțin pigment = efect mare</div></div>
             </div>
         </div>
     </div>
 
+    <!-- CAP 2: Instrumente -->
     <div class="slide">
         <div class="slide-content">
             <h2>🔧 Instrumentele Necesare</h2>
@@ -747,325 +385,185 @@
                 <div class="tool-item"><span>💡</span><p>Lampă UV</p></div>
                 <div class="tool-item"><span>📄</span><p>Hârtie abrazivă</p></div>
             </div>
-            <div class="info-box tip-box" style="margin-top: 1.5rem;">
-                <p>💡 <strong>Totul este asigurat de noi.</strong> Cursantul vine doar cu entuziasmul!</p>
-            </div>
+            <div class="info-box tip-box" style="margin-top: 1rem;"><p>💡 <strong>Totul este asigurat de noi.</strong> Cursantul vine doar cu entuziasmul!</p></div>
         </div>
     </div>
 
+    <!-- CAP 2: Siguranță -->
     <div class="slide">
         <div class="slide-content">
             <h2>⚠️ Norme de Siguranță</h2>
             <div class="safety-grid">
                 <div class="safety-card danger">
                     <h3>🚫 NU face asta!</h3>
-                    <ul>
-                        <li>Nu depăși <strong>130°C</strong> — lutul degajă <strong>fum toxic</strong> (HCl)</li>
-                        <li>Nu coace în <strong>cuptorul de gătit</strong> fără protecție</li>
-                        <li>Nu inhala <strong>vapori de rășină</strong> UV</li>
-                        <li>Nu lăsa lut necopt la <strong>soare direct</strong></li>
-                        <li>Nu folosi instrumente de lut pentru <strong>mâncare</strong></li>
-                    </ul>
+                    <ul><li>Nu depăși <strong>130°C</strong> — lutul degajă <strong>fum toxic</strong> (HCl)</li><li>Nu coace în <strong>cuptorul de gătit</strong> fără protecție</li><li>Nu inhala <strong>vapori de rășină</strong> UV</li><li>Nu lăsa lut necopt la <strong>soare direct</strong></li><li>Nu folosi instrumente de lut pentru <strong>mâncare</strong></li></ul>
                 </div>
                 <div class="safety-card safe">
                     <h3>✅ FA asta!</h3>
-                    <ul>
-                        <li>Ventilează <strong>bine</strong> încăperea la coacere</li>
-                        <li>Folosește <strong>termometru de cuptor</strong> separat</li>
-                        <li>Poartă <strong>mănuși</strong> la lucrul cu rășina</li>
-                        <li>Acoperă tava cu <strong>hârtie de copt</strong></li>
-                        <li>Spală-te pe mâini <strong>înainte</strong> de a mânca</li>
-                    </ul>
+                    <ul><li>Ventilează <strong>bine</strong> încăperea la coacere</li><li>Folosește <strong>termometru de cuptor</strong> separat</li><li>Poartă <strong>mănuși</strong> la lucrul cu rășina</li><li>Acoperă tava cu <strong>hârtie de copt</strong></li><li>Spală-te pe mâini <strong>înainte</strong> de a mânca</li></ul>
                 </div>
             </div>
-            <div class="info-box warning-box" style="margin-top: 1rem;">
-                <p>⚠️ <strong>Responsabilitatea trainerului:</strong> Asigură-te că FIECARE cursant a înțeles aceste norme ÎNAINTE de a atinge materialele.</p>
-            </div>
+            <div class="info-box warning-box" style="margin-top: 0.5rem;"><p>⚠️ <strong>Responsabilitatea trainerului:</strong> Asigură-te că FIECARE cursant a înțeles aceste norme ÎNAINTE de a atinge materialele.</p></div>
         </div>
     </div>
 
-    <!-- ======================== CAPITOLUL 3 ======================== -->
+    <!-- ====== CAP 3: TITLU ====== -->
     <div class="slide chapter-title-slide ch3-bg">
         <div class="chapter-number">03</div>
-        <div class="chapter-info">
-            <span class="chapter-duration">⏱️ 2 ore</span>
-            <h1>Practică</h1>
-            <p>Mâinile pe lut! • Creezi prima ta bijuterie</p>
-        </div>
+        <div class="chapter-info"><span class="chapter-duration">⏱️ 2 ore</span><h1>Practică</h1><p>Mâinile pe lut! • Creezi prima ta bijuterie</p></div>
     </div>
 
-    <!-- PASUL 1 -->
+    <!-- PAS 1 -->
     <div class="slide">
         <div class="slide-content">
-            <div class="step-header">
-                <span class="step-badge-lg">Pasul 1 din 5</span>
-                <h2>🧱 Condiționarea Lutului</h2>
-            </div>
+            <div class="step-header"><span class="step-badge-lg">Pasul 1 din 5</span><h2>🧱 Condiționarea Lutului</h2></div>
             <div class="two-cols">
                 <div class="col">
                     <div class="step-instructions">
                         <h3>Ce facem:</h3>
-                        <ol>
-                            <li>Tăie blocul în <strong>felii subțiri</strong></li>
-                            <li>Frământă fiecare felie în mâini</li>
-                            <li>Unește și frământă din nou</li>
-                            <li>Repetă până e <strong>moale și elastic</strong></li>
-                        </ol>
-                        <div class="info-box tip-box" style="margin-top:1rem;">
-                            <p>💡 <strong>De ce?</strong> Activează plastifianții din PVC. Fără condiționare, piesa va fi fragilă după coacere.</p>
-                        </div>
-                        <div class="info-box tip-box">
-                            <p>💡 <strong>Tip:</strong> Dacă e prea tare, tăie-l cu cutter-ul în bucăți mici și lucrează-le pe rând.</p>
-                        </div>
+                        <ol><li>Tăie blocul în <strong>felii subțiri</strong></li><li>Frământă fiecare felie în mâini</li><li>Unește și frământă din nou</li><li>Repetă până e <strong>moale și elastic</strong></li></ol>
+                        <div class="info-box tip-box" style="margin-top:0.6rem;"><p>💡 <strong>De ce?</strong> Activează plastifianții din PVC. Fără condiționare, piesa va fi fragilă.</p></div>
                     </div>
                 </div>
-                <div class="col">
-                    <img src="gif/EVERYTHING_YOU_NEED_TO_KNOW_IN_3_MINUTES_4_DEMOS_HOW_TO_CONDITION_POLYMER_CLAY_FAST.gif" alt="Demo condiționare" class="demo-gif">
-                </div>
-            </div>
-            <div class="trainer-note">
-                <p>👩‍🏫 <strong>Trainer:</strong> Demonstrează 2 minute, apoi lasă cursanții să lucreze. Circulă și ajută individual. ~15 min.</p>
+                <div class="col"><img src="gif/EVERYTHING_YOU_NEED_TO_KNOW_IN_3_MINUTES_4_DEMOS_HOW_TO_CONDITION_POLYMER_CLAY_FAST.gif" alt="Demo condiționare" class="demo-gif"></div>
             </div>
         </div>
+        <div class="trainer-note"><p>👩‍🏫 <strong>Trainer:</strong> Demonstrează 2 minute, apoi lasă cursanții să lucreze. Circulă și ajută individual. ~15 min.</p></div>
     </div>
 
-    <!-- PASUL 2 -->
+    <!-- PAS 2 -->
     <div class="slide">
         <div class="slide-content">
-            <div class="step-header">
-                <span class="step-badge-lg">Pasul 2 din 5</span>
-                <h2>🎨 Mixarea Culorilor</h2>
-            </div>
+            <div class="step-header"><span class="step-badge-lg">Pasul 2 din 5</span><h2>🎨 Mixarea Culorilor</h2></div>
             <div class="two-cols">
                 <div class="col">
-                    <div class="color-mix-demo">
-                        <div class="color-equation">
-                            <div class="color-circle" style="background: #E74C3C;"></div>
-                            <span class="mix-sign">+</span>
-                            <div class="color-circle" style="background: #F1C40F;"></div>
-                            <span class="mix-sign">=</span>
-                            <div class="color-circle" style="background: #E67E22;"></div>
-                        </div>
-                        <div class="color-equation">
-                            <div class="color-circle" style="background: #3498DB;"></div>
-                            <span class="mix-sign">+</span>
-                            <div class="color-circle" style="background: #F1C40F;"></div>
-                            <span class="mix-sign">=</span>
-                            <div class="color-circle" style="background: #2ECC71;"></div>
-                        </div>
-                        <div class="color-equation">
-                            <div class="color-circle" style="background: #ffffff; border: 2px solid #ddd;"></div>
-                            <span class="mix-sign">+</span>
-                            <div class="color-circle" style="background: #E74C3C;"></div>
-                            <span class="mix-sign">=</span>
-                            <div class="color-circle" style="background: #F5B7B1;"></div>
-                        </div>
-                    </div>
-                    <div class="info-box tip-box">
-                        <p>💡 <strong>Skinner Blend:</strong> Suprapune 2 culori în triunghi, rulează și pliază de ~20 ori. Rezultat: gradient spectaculos!</p>
-                    </div>
+                    <div class="color-equation"><div class="color-circle" style="background:#E74C3C;"></div><span class="mix-sign">+</span><div class="color-circle" style="background:#F1C40F;"></div><span class="mix-sign">=</span><div class="color-circle" style="background:#E67E22;"></div></div>
+                    <div class="color-equation"><div class="color-circle" style="background:#3498DB;"></div><span class="mix-sign">+</span><div class="color-circle" style="background:#F1C40F;"></div><span class="mix-sign">=</span><div class="color-circle" style="background:#2ECC71;"></div></div>
+                    <div class="color-equation"><div class="color-circle" style="background:#fff; border:2px solid #ddd;"></div><span class="mix-sign">+</span><div class="color-circle" style="background:#E74C3C;"></div><span class="mix-sign">=</span><div class="color-circle" style="background:#F5B7B1;"></div></div>
+                    <div class="info-box tip-box"><p>💡 <strong>Skinner Blend:</strong> Suprapune 2 culori, rulează și pliază de ~20 ori = gradient spectaculos!</p></div>
                 </div>
                 <div class="col">
                     <div class="step-instructions">
                         <h3>Ce facem:</h3>
-                        <ol>
-                            <li>Alege <strong>2-3 culori</strong> care îți plac</li>
-                            <li>Amestecă proporții <strong>mici</strong> întâi (test)</li>
-                            <li>Frământă până la culoare <strong>uniformă</strong></li>
-                            <li>Sau lasă <strong>semi-amestecat</strong> pentru efect marmorat</li>
-                        </ol>
-                        <div class="key-point" style="margin-top: 1rem;">
-                            <p>🔑 <strong>Regulă de aur:</strong> Culorile deschise + puțin închis = OK. Invers = dezastru. Adaugă puțin câte puțin!</p>
-                        </div>
+                        <ol><li>Alege <strong>2-3 culori</strong></li><li>Amestecă proporții <strong>mici</strong> (test)</li><li>Frământă până la culoare <strong>uniformă</strong></li><li>Sau lasă <strong>semi-amestecat</strong> = efect marmorat</li></ol>
+                        <div class="key-point" style="margin-top:0.5rem;"><p>🔑 <strong>Regulă de aur:</strong> Deschise + puțin închis = OK. Invers = dezastru!</p></div>
                     </div>
                 </div>
             </div>
-            <div class="trainer-note">
-                <p>👩‍🏫 <strong>Trainer:</strong> Arată Skinner Blend live. Lasă cursanții să experimenteze liber cu culorile. ~20 min.</p>
-            </div>
         </div>
+        <div class="trainer-note"><p>👩‍🏫 <strong>Trainer:</strong> Arată Skinner Blend live. Experiment liber cu culorile. ~20 min.</p></div>
     </div>
 
-    <!-- PASUL 3 -->
+    <!-- PAS 3 -->
     <div class="slide">
         <div class="slide-content">
-            <div class="step-header">
-                <span class="step-badge-lg">Pasul 3 din 5</span>
-                <h2>✂️ Formarea Piesei</h2>
-            </div>
+            <div class="step-header"><span class="step-badge-lg">Pasul 3 din 5</span><h2>✂️ Formarea Piesei</h2></div>
             <div class="two-cols">
                 <div class="col">
                     <div class="step-instructions">
                         <h3>Etapele:</h3>
-                        <ol>
-                            <li>Întinde lutul cu <strong>rola acrilică</strong> (grosime uniformă)</li>
-                            <li><strong>Decupează</strong> forma dorită (cutters sau manual)</li>
-                            <li>Adaugă <strong>texturi</strong> (ștampile, frunze, țesături)</li>
-                            <li>Fă <strong>găurile</strong> pentru cârlige/tije ACUM</li>
-                            <li>Netezește <strong>marginile</strong> cu degetul umed</li>
-                        </ol>
+                        <ol><li>Întinde lutul cu <strong>rola acrilică</strong> (grosime uniformă)</li><li><strong>Decupează</strong> forma dorită</li><li>Adaugă <strong>texturi</strong></li><li>Fă <strong>găurile</strong> pentru cârlige ACUM</li><li>Netezește <strong>marginile</strong> cu degetul umed</li></ol>
                     </div>
-                    <div class="key-point" style="margin-top: 1rem;">
-                        <p>📏 <strong>Grosimi recomandate:</strong></p>
-                        <ul>
-                            <li>Cercei: <strong>2-3mm</strong> (să fie ușori)</li>
-                            <li>Pandantive: <strong>4-5mm</strong></li>
-                            <li>Inele/broșe: <strong>5-6mm</strong></li>
-                        </ul>
+                    <div class="key-point" style="margin-top:0.5rem;">
+                        <p>📏 <strong>Grosimi:</strong> Cercei: 2-3mm · Pandantive: 4-5mm · Inele: 5-6mm</p>
                     </div>
                 </div>
                 <div class="col">
                     <div class="shapes-gallery">
-                        <div class="shape-item">⭕ Disc</div>
-                        <div class="shape-item">❤️ Inimă</div>
-                        <div class="shape-item">⭐ Stea</div>
-                        <div class="shape-item">🍃 Frunză</div>
-                        <div class="shape-item">💧 Picătură</div>
-                        <div class="shape-item">🌸 Floare</div>
-                        <div class="shape-item">🌙 Semilună</div>
-                        <div class="shape-item">🔷 Geometric</div>
+                        <div class="shape-item">⭕ Disc</div><div class="shape-item">❤️ Inimă</div><div class="shape-item">⭐ Stea</div><div class="shape-item">🍃 Frunză</div>
+                        <div class="shape-item">💧 Picătură</div><div class="shape-item">🌸 Floare</div><div class="shape-item">🌙 Semilună</div><div class="shape-item">🔷 Geometric</div>
                     </div>
-                    <div class="info-box tip-box">
-                        <p>🎨 <strong>Arta este diferită de la om la om.</strong><br>Nu există „greșit" în modelare. Fiecare piesă e unică.</p>
-                    </div>
+                    <div class="info-box tip-box"><p>🎨 <strong>Nu există „greșit" în modelare.</strong> Fiecare piesă e unică.</p></div>
                 </div>
             </div>
-            <div class="trainer-note">
-                <p>👩‍🏫 <strong>Trainer:</strong> Prima piesă simplă (disc/inimă). Apoi lasă-i liberi. Circulă, ajută, încurajează. ~40 min.</p>
-            </div>
         </div>
+        <div class="trainer-note"><p>👩‍🏫 <strong>Trainer:</strong> Prima piesă simplă (disc/inimă). Apoi lasă-i liberi. ~40 min.</p></div>
     </div>
 
-    <!-- PASUL 4 -->
+    <!-- PAS 4 -->
     <div class="slide">
         <div class="slide-content">
-            <div class="step-header">
-                <span class="step-badge-lg">Pasul 4 din 5</span>
-                <h2>🔥 Coacerea</h2>
-            </div>
+            <div class="step-header"><span class="step-badge-lg">Pasul 4 din 5</span><h2>🔥 Coacerea</h2></div>
             <div class="two-cols">
                 <div class="col">
-                    <div class="baking-chart">
-                        <h3>📊 Temperatură & Timp</h3>
-                        <table class="data-table">
-                            <thead><tr><th>Marcă</th><th>Temp.</th><th>Timp</th></tr></thead>
-                            <tbody>
-                                <tr><td>Fimo Soft</td><td>110°C</td><td>30 min</td></tr>
-                                <tr><td>Fimo Professional</td><td>110°C</td><td>30 min</td></tr>
-                                <tr><td>Sculpey III</td><td>130°C</td><td>15 min/6mm</td></tr>
-                                <tr><td>Premo Sculpey</td><td>130°C</td><td>30 min/6mm</td></tr>
-                                <tr><td>Cernit</td><td>130°C</td><td>30 min</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <h3 style="font-size:0.9rem; color:var(--purple); margin-bottom:0.3rem;">📊 Temperatură & Timp</h3>
+                    <table class="data-table">
+                        <thead><tr><th>Marcă</th><th>Temp.</th><th>Timp</th></tr></thead>
+                        <tbody>
+                            <tr><td>Fimo Soft</td><td>110°C</td><td>30 min</td></tr>
+                            <tr><td>Fimo Professional</td><td>110°C</td><td>30 min</td></tr>
+                            <tr><td>Sculpey III</td><td>130°C</td><td>15 min/6mm</td></tr>
+                            <tr><td>Premo Sculpey</td><td>130°C</td><td>30 min/6mm</td></tr>
+                            <tr><td>Cernit</td><td>130°C</td><td>30 min</td></tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="col">
                     <div class="step-instructions">
                         <h3>Procedura:</h3>
-                        <ol>
-                            <li>Preîncălzește cuptorul (termometru separat!)</li>
-                            <li>Pune piesele pe <strong>hârtie de copt</strong> pe tavă</li>
-                            <li>Coace conform tabelului</li>
-                            <li><strong>Nu deschide ușa</strong> în timpul coacerii</li>
-                            <li>Lasă să se <strong>răcească complet</strong> în cuptor</li>
-                        </ol>
+                        <ol><li>Preîncălzește cuptorul (termometru separat!)</li><li>Pune piesele pe <strong>hârtie de copt</strong></li><li>Coace conform tabelului</li><li><strong>Nu deschide ușa</strong> în timp</li><li>Lasă să se <strong>răcească complet</strong> în cuptor</li></ol>
                     </div>
-                    <div class="safety-card danger" style="margin-top:1rem;">
+                    <div class="safety-card danger" style="margin-top:0.5rem;">
                         <h3>🚨 CRITICE:</h3>
-                        <ul>
-                            <li>Nu depăși temperatura — <strong>fum toxic!</strong></li>
-                            <li>Ventilează zona</li>
-                            <li>Nu lăsa fără supraveghere</li>
-                            <li>Piesa e MOALE la ieșire — se întărește la răcire</li>
-                        </ul>
+                        <ul><li>Nu depăși temperatura — <strong>fum toxic!</strong></li><li>Ventilează zona</li><li>Piesa e MOALE la ieșire — se întărește la răcire</li></ul>
                     </div>
                 </div>
             </div>
-            <div class="trainer-note">
-                <p>👩‍🏫 <strong>Trainer:</strong> Pune piesele la copt (timer!). În timpul coacerii — pauză 10 min sau discuție despre monetizare. ~25 min total.</p>
-            </div>
         </div>
+        <div class="trainer-note"><p>👩‍🏫 <strong>Trainer:</strong> Timer! În timpul coacerii — pauză 10 min sau discuție monetizare. ~25 min.</p></div>
     </div>
 
-    <!-- PASUL 5 -->
+    <!-- PAS 5 -->
     <div class="slide">
         <div class="slide-content">
-            <div class="step-header">
-                <span class="step-badge-lg">Pasul 5 din 5</span>
-                <h2>💎 Finisare & Rășină UV</h2>
-            </div>
+            <div class="step-header"><span class="step-badge-lg">Pasul 5 din 5</span><h2>💎 Finisare & Rășină UV</h2></div>
             <div class="two-cols">
                 <div class="col">
                     <div class="step-instructions">
                         <h3>A. Finisare mecanică:</h3>
-                        <ol>
-                            <li>Șlefuiește cu hârtie <strong>400</strong> (grosieră)</li>
-                            <li>Apoi <strong>800</strong> (medie)</li>
-                            <li>Apoi <strong>1200</strong> (fină) — efect de oglindă</li>
-                            <li>Opcional: lustruiește cu <strong>pânză</strong> moale</li>
-                        </ol>
-                        <h3 style="margin-top:1.2rem;">B. Rășină UV:</h3>
-                        <ol>
-                            <li>Aplică strat <strong>subțire uniform</strong></li>
-                            <li>Scapă de bule cu <strong>ac</strong></li>
-                            <li>Expune la <strong>lampă UV</strong> 2-3 minute</li>
-                            <li>Repetă pentru <strong>al doilea strat</strong> (opțional)</li>
-                        </ol>
+                        <ol><li>Șlefuiește cu hârtie <strong>400</strong> (grosieră)</li><li>Apoi <strong>800</strong> (medie)</li><li>Apoi <strong>1200</strong> (fină) — efect de oglindă</li></ol>
+                        <h3 style="margin-top:0.6rem;">B. Rășină UV:</h3>
+                        <ol><li>Aplică strat <strong>subțire uniform</strong></li><li>Scapă de bule cu <strong>ac</strong></li><li>Expune la <strong>lampă UV</strong> 2-3 min</li><li>Repetă pentru al doilea strat (opțional)</li></ol>
                     </div>
                 </div>
                 <div class="col">
                     <div class="before-after">
-                        <div class="ba-item">
-                            <span class="ba-label">Înainte</span>
-                            <div class="ba-visual ba-before">Mat, brut</div>
-                        </div>
+                        <div class="ba-item"><span class="ba-label">Înainte</span><div class="ba-visual ba-before">Mat, brut</div></div>
                         <div class="ba-arrow">→</div>
-                        <div class="ba-item">
-                            <span class="ba-label">După</span>
-                            <div class="ba-visual ba-after">✨ Cristal, lucios</div>
-                        </div>
+                        <div class="ba-item"><span class="ba-label">După</span><div class="ba-visual ba-after">✨ Cristal, lucios</div></div>
                     </div>
-                    <div class="info-box warning-box">
-                        <p>🧤 <strong>MĂNUȘI OBLIGATORII</strong> la lucrul cu rășina UV. Nu atinge cu mâna goală!</p>
-                    </div>
-                    <div class="info-box tip-box">
-                        <p>💡 <strong>Asamblare:</strong> Lipim cârligele de cercei, montăm tija, fixăm inelul — cu adeziv sau rășină ca liant.</p>
-                    </div>
+                    <div class="info-box warning-box"><p>🧤 <strong>MĂNUȘI OBLIGATORII</strong> la rășina UV!</p></div>
+                    <div class="info-box tip-box"><p>💡 <strong>Asamblare:</strong> Lipim cârligele, montăm tija, fixăm inelul.</p></div>
                 </div>
             </div>
-            <div class="trainer-note">
-                <p>👩‍🏫 <strong>Trainer:</strong> Demonstrează fiecare etapă. Asistă la aplicarea rășinei (moment delicat). ~30 min.</p>
-            </div>
         </div>
+        <div class="trainer-note"><p>👩‍🏫 <strong>Trainer:</strong> Demonstrează, asistă la aplicarea rășinei (moment delicat). ~30 min.</p></div>
     </div>
 
-    <!-- Rezultat -->
+    <!-- REZULTAT -->
     <div class="slide">
         <div class="slide-content centered">
             <h2>🎉 Rezultatul — Bijuteria Ta!</h2>
             <p class="subtitle">Galerie de inspirație — produse reale RashinaThor</p>
             <div class="result-gallery">
-                <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05593-ARW_DxO_DeepPRIME-Edit-2-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei feminini">
+                <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05593-ARW_DxO_DeepPRIME-Edit-2-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei">
                 <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05590-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei floare">
                 <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05598-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei inimă">
                 <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05602-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei ocean">
                 <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05609-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei trifoi">
                 <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05571-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei stea">
             </div>
-            <p class="gallery-credit">Toate bijuteriile sunt create de <a href="https://rashinathor.ro">RashinaThor.ro</a></p>
+            <p class="gallery-credit">Toate bijuteriile sunt create de <a href="https://rashinathor.ro" rel="noopener">RashinaThor.ro</a></p>
         </div>
     </div>
 
-    <!-- ======================== CAPITOLUL 4 ======================== -->
+    <!-- ====== CAP 4: TITLU ====== -->
     <div class="slide chapter-title-slide ch4-bg">
         <div class="chapter-number">04</div>
-        <div class="chapter-info">
-            <span class="chapter-duration">⏱️ 30 minute</span>
-            <h1>Încheiere & Business</h1>
-            <p>Monetizare • Prețuri • Concurență • Q&A</p>
-        </div>
+        <div class="chapter-info"><span class="chapter-duration">⏱️ 30 minute</span><h1>Încheiere & Business</h1><p>Monetizare • Prețuri • Concurență • Q&A</p></div>
     </div>
 
+    <!-- CAP 4: Preț -->
     <div class="slide">
         <div class="slide-content">
             <h2>💰 Cum Pui Preț pe Bijuterii?</h2>
@@ -1073,56 +571,38 @@
                 <div class="col">
                     <div class="pricing-formula">
                         <h3>Formula de bază:</h3>
-                        <div class="formula">
-                            <div class="formula-line"><span>Materiale</span><span class="formula-ex">lut + rășină + accesorii</span></div>
-                            <div class="formula-line"><span>+ Timp de lucru</span><span class="formula-ex">ore × tarif/oră</span></div>
-                            <div class="formula-line"><span>+ Costuri fixe</span><span class="formula-ex">curent, instrumente, ambalaj</span></div>
-                            <div class="formula-line"><span>+ Profit</span><span class="formula-ex">min. 30-50% markup</span></div>
-                            <div class="formula-total"><span>= Preț de vânzare</span></div>
-                        </div>
+                        <div class="formula-line"><span>Materiale</span><span class="formula-ex">lut + rășină + accesorii</span></div>
+                        <div class="formula-line"><span>+ Timp de lucru</span><span class="formula-ex">ore × tarif/oră</span></div>
+                        <div class="formula-line"><span>+ Costuri fixe</span><span class="formula-ex">curent, instrumente, ambalaj</span></div>
+                        <div class="formula-line"><span>+ Profit</span><span class="formula-ex">min. 30-50% markup</span></div>
+                        <div class="formula-total">= Preț de vânzare</div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="info-box tip-box">
                         <h3>💡 Insight-uri rapide</h3>
-                        <ul>
-                            <li>Nu subestima <strong>timpul tău</strong> — e cea mai scumpă resursă</li>
-                            <li>Include <strong>ambalajul</strong> frumos — este parte din produs</li>
-                            <li>Prețul prea mic = <strong>percepție de calitate slabă</strong></li>
-                            <li>Calculează <strong>per lot</strong>, nu per bucată</li>
-                        </ul>
+                        <ul><li>Nu subestima <strong>timpul tău</strong></li><li>Include <strong>ambalajul</strong> frumos</li><li>Prețul prea mic = <strong>percepție de calitate slabă</strong></li><li>Calculează <strong>per lot</strong></li></ul>
                     </div>
-                    <div class="info-box warning-box">
-                        <p>⚠️ <strong>Fiecare își calculează prețul individual.</strong> Depinde de materiale, timp, piață, brand. Nu copii de la alții!</p>
-                    </div>
+                    <div class="info-box warning-box"><p>⚠️ <strong>Fiecare își calculează prețul individual.</strong> Nu copii de la alții!</p></div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- CAP 4: Concurență -->
     <div class="slide">
         <div class="slide-content">
             <h2>🤝 Despre Concurență</h2>
             <div class="two-cols">
                 <div class="col">
-                    <div class="quote-card">
-                        <blockquote>
-                            „Concurența <strong>trebuie să existe</strong>. Validează piața. Dacă nimeni nu vinde bijuterii artizanale — poate nu e cerere."
-                        </blockquote>
-                    </div>
-                    <div class="key-point" style="margin-top:1rem;">
+                    <div class="quote-card"><blockquote>„Concurența <strong>trebuie să existe</strong>. Validează piața."</blockquote></div>
+                    <div class="key-point" style="margin-top:0.5rem;">
                         <h3>🔑 Cum te diferențiezi:</h3>
-                        <ul>
-                            <li><strong>Stilul tău unic</strong> — arta e diferită de la om la om</li>
-                            <li><strong>Povestea bijuteriei</strong> — de ce ai creat-o</li>
-                            <li><strong>Calitatea finisajului</strong> — rășina UV face diferența</li>
-                            <li><strong>Ambalajul & prezentarea</strong> — prima impresie</li>
-                            <li><strong>Relația cu clientul</strong> — personalizare, atenție</li>
-                        </ul>
+                        <ul><li><strong>Stilul tău unic</strong></li><li><strong>Povestea bijuteriei</strong></li><li><strong>Calitatea finisajului</strong></li><li><strong>Ambalajul & prezentarea</strong></li><li><strong>Relația cu clientul</strong></li></ul>
                     </div>
                 </div>
                 <div class="col">
-                    <h3>📣 Unde vinzi:</h3>
+                    <h3 style="font-size:0.9rem; color:var(--purple); margin-bottom:0.3rem;">📣 Unde vinzi:</h3>
                     <div class="channels-list">
                         <div class="channel-item">📸 <strong>Instagram</strong> — poze, reels, stories</div>
                         <div class="channel-item">📘 <strong>Facebook</strong> — grupuri handmade, marketplace</div>
@@ -1136,41 +616,28 @@
         </div>
     </div>
 
+    <!-- CAP 4: Q&A -->
     <div class="slide">
         <div class="slide-content centered">
             <h2>❓ Q&A — Întrebări & Răspunsuri</h2>
             <p class="subtitle">Acum e momentul tău. Întreabă orice!</p>
             <div class="qa-grid">
-                <div class="qa-card">
-                    <div class="qa-q">„Cum fac față concurenței?"</div>
-                    <div class="qa-a">Concurența validează piața. Diferențiază-te prin stil și calitate, nu prin preț mic.</div>
-                </div>
-                <div class="qa-card">
-                    <div class="qa-q">„Câți bani pot face?"</div>
-                    <div class="qa-a">Depinde de volum și preț. Unele persoane câștigă 500-2000+ lei/lună ca side-hustle din bijuterii.</div>
-                </div>
-                <div class="qa-card">
-                    <div class="qa-q">„Ce marcă de lut e cea mai bună?"</div>
-                    <div class="qa-a">Fimo Soft pentru începători. Premo Sculpey pentru avansați. Cernit pentru culori speciale.</div>
-                </div>
-                <div class="qa-card">
-                    <div class="qa-q">„Pot folosi cuptorul de acasă?"</div>
-                    <div class="qa-a">Da, dar dedicat. Sau acoperă piesele și ventilează. Ideal: cuptor mic separat.</div>
-                </div>
+                <div class="qa-card"><div class="qa-q">„Cum fac față concurenței?"</div><div class="qa-a">Diferențiază-te prin stil și calitate, nu prin preț mic.</div></div>
+                <div class="qa-card"><div class="qa-q">„Câți bani pot face?"</div><div class="qa-a">500-2000+ lei/lună ca side-hustle din bijuterii.</div></div>
+                <div class="qa-card"><div class="qa-q">„Ce marcă de lut e cea mai bună?"</div><div class="qa-a">Fimo Soft pt. începători. Premo pt. avansați. Cernit pt. culori speciale.</div></div>
+                <div class="qa-card"><div class="qa-q">„Pot folosi cuptorul de acasă?"</div><div class="qa-a">Da, dar dedicat. Sau acoperă piesele și ventilează. Ideal: cuptor mic separat.</div></div>
             </div>
         </div>
+        <div class="trainer-note"><p>👩‍🏫 <strong>Trainer:</strong> Întrebările controversate despre preț/concurență sunt cele mai valoroase!</p></div>
     </div>
 
-    <!-- ======================== CAPITOLUL 5 ======================== -->
+    <!-- ====== CAP 5: TITLU ====== -->
     <div class="slide chapter-title-slide ch5-bg">
         <div class="chapter-number">🎁</div>
-        <div class="chapter-info">
-            <span class="chapter-duration">⏱️ 15 minute</span>
-            <h1>PLATA o PLOMO</h1>
-            <p>Bonusul de final • Oferta specială</p>
-        </div>
+        <div class="chapter-info"><span class="chapter-duration">⏱️ 15 minute</span><h1>PLATA o PLOMO</h1><p>Bonusul de final • Oferta specială</p></div>
     </div>
 
+    <!-- CAP 5: Ofertă -->
     <div class="slide">
         <div class="slide-content centered">
             <h2>🎁 Oferta Specială</h2>
@@ -1178,52 +645,33 @@
             <div class="offer-card">
                 <div class="offer-header"><h3>Pachet Continuare Avansată</h3></div>
                 <div class="offer-body">
-                    <ul>
-                        <li>🎓 Acces la cursul avansat (tehnici complexe)</li>
-                        <li>📦 Kit de materiale pentru acasă</li>
-                        <li>👥 Grup privat de suport & inspirație</li>
-                        <li>📧 Consultanță online 30 zile</li>
-                        <li>💎 Discount la materiale de la furnizori</li>
-                    </ul>
+                    <ul><li>🎓 Acces la cursul avansat (tehnici complexe)</li><li>📦 Kit de materiale pentru acasă</li><li>👥 Grup privat de suport & inspirație</li><li>📧 Consultanță online 30 zile</li><li>💎 Discount la materiale de la furnizori</li></ul>
                 </div>
-                <div class="offer-footer">
-                    <p>Detalii și preț — discutăm individual.</p>
-                    <p class="offer-cta">Produsul finit vorbește de la sine. 💎</p>
-                </div>
+                <div class="offer-footer"><p>Detalii și preț — discutăm individual.</p><p class="offer-cta">Produsul finit vorbește de la sine. 💎</p></div>
             </div>
         </div>
     </div>
 
-    <!-- ======================== FINAL ======================== -->
+    <!-- ====== FINAL ====== -->
     <div class="slide chapter-title-slide end-bg">
         <div class="chapter-number">🎓</div>
-        <div class="chapter-info">
-            <h1>Mulțumesc!</h1>
-            <p>Ai creat prima ta bijuterie. Restul e doar repetiție & creativitate.</p>
-        </div>
+        <div class="chapter-info"><h1>Mulțumesc!</h1><p>Ai creat prima ta bijuterie. Restul e doar repetiție & creativitate.</p></div>
     </div>
 
+    <!-- CONTACT -->
     <div class="slide">
         <div class="slide-content centered">
             <h2>📱 Rămânem în legătură!</h2>
             <div class="final-links">
-                <a href="https://rashinathor.ro" class="final-link">🌐 rashinathor.ro</a>
-                <a href="https://www.instagram.com/rashinathor/" class="final-link">📸 @rashinathor</a>
-                <a href="https://www.facebook.com/rashinathor" class="final-link">📘 RashinaThor</a>
+                <a href="https://rashinathor.ro" class="final-link" rel="noopener">🌐 rashinathor.ro</a>
+                <a href="https://www.instagram.com/rashinathor/" class="final-link" rel="noopener">📸 @rashinathor</a>
+                <a href="https://www.facebook.com/rashinathor" class="final-link" rel="noopener">📘 RashinaThor</a>
             </div>
             <div class="final-qr-row">
-                <div class="final-qr">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://rashinathor.ro&color=6C5CE7&bgcolor=FFFFFF&margin=10" alt="QR">
-                    <p>rashinathor.ro</p>
-                </div>
-                <div class="final-qr">
-                    <img src="gif/TTT202602-qr.png" alt="QR Curs">
-                    <p>Prezentare Curs</p>
-                </div>
+                <div class="final-qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://rashinathor.ro&color=6C5CE7&bgcolor=FFFFFF&margin=10" alt="QR"><p>rashinathor.ro</p></div>
+                <div class="final-qr"><img src="gif/TTT202602-qr.png" alt="QR Curs"><p>Prezentare Curs</p></div>
             </div>
-            <div class="final-message">
-                <p>„<strong>Arta este diferită de la om la om.</strong><br>Bijuteria ta e unică — pentru că <em>tu</em> ești unică."</p>
-            </div>
+            <div class="final-message"><p>„<strong>Arta este diferită de la om la om.</strong><br>Bijuteria ta e unică — pentru că <em>tu</em> ești unică."</p></div>
         </div>
     </div>
 

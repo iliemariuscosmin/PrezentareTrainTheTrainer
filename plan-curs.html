@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Curs — De la Bulgăre la Bijuterie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --purple: #6C5CE7;
+            --purple-light: #A29BFE;
+            --gold: #FDCB6E;
+            --coral: #FF6B6B;
+            --pink: #FD79A8;
+            --teal: #00CEC9;
+            --dark: #2d3436;
+            --gray: #636e72;
+            --light: #f8f9fa;
+        }
+
+        @page { size: A4; margin: 12mm 15mm; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--dark);
+            line-height: 1.5;
+            background: white;
+            font-size: 10pt;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Fredoka', sans-serif; line-height: 1.3; }
+        a { color: var(--purple); text-decoration: none; }
+
+        /* ===== PAGE BREAKS ===== */
+        .page-break { page-break-after: always; }
+        .no-break { page-break-inside: avoid; }
+
+        /* ===== COVER PAGE ===== */
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 24mm);
+            text-align: center;
+            background: linear-gradient(135deg, #f3f0ff 0%, #fce4ec 100%);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+        }
+
+        .cover-tag {
+            display: inline-block;
+            background: var(--purple);
+            color: white;
+            padding: 0.4rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .cover h1 {
+            font-size: 2.6rem;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .cover h1 .gold { color: #d4a017; }
+
+        .cover .subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .cover .doc-type {
+            font-size: 1.5rem;
+            font-family: 'Fredoka', sans-serif;
+            color: var(--purple);
+            background: white;
+            padding: 0.6rem 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--purple);
+            margin-bottom: 2rem;
+        }
+
+        .cover-meta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cover-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+        .cover-images {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .cover-images img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* ===== SECTION HEADERS ===== */
+        .section-header {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.15rem;
+            color: white;
+        }
+
+        .section-header .icon { font-size: 1.3rem; }
+
+        /* ===== INFO GRID ===== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 1rem;
+            border-left: 4px solid var(--purple);
+        }
+
+        .info-card h3 {
+            font-size: 0.9rem;
+            color: var(--purple);
+            margin-bottom: 0.4rem;
+        }
+
+        .info-card p, .info-card li {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .info-card ul { padding-left: 1.2rem; }
+        .info-card li { margin-bottom: 0.2rem; }
+
+        .info-card.full { grid-column: 1 / -1; }
+
+        /* ===== OBJECTIVES ===== */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .objective-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 0.8rem;
+            text-align: center;
+            border-top: 3px solid var(--teal);
+        }
+
+        .objective-card .obj-icon { font-size: 1.5rem; margin-bottom: 0.3rem; display: block; }
+        .objective-card h4 { font-size: 0.85rem; color: var(--dark); margin-bottom: 0.2rem; }
+        .objective-card p { font-size: 0.78rem; color: var(--gray); }
+
+        /* ===== MAIN PLAN TABLE ===== */
+        .plan-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 1rem;
+            font-size: 0.82rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .plan-table thead th {
+            background: var(--purple);
+            color: white;
+            padding: 0.6rem 0.5rem;
+            font-weight: 700;
+            font-size: 0.78rem;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .plan-table thead th:first-child { text-align: left; padding-left: 0.8rem; }
+
+        .plan-table tbody td {
+            padding: 0.5rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .plan-table tbody tr:last-child td { border-bottom: none; }
+
+        .plan-table tbody tr:nth-child(even) { background: #fafafa; }
+
+        .plan-table .chapter-row td {
+            background: linear-gradient(135deg, rgba(108,92,231,0.08), rgba(162,155,254,0.05));
+            font-weight: 700;
+            color: var(--purple);
+            border-bottom: 2px solid var(--purple-light);
+        }
+
+        .plan-table .bonus-row td {
+            background: rgba(253,203,110,0.12);
+            font-weight: 600;
+        }
+
+        .plan-table td:nth-child(1) { width: 4%; text-align: center; font-weight: 700; }
+        .plan-table td:nth-child(2) { width: 16%; }
+        .plan-table td:nth-child(3) { width: 26%; }
+        .plan-table td:nth-child(4) { width: 14%; }
+        .plan-table td:nth-child(5) { width: 14%; }
+        .plan-table td:nth-child(6) { width: 7%; text-align: center; }
+        .plan-table td:nth-child(7) { width: 19%; }
+
+        .plan-table .method-tag {
+            display: inline-block;
+            background: rgba(108,92,231,0.1);
+            color: var(--purple);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            margin: 0.1rem 0;
+        }
+
+        .plan-table .resource-tag {
+            display: inline-block;
+            background: rgba(0,206,201,0.1);
+            color: #00897b;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            margin: 0.1rem 0;
+        }
+
+        .plan-table .eval-tag {
+            display: inline-block;
+            background: rgba(253,121,168,0.1);
+            color: #c2185b;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            margin: 0.1rem 0;
+        }
+
+        .plan-table ul {
+            padding-left: 1rem;
+            margin: 0;
+        }
+
+        .plan-table li { margin-bottom: 0.15rem; }
+
+        /* ===== DETAILED MODULE BOXES ===== */
+        .module {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            page-break-inside: avoid;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 1rem;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .module-header.m1 { background: linear-gradient(135deg, var(--purple), var(--purple-light)); }
+        .module-header.m2 { background: linear-gradient(135deg, var(--teal), var(--purple)); }
+        .module-header.m3 { background: linear-gradient(135deg, var(--coral), var(--gold)); }
+        .module-header.m4 { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+        .module-header.m5 { background: linear-gradient(135deg, var(--gold), var(--coral)); }
+
+        .module-header h3 { font-size: 0.95rem; color: white; }
+        .module-header .dur {
+            margin-left: auto;
+            background: rgba(255,255,255,0.25);
+            padding: 0.2rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .module-body {
+            padding: 0.8rem 1rem;
+        }
+
+        .module-body h4 {
+            font-size: 0.85rem;
+            color: var(--purple);
+            margin: 0.5rem 0 0.3rem;
+        }
+
+        .module-body h4:first-child { margin-top: 0; }
+
+        .module-body ul, .module-body ol {
+            padding-left: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .module-body li { font-size: 0.82rem; margin-bottom: 0.15rem; }
+
+        .module-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .module-note {
+            background: rgba(253,203,110,0.15);
+            border-left: 3px solid var(--gold);
+            padding: 0.5rem 0.8rem;
+            border-radius: 0 6px 6px 0;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        /* ===== COMPETENCIES ===== */
+        .competence-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .competence-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 0.6rem;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .competence-card .comp-icon { font-size: 1.3rem; display: block; margin-bottom: 0.2rem; }
+        .competence-card p { font-size: 0.78rem; color: var(--gray); }
+        .competence-card strong { font-size: 0.82rem; color: var(--dark); display: block; margin-bottom: 0.1rem; }
+
+        /* ===== RESOURCES TABLE ===== */
+        .resources-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.82rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 1rem;
+        }
+
+        .resources-table th {
+            background: var(--teal);
+            color: white;
+            padding: 0.5rem 0.6rem;
+            font-size: 0.78rem;
+            text-align: left;
+        }
+
+        .resources-table td {
+            padding: 0.4rem 0.6rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .resources-table tr:nth-child(even) { background: #fafafa; }
+
+        /* ===== EVALUATION ===== */
+        .eval-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .eval-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 0.8rem;
+            border-top: 3px solid var(--pink);
+        }
+
+        .eval-card h4 { font-size: 0.85rem; color: var(--dark); margin-bottom: 0.3rem; }
+        .eval-card p, .eval-card li { font-size: 0.78rem; color: var(--gray); }
+        .eval-card ul { padding-left: 1rem; }
+
+        /* ===== FOOTER ===== */
+        .doc-footer {
+            text-align: center;
+            padding: 1rem 0;
+            border-top: 2px solid var(--purple);
+            margin-top: 2rem;
+            font-size: 0.78rem;
+            color: var(--gray);
+        }
+
+        .doc-footer strong { color: var(--purple); }
+
+        /* ===== SIGNATURE AREA ===== */
+        .signatures {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+        }
+
+        .sig-block {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #ccc;
+        }
+
+        .sig-block p {
+            font-size: 0.82rem;
+            color: var(--gray);
+        }
+
+        .sig-block strong {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        /* ===== SAFETY HIGHLIGHT ===== */
+        .safety-box {
+            background: #fff5f5;
+            border: 1px solid var(--coral);
+            border-left: 4px solid var(--coral);
+            border-radius: 0 8px 8px 0;
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .safety-box h4 { color: var(--coral); font-size: 0.85rem; margin-bottom: 0.3rem; }
+        .safety-box li { font-size: 0.8rem; }
+        .safety-box ul { padding-left: 1.2rem; }
+
+        /* ===== PRINT HELPERS ===== */
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page-break { page-break-after: always; }
+            .no-break { page-break-inside: avoid; }
+
+            /* FIX: tabelul mare trebuie sa curga liber pe pagini */
+            .plan-table {
+                overflow: visible !important;
+                border-radius: 0 !important;
+            }
+            .plan-table thead { display: table-header-group; }  /* repeta header pe fiecare pagina */
+            .plan-table tbody tr { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================== PAGINA 1: COPERTĂ ======================== -->
+    <div class="cover page-break">
+        <span class="cover-tag">📋 Plan de Curs — Metodologie Train the Trainer</span>
+        <h1>De la Bulgăre<br>la <span class="gold">Bijuterie</span></h1>
+        <p class="subtitle">Modelare Lut Polimeric & Rășină Epoxidică UV</p>
+        <div class="doc-type">PLAN DE CURS</div>
+        <div class="cover-meta">
+            <span>👩‍🏫 Trainer: <strong>Cosmin Ilie — RashinaThor.ro</strong></span>
+            <span>⏱️ Durată: <strong>4 ore (240 min)</strong></span>
+            <span>👥 Grup țintă: <strong>Adulți începători</strong></span>
+        </div>
+        <div class="cover-meta">
+            <span>📍 Locație: <strong>Sala de atelier / Spațiu practic</strong></span>
+            <span>👥 Nr. participanți: <strong>6 – 12 persoane</strong></span>
+            <span>📅 Data: <strong>____ / ____ / ________</strong></span>
+        </div>
+        <div class="cover-images">
+            <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05593-ARW_DxO_DeepPRIME-Edit-2-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei">
+            <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05598-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei inimă">
+            <img src="https://i0.wp.com/rashinathor.ro/wp-content/uploads/2025/07/DSC05571-ARW_DxO_DeepPRIME-Edit-Photoroom.jpg?fit=750%2C750&ssl=1" alt="Cercei stea">
+        </div>
+    </div>
+
+    <!-- ======================== PAGINA 2: DATE GENERALE + OBIECTIVE ======================== -->
+    <div class="section-header">
+        <span class="icon">📌</span>
+        <h2>1. Date Generale ale Cursului</h2>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>📘 Denumirea cursului</h3>
+            <p><strong>De la Bulgăre la Bijuterie</strong> — Curs Practic de Modelare Lut Polimeric & Rășină Epoxidică UV</p>
+        </div>
+        <div class="info-card">
+            <h3>🎯 Tipul cursului</h3>
+            <p><strong>Curs practic intensiv</strong> — 100% kinestezic, orientat pe rezultat (produs finit)</p>
+        </div>
+        <div class="info-card">
+            <h3>👥 Grupul țintă</h3>
+            <p>Adulți (18+), fără experiență anterioară în modelare. Persoane interesate de artă, hobby-uri creative sau monetizarea bijuteriilor artizanale.</p>
+        </div>
+        <div class="info-card">
+            <h3>📋 Condiții de participare</h3>
+            <p>Nu sunt necesare cunoștințe anterioare. Toate materialele și instrumentele sunt asigurate de organizator.</p>
+        </div>
+        <div class="info-card full">
+            <h3>🧵 Firul roșu al cursului</h3>
+            <p>Cursantul parcurge transformarea completă: de la <strong>complet începător</strong> → pune mâna pe lut → modelează, coace, finisează → pleacă acasă cu <strong>prima bijuterie artizanală</strong> gata de purtat și de vânzare. Procesul include atât dimensiunea creativă-practică, cât și dimensiunea antreprenorială (monetizare).</p>
+        </div>
+    </div>
+
+    <div class="section-header">
+        <span class="icon">🎯</span>
+        <h2>2. Obiective</h2>
+    </div>
+
+    <div class="info-card full" style="margin-bottom: 0.8rem;">
+        <h3>Obiectivul general</h3>
+        <p>La finalul cursului, participantul va fi capabil să <strong>creeze o bijuterie artizanală completă</strong> din lut polimeric și rășină UV, respectând normele de siguranță, și va deține cunoștințele de bază pentru monetizarea produselor handmade.</p>
+    </div>
+
+    <p style="font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--purple);">Obiective operaționale — la finalul cursului, participantul va fi capabil să:</p>
+
+    <div class="objectives-grid">
+        <div class="objective-card">
+            <span class="obj-icon">🧱</span>
+            <h4>O1. Identifice materialele</h4>
+            <p>Recunoaște și descrie proprietățile lutului polimeric (Fimo, Sculpey, Cernit) și ale rășinei UV</p>
+        </div>
+        <div class="objective-card">
+            <span class="obj-icon">🔧</span>
+            <h4>O2. Utilizeze instrumentele</h4>
+            <p>Mânuiască corect instrumentele de bază: rolă, cutter, forme, pensule, lampă UV</p>
+        </div>
+        <div class="objective-card">
+            <span class="obj-icon">⚠️</span>
+            <h4>O3. Aplice normele de siguranță</h4>
+            <p>Respecte temperaturile de coacere, ventilația, protecția la lucrul cu rășină</p>
+        </div>
+        <div class="objective-card">
+            <span class="obj-icon">🤲</span>
+            <h4>O4. Condiționeze lutul</h4>
+            <p>Pregătească lutul prin frământare și activarea plastifianților</p>
+        </div>
+        <div class="objective-card">
+            <span class="obj-icon">🎨</span>
+            <h4>O5. Modeleze o bijuterie</h4>
+            <p>Creeze o piesă completă prin mixare culori, formare, texturare</p>
+        </div>
+        <div class="objective-card">
+            <span class="obj-icon">💎</span>
+            <h4>O6. Finiseze cu rășină UV</h4>
+            <p>Aplice rășina UV pentru efect de cristal, monteze accesoriile</p>
+        </div>
+        <div class="objective-card">
+            <span class="obj-icon">🔥</span>
+            <h4>O7. Coacă corect piesele</h4>
+            <p>Controleze temperatura și durata de coacere conform specificațiilor</p>
+        </div>
+        <div class="objective-card">
+            <span class="obj-icon">💰</span>
+            <h4>O8. Calculeze un preț</h4>
+            <p>Aplice formula de preț: materiale + timp + costuri fixe + profit</p>
+        </div>
+        <div class="objective-card">
+            <span class="obj-icon">📣</span>
+            <h4>O9. Elaboreze plan de vânzare</h4>
+            <p>Identifice canalele de vânzare și strategii de diferențiere</p>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ======================== PAGINA 3: PLANUL DETALIAT (TABEL) ======================== -->
+    <div class="section-header">
+        <span class="icon">📊</span>
+        <h2>3. Planul de Curs — Desfășurare Detaliată</h2>
+    </div>
+
+    <table class="plan-table">
+        <thead>
+            <tr>
+                <th>Nr.</th>
+                <th>Secțiunea / Activitatea</th>
+                <th>Conținut detaliat</th>
+                <th>Metode didactice</th>
+                <th>Mijloace de învățământ</th>
+                <th>Durata</th>
+                <th>Evaluare</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- CAPITOLUL 1 -->
+            <tr class="chapter-row">
+                <td colspan="7">📖 MODULUL 1 — „Ce Vrei De La Mine?" (Cunoaștere, așteptări, reguli)</td>
+            </tr>
+            <tr>
+                <td>1.1</td>
+                <td><strong>Prezentarea trainerului</strong></td>
+                <td>Cine este trainerul, experiență, specializare, povestea personală</td>
+                <td><span class="method-tag">Expunere</span><br><span class="method-tag">Storytelling</span></td>
+                <td><span class="resource-tag">Slideshow</span><br><span class="resource-tag">Mostre bijuterii</span></td>
+                <td>5'</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>1.2</td>
+                <td><strong>Runda de prezentări</strong></td>
+                <td>
+                    <ul>
+                        <li>Cum te cheamă</li>
+                        <li>Cu ce te ocupi</li>
+                        <li>De ce ai venit la curs</li>
+                        <li>Ce așteptări ai</li>
+                    </ul>
+                </td>
+                <td><span class="method-tag">Conversație</span><br><span class="method-tag">Ascultare activă</span></td>
+                <td><span class="resource-tag">Flipchart</span></td>
+                <td>15'</td>
+                <td><span class="eval-tag">Observare</span><br>Identificare nevoi reale (bani, hobby, social, încredere)</td>
+            </tr>
+            <tr>
+                <td>1.3</td>
+                <td><strong>Regulile atelierului</strong></td>
+                <td>
+                    <ul>
+                        <li>Respect reciproc</li>
+                        <li>Întreabă oricând</li>
+                        <li>Siguranța întâi</li>
+                        <li>Greșelile sunt OK</li>
+                        <li>Telefoane pe silent</li>
+                        <li>Distracție!</li>
+                    </ul>
+                </td>
+                <td><span class="method-tag">Expunere</span><br><span class="method-tag">Negociere reguli</span></td>
+                <td><span class="resource-tag">Slideshow</span></td>
+                <td>10'</td>
+                <td><span class="eval-tag">Acord verbal</span></td>
+            </tr>
+
+            <!-- CAPITOLUL 2 -->
+            <tr class="chapter-row">
+                <td colspan="7">📖 MODULUL 2 — „Ce Îți Pot Oferi" (Materiale, instrumente, siguranță, demo)</td>
+            </tr>
+            <tr>
+                <td>2.1</td>
+                <td><strong>Materialele de bază</strong></td>
+                <td>
+                    <ul>
+                        <li>Lut polimeric: compoziție (PVC + plastifianți), mărci (Fimo, Sculpey, Cernit)</li>
+                        <li>Rășină UV epoxidică: proprietăți, timp de întărire</li>
+                        <li>Pigmenți, glitter, foițe metalice, accesorii</li>
+                    </ul>
+                </td>
+                <td><span class="method-tag">Expunere</span><br><span class="method-tag">Demonstrație</span></td>
+                <td><span class="resource-tag">Slideshow</span><br><span class="resource-tag">Mostre reale</span><br><span class="resource-tag">Materiale fizice</span></td>
+                <td>15'</td>
+                <td><span class="eval-tag">Întrebări</span></td>
+            </tr>
+            <tr>
+                <td>2.2</td>
+                <td><strong>Instrumentele necesare</strong></td>
+                <td>Rolă acrilică, cutter, forme, suprafață de lucru, pensule, ac, mănuși, cuptor, lampă UV, hârtie abrazivă</td>
+                <td><span class="method-tag">Demonstrație</span><br><span class="method-tag">Manipulare</span></td>
+                <td><span class="resource-tag">Instrumente fizice</span><br><span class="resource-tag">Slideshow</span></td>
+                <td>10'</td>
+                <td><span class="eval-tag">Identificare</span><br>Cursantul atinge și numește fiecare instrument</td>
+            </tr>
+            <tr>
+                <td>2.3</td>
+                <td><strong>Norme de siguranță</strong></td>
+                <td>
+                    <ul>
+                        <li>🚫 Nu depăși 130°C (fum toxic — HCl)</li>
+                        <li>🚫 Nu coace în cuptorul de gătit fără protecție</li>
+                        <li>🚫 Nu inhala vapori de rășină</li>
+                        <li>✅ Ventilație, termometru separat, mănuși, hârtie de copt</li>
+                    </ul>
+                </td>
+                <td><span class="method-tag">Expunere</span><br><span class="method-tag">Studiu de caz</span></td>
+                <td><span class="resource-tag">Slideshow</span><br><span class="resource-tag">Fișă siguranță</span></td>
+                <td>10'</td>
+                <td><span class="eval-tag">Confirmare</span><br>Fiecare cursant confirmă verbal înțelegerea</td>
+            </tr>
+            <tr>
+                <td>2.4</td>
+                <td><strong>Demo live complet</strong></td>
+                <td>Trainerul parcurge tot procesul: condiționare → mixare → formare → coacere → finisare → rășină UV</td>
+                <td><span class="method-tag">Demonstrație practică</span></td>
+                <td><span class="resource-tag">Toate materialele</span><br><span class="resource-tag">Cuptor</span><br><span class="resource-tag">Lampă UV</span></td>
+                <td>10'</td>
+                <td><span class="eval-tag">Observare</span><br>Cursanții urmăresc și pun întrebări</td>
+            </tr>
+
+            <!-- CAPITOLUL 3 -->
+            <tr class="chapter-row">
+                <td colspan="7">📖 MODULUL 3 — „Practică" — Creezi Prima Bijuterie (5 etape)</td>
+            </tr>
+            <tr>
+                <td>3.1</td>
+                <td><strong>Pasul 1: Condiționarea lutului</strong></td>
+                <td>
+                    <ul>
+                        <li>Taie blocul în felii subțiri</li>
+                        <li>Frământă fiecare felie</li>
+                        <li>Unește și repetă până e moale și elastic</li>
+                    </ul>
+                    <em>De ce: activează plastifianții — fără condiționare, piesa va fi fragilă</em>
+                </td>
+                <td><span class="method-tag">Demonstrație</span><br><span class="method-tag">Exercițiu practic</span></td>
+                <td><span class="resource-tag">Lut polimeric</span><br><span class="resource-tag">Cutter</span></td>
+                <td>15'</td>
+                <td><span class="eval-tag">Produs</span><br>Lut condiționat — moale, elastic, omogen</td>
+            </tr>
+            <tr>
+                <td>3.2</td>
+                <td><strong>Pasul 2: Mixarea culorilor</strong></td>
+                <td>
+                    <ul>
+                        <li>Alege 2-3 culori</li>
+                        <li>Amestecă proporții mici (test)</li>
+                        <li>Tehnica Skinner Blend (gradient)</li>
+                        <li>Opțional: semi-amestecat = efect marmorat</li>
+                    </ul>
+                    <em>Regulă de aur: culori deschise + puțin închis = OK</em>
+                </td>
+                <td><span class="method-tag">Demonstrație</span><br><span class="method-tag">Experiment liber</span></td>
+                <td><span class="resource-tag">Lut multicolor</span><br><span class="resource-tag">Rolă acrilică</span></td>
+                <td>20'</td>
+                <td><span class="eval-tag">Produs</span><br>Culoare personalizată obținută</td>
+            </tr>
+            <tr>
+                <td>3.3</td>
+                <td><strong>Pasul 3: Formarea piesei</strong></td>
+                <td>
+                    <ul>
+                        <li>Întinde lutul cu rola (grosime uniformă: 2-3mm cercei, 4-5mm pandantive)</li>
+                        <li>Decupează forma (cutters sau manual)</li>
+                        <li>Adaugă texturi (ștampile, frunze, țesături)</li>
+                        <li>Fă găurile pentru cârlige/tije</li>
+                        <li>Netezește marginile cu degetul umed</li>
+                    </ul>
+                </td>
+                <td><span class="method-tag">Demonstrație</span><br><span class="method-tag">Practică individuală</span><br><span class="method-tag">Coaching</span></td>
+                <td><span class="resource-tag">Rolă, cutter, forme</span><br><span class="resource-tag">Ștampile, texturi</span><br><span class="resource-tag">Suprafață lucru</span></td>
+                <td>40'</td>
+                <td><span class="eval-tag">Produs</span><br>Piesă modelată, gata de coacere</td>
+            </tr>
+            <tr>
+                <td>3.4</td>
+                <td><strong>Pasul 4: Coacerea</strong></td>
+                <td>
+                    <ul>
+                        <li>Preîncălzire cuptor + termometru separat</li>
+                        <li>Hârtie de copt pe tavă</li>
+                        <li>Fimo: 110°C / 30 min; Sculpey: 130°C / 15-30 min; Cernit: 130°C / 30 min</li>
+                        <li>Nu deschide ușa, lasă să se răcească în cuptor</li>
+                    </ul>
+                    <em>⚠️ CRITICE: nu depăși temperatura, ventilează, nu lăsa nesupravegheat</em>
+                </td>
+                <td><span class="method-tag">Demonstrație</span><br><span class="method-tag">Supraveghere</span></td>
+                <td><span class="resource-tag">Cuptor</span><br><span class="resource-tag">Termometru</span><br><span class="resource-tag">Hârtie de copt</span></td>
+                <td>25'</td>
+                <td><span class="eval-tag">Proces</span><br>Temp. setată corect, piesa nu e arsă/fragilă</td>
+            </tr>
+            <tr>
+                <td>3.5</td>
+                <td><strong>Pasul 5: Finisare & Rășină UV</strong></td>
+                <td>
+                    <ul>
+                        <li>A. Finisare: șlefuire 400 → 800 → 1200 (efect oglindă)</li>
+                        <li>B. Rășină UV: strat subțire → scoate bule cu ac → lampă UV 2-3 min → strat 2 opțional</li>
+                        <li>C. Asamblare: montare cârlige, tije, inele</li>
+                    </ul>
+                    <em>🧤 MĂNUȘI OBLIGATORII la lucrul cu rășina</em>
+                </td>
+                <td><span class="method-tag">Demonstrație</span><br><span class="method-tag">Practică asistată</span></td>
+                <td><span class="resource-tag">Hârtie abrazivă</span><br><span class="resource-tag">Rășină UV</span><br><span class="resource-tag">Lampă UV</span><br><span class="resource-tag">Mănuși, accesorii</span></td>
+                <td>30'</td>
+                <td><span class="eval-tag">Produs finit</span><br>Bijuterie completă, gata de purtat</td>
+            </tr>
+
+            <!-- PAUZĂ IMPLICITĂ -->
+            <tr style="background: rgba(0,206,201,0.08);">
+                <td>—</td>
+                <td><strong>☕ Pauză flexibilă</strong></td>
+                <td>În timpul coacerii (Pasul 4) — pauză naturală de 10 minute sau discuție informală</td>
+                <td><span class="method-tag">Relaxare</span></td>
+                <td><span class="resource-tag">Apă, cafea</span></td>
+                <td>~10'</td>
+                <td>—</td>
+            </tr>
+
+            <!-- CAPITOLUL 4 -->
+            <tr class="chapter-row">
+                <td colspan="7">📖 MODULUL 4 — „Încheiere & Business" (Monetizare, prețuri, concurență, Q&A)</td>
+            </tr>
+            <tr>
+                <td>4.1</td>
+                <td><strong>Formula de preț</strong></td>
+                <td>Materiale + Timp de lucru + Costuri fixe + Profit (min. 30-50% markup). Include ambalajul. Calculează per lot.</td>
+                <td><span class="method-tag">Expunere</span><br><span class="method-tag">Exercițiu calcul</span></td>
+                <td><span class="resource-tag">Slideshow</span><br><span class="resource-tag">Tabel calcul</span></td>
+                <td>10'</td>
+                <td><span class="eval-tag">Exercițiu</span><br>Cursantul estimează prețul bijuteriei create</td>
+            </tr>
+            <tr>
+                <td>4.2</td>
+                <td><strong>Concurență & diferențiere</strong></td>
+                <td>
+                    <ul>
+                        <li>Concurența validează piața</li>
+                        <li>Diferențiere: stil unic, povestea piesei, calitate finisaj, ambalaj, relație client</li>
+                    </ul>
+                </td>
+                <td><span class="method-tag">Conversație</span><br><span class="method-tag">Brainstorming</span></td>
+                <td><span class="resource-tag">Slideshow</span></td>
+                <td>5'</td>
+                <td><span class="eval-tag">Participare</span></td>
+            </tr>
+            <tr>
+                <td>4.3</td>
+                <td><strong>Canale de vânzare</strong></td>
+                <td>Instagram, Facebook, Etsy, târguri, site propriu, comenzi personalizate</td>
+                <td><span class="method-tag">Expunere</span></td>
+                <td><span class="resource-tag">Slideshow</span></td>
+                <td>5'</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>4.4</td>
+                <td><strong>Q&A deschis</strong></td>
+                <td>Întrebări libere. Subiecte frecvente: marcă ideală, cuptor de acasă, câștiguri realiste, comenzi personalizate</td>
+                <td><span class="method-tag">Conversație</span><br><span class="method-tag">Dezbatere</span></td>
+                <td>—</td>
+                <td>10'</td>
+                <td><span class="eval-tag">Feedback oral</span></td>
+            </tr>
+
+            <!-- CAPITOLUL 5 -->
+            <tr class="bonus-row">
+                <td colspan="7">🎁 MODULUL 5 — PLATA o PLOMO (Bonus Final)</td>
+            </tr>
+            <tr class="bonus-row">
+                <td>5.1</td>
+                <td><strong>Oferta specială</strong></td>
+                <td>
+                    <ul>
+                        <li>Curs avansat (tehnici complexe)</li>
+                        <li>Kit materiale pentru acasă</li>
+                        <li>Grup privat de suport</li>
+                        <li>Consultanță online 30 zile</li>
+                        <li>Discount furnizori</li>
+                    </ul>
+                </td>
+                <td><span class="method-tag">Prezentare</span><br><span class="method-tag">Ofertare</span></td>
+                <td><span class="resource-tag">Slideshow</span><br><span class="resource-tag">Fișă ofertă</span></td>
+                <td>15'</td>
+                <td><span class="eval-tag">Interes</span><br>Nr. cursanți interesați</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ======================== PAGINA 4: DETALII MODULE ======================== -->
+    <div class="section-header">
+        <span class="icon">📚</span>
+        <h2>4. Desfășurarea Detaliată pe Module</h2>
+    </div>
+
+    <!-- MODULE 1 -->
+    <div class="module no-break">
+        <div class="module-header m1">
+            <span>1️⃣</span>
+            <h3>Modulul 1 — Ce Vrei De La Mine?</h3>
+            <span class="dur">⏱️ 30 min</span>
+        </div>
+        <div class="module-body">
+            <div class="module-cols">
+                <div>
+                    <h4>Obiective operaționale vizate</h4>
+                    <p style="font-size:0.82rem; color:var(--gray);">Stabilirea relației trainer-cursant, identificarea nevoilor și așteptărilor, crearea unui mediu de învățare sigur și confortabil.</p>
+
+                    <h4>Activități</h4>
+                    <ol>
+                        <li>Prezentarea trainerului (experiență, specializare, poveste personală)</li>
+                        <li>Runda de prezentări — fiecare spune: nume, ocupație, motivație, așteptări</li>
+                        <li>Negocierea regulilor de grup (respect, întrebări, siguranță, telefoane, distracție)</li>
+                    </ol>
+                </div>
+                <div>
+                    <h4>Metode didactice</h4>
+                    <ul>
+                        <li><strong>Expunere dialogată</strong> — prezentarea trainerului</li>
+                        <li><strong>Conversație</strong> — runda de prezentări</li>
+                        <li><strong>Ascultare activă</strong> — notarea nevoilor reale</li>
+                        <li><strong>Negociere</strong> — stabilirea regulilor</li>
+                    </ul>
+
+                    <h4>Notă trainer</h4>
+                    <div class="module-note">
+                        💡 Ascultă activ răspunsurile. Nevoile reale: <strong>BANI</strong> (vrea monetizare), <strong>Hobby</strong> (vrea relaxare), <strong>Social</strong> (vrea prieteni), <strong>Încredere</strong> (vrea să creeze). Personalizează restul cursului!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="module no-break">
+        <div class="module-header m2">
+            <span>2️⃣</span>
+            <h3>Modulul 2 — Ce Îți Pot Oferi</h3>
+            <span class="dur">⏱️ 45 min</span>
+        </div>
+        <div class="module-body">
+            <div class="module-cols">
+                <div>
+                    <h4>Obiective operaționale vizate</h4>
+                    <p style="font-size:0.82rem; color:var(--gray);">O1 (Identifică materiale), O2 (Utilizează instrumente), O3 (Aplică norme siguranță)</p>
+
+                    <h4>Activități</h4>
+                    <ol>
+                        <li>Prezentarea materialelor cu mostre reale (lut, rășină, pigmenți)</li>
+                        <li>Demonstrarea instrumentelor — fiecare cursant atinge și testează</li>
+                        <li>Normele de siguranță — ce NU faci + ce DA faci</li>
+                        <li>Demo live complet: tot procesul de la A la Z</li>
+                    </ol>
+                </div>
+                <div>
+                    <h4>Metode didactice</h4>
+                    <ul>
+                        <li><strong>Expunere cu suport vizual</strong></li>
+                        <li><strong>Demonstrație practică</strong></li>
+                        <li><strong>Manipulare directă</strong> — cursanții ating materialele</li>
+                    </ul>
+
+                    <div class="safety-box">
+                        <h4>⚠️ Punct critic — Siguranță</h4>
+                        <ul>
+                            <li>Nu depăși 130°C — emană HCl (fum toxic)</li>
+                            <li>Mănuși obligatorii la rășină UV</li>
+                            <li>Ventilație la coacere</li>
+                            <li><strong>Verifică că FIECARE cursant a înțeles ÎNAINTE de a atinge materialele</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="module">
+        <div class="module-header m3">
+            <span>3️⃣</span>
+            <h3>Modulul 3 — Practică (5 Etape)</h3>
+            <span class="dur">⏱️ 2 ore (120 min)</span>
+        </div>
+        <div class="module-body">
+            <h4>Obiective operaționale vizate</h4>
+            <p style="font-size:0.82rem; color:var(--gray); margin-bottom:0.5rem;">O4 (Condiționare lut), O5 (Modelare bijuterie), O6 (Finisare rășină), O7 (Coacere corectă)</p>
+
+            <table class="resources-table">
+                <thead>
+                    <tr>
+                        <th>Etapa</th>
+                        <th>Activitate</th>
+                        <th>Metodă</th>
+                        <th>Durată</th>
+                        <th>Rezultat așteptat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Pasul 1</strong></td>
+                        <td>Condiționarea lutului — tăiere, frământare, activare plastifianți</td>
+                        <td>Demo 2 min + practică individuală</td>
+                        <td>15 min</td>
+                        <td>Lut moale, elastic, omogen</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pasul 2</strong></td>
+                        <td>Mixarea culorilor — alegere, amestec, Skinner Blend, efect marmorat</td>
+                        <td>Demo Skinner Blend + experiment liber</td>
+                        <td>20 min</td>
+                        <td>Culoare personalizată</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pasul 3</strong></td>
+                        <td>Formarea piesei — rulare, decupare, texturare, găuri, netezire</td>
+                        <td>Demo piesa simplă + practică asistată</td>
+                        <td>40 min</td>
+                        <td>Piesă modelată, gata de copt</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pasul 4</strong></td>
+                        <td>Coacerea — preîncălzire, plasare pe hârtie de copt, control temperatură</td>
+                        <td>Demo + supraveghere (pauză 10 min)</td>
+                        <td>25 min</td>
+                        <td>Piesă coaptă, solidă</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pasul 5</strong></td>
+                        <td>Finisare & Rășină UV — șlefuire 400→800→1200, rășină, asamblare</td>
+                        <td>Demo fiecare etapă + asistență individuală</td>
+                        <td>30 min</td>
+                        <td>Bijuterie completă, gata de purtat</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="module-note">
+                💡 <strong>Principiu pedagogic:</strong> Fiecare pas urmează ciclul: trainer demonstrează → cursant exersează → trainer circulă și asistă individual → feedback imediat. Greșelile sunt OK — lutul se reface!
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- MODULE 4 -->
+    <div class="module no-break">
+        <div class="module-header m4">
+            <span>4️⃣</span>
+            <h3>Modulul 4 — Încheiere & Business</h3>
+            <span class="dur">⏱️ 30 min</span>
+        </div>
+        <div class="module-body">
+            <div class="module-cols">
+                <div>
+                    <h4>Obiective operaționale vizate</h4>
+                    <p style="font-size:0.82rem; color:var(--gray);">O8 (Calculează preț), O9 (Plan de vânzare)</p>
+
+                    <h4>Activități</h4>
+                    <ol>
+                        <li><strong>Formula de preț:</strong> Materiale + Timp + Costuri fixe + Profit (min. 30-50%)</li>
+                        <li><strong>Exercițiu:</strong> Fiecare cursant estimează prețul bijuteriei create</li>
+                        <li><strong>Concurență:</strong> validează piața, diferențiere prin stil/calitate/poveste</li>
+                        <li><strong>Canale:</strong> Instagram, Facebook, Etsy, târguri, site, comenzi personalizate</li>
+                        <li><strong>Q&A deschis</strong></li>
+                    </ol>
+                </div>
+                <div>
+                    <h4>Metode didactice</h4>
+                    <ul>
+                        <li><strong>Expunere</strong> — formula de preț</li>
+                        <li><strong>Exercițiu individual</strong> — calculare preț real</li>
+                        <li><strong>Brainstorming</strong> — idei diferențiere</li>
+                        <li><strong>Dezbatere / Q&A</strong> — întrebări deschise</li>
+                    </ul>
+
+                    <div class="module-note">
+                        💡 Întrebările controversate despre preț și concurență sunt cele mai valoroase. Răspunde deschis și onest!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 5 -->
+    <div class="module no-break">
+        <div class="module-header m5">
+            <span>🎁</span>
+            <h3>Modulul 5 — PLATA o PLOMO (Bonus)</h3>
+            <span class="dur">⏱️ 15 min</span>
+        </div>
+        <div class="module-body">
+            <div class="module-cols">
+                <div>
+                    <h4>Activitate</h4>
+                    <p style="font-size:0.82rem;">Prezentarea ofertei speciale de continuare pentru participanții la curs:</p>
+                    <ul>
+                        <li>Acces curs avansat (tehnici complexe)</li>
+                        <li>Kit de materiale pentru acasă</li>
+                        <li>Grup privat de suport & inspirație</li>
+                        <li>Consultanță online 30 zile</li>
+                        <li>Discount la furnizori de materiale</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Metode</h4>
+                    <ul>
+                        <li><strong>Prezentare ofertă</strong></li>
+                        <li><strong>Discuție individuală</strong> pentru interesați</li>
+                    </ul>
+
+                    <h4>Indicatori de succes</h4>
+                    <p style="font-size:0.82rem; color:var(--gray);">Numărul de cursanți care solicită detalii / care se înscriu la curs avansat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== PAGINA 5: RESURSE + EVALUARE + COMPETENȚE ======================== -->
+    <div class="section-header">
+        <span class="icon">🧰</span>
+        <h2>5. Resurse și Mijloace de Învățământ</h2>
+    </div>
+
+    <table class="resources-table no-break">
+        <thead>
+            <tr>
+                <th>Categorie</th>
+                <th>Resursa</th>
+                <th>Detalii / Cantitate</th>
+                <th>Asigurat de</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="3"><strong>Materiale consumabile</strong></td>
+                <td>Lut polimeric</td>
+                <td>Fimo Soft / Sculpey / Cernit — 3-4 culori × nr. cursanți</td>
+                <td>Organizator</td>
+            </tr>
+            <tr>
+                <td>Rășină UV epoxidică</td>
+                <td>1 flacon per 4 cursanți</td>
+                <td>Organizator</td>
+            </tr>
+            <tr>
+                <td>Pigmenți, glitter, foițe, accesorii cercei</td>
+                <td>Set comun partajat</td>
+                <td>Organizator</td>
+            </tr>
+            <tr>
+                <td rowspan="4"><strong>Instrumente</strong></td>
+                <td>Role acrilice, cuttere, forme</td>
+                <td>1 set per cursant</td>
+                <td>Organizator</td>
+            </tr>
+            <tr>
+                <td>Pensule fine, ace</td>
+                <td>1 set per cursant</td>
+                <td>Organizator</td>
+            </tr>
+            <tr>
+                <td>Cuptor + termometru</td>
+                <td>1 buc (comun)</td>
+                <td>Organizator</td>
+            </tr>
+            <tr>
+                <td>Lampă UV</td>
+                <td>1-2 buc (comune)</td>
+                <td>Organizator</td>
+            </tr>
+            <tr>
+                <td rowspan="2"><strong>Protecție</strong></td>
+                <td>Mănuși latex</td>
+                <td>2 perechi per cursant</td>
+                <td>Organizator</td>
+            </tr>
+            <tr>
+                <td>Suprafețe de lucru, hârtie de copt</td>
+                <td>1 per cursant + rezervă</td>
+                <td>Organizator</td>
+            </tr>
+            <tr>
+                <td rowspan="2"><strong>Digitale</strong></td>
+                <td>Prezentare slideshow (curs.html)</td>
+                <td>Laptop / proiector</td>
+                <td>Trainer</td>
+            </tr>
+            <tr>
+                <td>Suport de curs (print)</td>
+                <td>1 per cursant (opțional)</td>
+                <td>Trainer</td>
+            </tr>
+            <tr>
+                <td><strong>Sală</strong></td>
+                <td>Spațiu de atelier cu mese, scaune, ventilație, priză</td>
+                <td>Min. 2m² per cursant + masă trainer</td>
+                <td>Organizator</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-header">
+        <span class="icon">📝</span>
+        <h2>6. Evaluare</h2>
+    </div>
+
+    <div class="eval-grid no-break">
+        <div class="eval-card">
+            <h4>📋 Evaluare inițială</h4>
+            <p><strong>Moment:</strong> Modulul 1 (runda de prezentări)</p>
+            <ul>
+                <li>Identificarea nivelului de experiență</li>
+                <li>Identificarea așteptărilor și nevoilor</li>
+                <li>Personalizarea cursului în consecință</li>
+            </ul>
+            <p><strong>Instrument:</strong> Conversație liberă, observare</p>
+        </div>
+        <div class="eval-card">
+            <h4>🔄 Evaluare formativă (continuă)</h4>
+            <p><strong>Moment:</strong> Pe tot parcursul Modulelor 2-4</p>
+            <ul>
+                <li>Fiecare pas practic = produs verificabil</li>
+                <li>Feedback imediat, corectare în timp real</li>
+                <li>Întrebări de verificare la norme siguranță</li>
+                <li>Exercițiu calcul preț (Modulul 4)</li>
+            </ul>
+            <p><strong>Instrument:</strong> Observare, produs, întrebări</p>
+        </div>
+        <div class="eval-card">
+            <h4>✅ Evaluare finală (sumativă)</h4>
+            <p><strong>Moment:</strong> Finalul Modulului 3</p>
+            <ul>
+                <li><strong>Produsul finit</strong> — bijuteria completă</li>
+                <li>Include: condiționare, modelare, coacere, finisare, rășină UV, asamblare</li>
+                <li>Criterii: integritate, finisaj, funcționalitate</li>
+            </ul>
+            <p><strong>Instrument:</strong> Produs finit + autoevaluare</p>
+        </div>
+    </div>
+
+    <div class="section-header">
+        <span class="icon">🏆</span>
+        <h2>7. Competențe Dezvoltate</h2>
+    </div>
+
+    <div class="competence-grid no-break">
+        <div class="competence-card">
+            <span class="comp-icon">🤲</span>
+            <strong>Dexteritate manuală</strong>
+            <p>Motricitate fină, coordonare mână-ochi</p>
+        </div>
+        <div class="competence-card">
+            <span class="comp-icon">🎨</span>
+            <strong>Creativitate</strong>
+            <p>Exprimare artistică, simț estetic, combinare culori</p>
+        </div>
+        <div class="competence-card">
+            <span class="comp-icon">⚠️</span>
+            <strong>Siguranță & prevenire</strong>
+            <p>Norme de lucru cu materiale chimice și echipamente termice</p>
+        </div>
+        <div class="competence-card">
+            <span class="comp-icon">💰</span>
+            <strong>Antreprenoriat</strong>
+            <p>Calcul preț, canale de vânzare, diferențiere pe piață</p>
+        </div>
+        <div class="competence-card">
+            <span class="comp-icon">🧠</span>
+            <strong>Rezolvare probleme</strong>
+            <p>Adaptare la greșeli, reprocesare lut, improvizație</p>
+        </div>
+        <div class="competence-card">
+            <span class="comp-icon">🔬</span>
+            <strong>Cunoștințe tehnice</strong>
+            <p>Proprietăți materiale, temperaturi, chimie de bază</p>
+        </div>
+        <div class="competence-card">
+            <span class="comp-icon">🤝</span>
+            <strong>Lucru în echipă</strong>
+            <p>Colaborare, partajare resurse, feedback constructiv</p>
+        </div>
+        <div class="competence-card">
+            <span class="comp-icon">💪</span>
+            <strong>Încredere în sine</strong>
+            <p>Crearea unui produs finit de la zero = dovada competenței</p>
+        </div>
+    </div>
+
+    <!-- ======================== FOOTER / SEMNĂTURI ======================== -->
+
+    <div class="section-header">
+        <span class="icon">🧑‍🏫</span>
+        <h2>8. Profilul Trainerului</h2>
+    </div>
+
+    <div class="info-grid no-break">
+        <div class="info-card">
+            <h3>👤 Date personale</h3>
+            <p><strong>Nume:</strong> Cosmin Ilie</p>
+            <p><strong>Brand:</strong> RashinaThor.ro</p>
+            <p><strong>Specializare:</strong> Modelare lut polimeric, rășină epoxidică UV, bijuterii artizanale</p>
+        </div>
+        <div class="info-card">
+            <h3>📜 Calificări</h3>
+            <ul>
+                <li>Certificare ANC — Formator (curs Train the Trainers)</li>
+                <li>Experiență practică: sute de piese create, zeci de tehnici testate</li>
+                <li>Cunoștințe de andragogie și metodologie de formare</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h3>🏆 Experiența ca trainer</h3>
+            <ul>
+                <li>Cursuri practice de modelare lut polimeric</li>
+                <li>Workshop-uri la târguri de artizanat</li>
+                <li>100% rată de satisfacție la cursanți</li>
+                <li>Toate cursurile livrate cu produs finit inclus</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h3>📊 Competențe de trainer</h3>
+            <ul>
+                <li>Comunicare adaptată (vizual, auditiv, kinestezic)</li>
+                <li>Demonstrație practică și coaching individual</li>
+                <li>Managementul grupului și gestionarea timpului</li>
+                <li>Evaluare formativă continuă și feedback constructiv</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-header">
+        <span class="icon">📐</span>
+        <h2>9. Cadru Metodologic & Principii Pedagogice</h2>
+    </div>
+
+    <div class="info-grid no-break">
+        <div class="info-card full">
+            <h3>🎓 Abordare andragogică (învățare la adulți)</h3>
+            <p>Cursul respectă principiile andragogiei (Malcolm Knowles): adulții învață cel mai bine când conținutul este <strong>relevant practic</strong>, bazat pe <strong>experiență directă</strong>, orientat spre <strong>rezolvarea de probleme</strong> și respectă <strong>autonomia</strong> cursantului. Fiecare participant parcurge ciclul complet de învățare experiențială (David Kolb): experiență concretă → observare reflexivă → conceptualizare → experimentare activă.</p>
+        </div>
+        <div class="info-card">
+            <h3>🔄 Ciclul didactic per activitate</h3>
+            <ol>
+                <li><strong>Trainerul demonstrează</strong> — model live</li>
+                <li><strong>Cursantul observă</strong> — vizual + explicativ</li>
+                <li><strong>Cursantul exersează</strong> — practică individuală</li>
+                <li><strong>Trainerul asistă</strong> — coaching, corecție</li>
+                <li><strong>Feedback imediat</strong> — validare sau ajustare</li>
+            </ol>
+        </div>
+        <div class="info-card">
+            <h3>🧠 Stiluri de învățare acoperite</h3>
+            <ul>
+                <li><strong>Kinestezic (dominant):</strong> Frământare, modelare, finisare — 70% din curs</li>
+                <li><strong>Vizual:</strong> Demonstrații live, slideshow, galerie foto</li>
+                <li><strong>Auditiv:</strong> Explicații verbale, Q&A, conversații</li>
+                <li><strong>Lectura/Scriere:</strong> Suport de curs printabil, fișe tehnice</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h3>📋 Metode didactice utilizate</h3>
+            <ul>
+                <li><strong>Demonstrația practică</strong> — fiecare pas al procesului</li>
+                <li><strong>Exercițiul practic individual</strong> — cursantul execută</li>
+                <li><strong>Coaching individual</strong> — circulare, asistență</li>
+                <li><strong>Expunerea dialogată</strong> — teorie + întrebări</li>
+                <li><strong>Brainstorming</strong> — idei de diferențiere</li>
+                <li><strong>Studiul de caz</strong> — norme de siguranță</li>
+                <li><strong>Storytelling</strong> — poveste personală trainer</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h3>📊 Proporția metodelor</h3>
+            <ul>
+                <li>🟢 70% — Practică (exerciții individuale, modelare, finisare)</li>
+                <li>🔵 15% — Demonstrație (trainer arată procesul live)</li>
+                <li>🟡 10% — Expunere dialogată (teorie, siguranță, business)</li>
+                <li>🟣 5% — Conversație și Q&A (introductiv, încheiere)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section-header">
+        <span class="icon">📝</span>
+        <h2>10. Fișă de Evaluare a Cursantului</h2>
+    </div>
+
+    <div class="info-card full no-break" style="margin-bottom: 1rem;">
+        <p style="font-size: 0.82rem; color: var(--gray); margin-bottom: 0.5rem;">Completată de trainer la finalul cursului, pentru fiecare cursant. Se atașează la portofoliul de evaluare.</p>
+        <table class="plan-table" style="margin-top: 0.5rem;">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">Nr.</th>
+                    <th style="width: 10%;">Obiectiv</th>
+                    <th style="width: 35%;">Criteriu de evaluare</th>
+                    <th style="width: 12%;">Metodă</th>
+                    <th style="width: 10%;">Realizat</th>
+                    <th style="width: 28%;">Observații</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>O1</td><td>Identifică corect cel puțin 2 mărci de lut polimeric și proprietatea lor</td><td>Întrebare orală</td><td>☐ DA / ☐ NU</td><td></td></tr>
+                <tr><td>2</td><td>O2</td><td>Utilizează corect rola, cutterul și formele fără asistență</td><td>Observare</td><td>☐ DA / ☐ NU</td><td></td></tr>
+                <tr><td>3</td><td>O3</td><td>Enumeră cel puțin 3 norme de siguranță esențiale</td><td>Întrebare orală</td><td>☐ DA / ☐ NU</td><td></td></tr>
+                <tr><td>4</td><td>O4</td><td>Condiționează lutul până la consistență moale și omogenă</td><td>Produs</td><td>☐ DA / ☐ NU</td><td></td></tr>
+                <tr><td>5</td><td>O5</td><td>Modelează o piesă cu formă definită, textură și găuri pentru montaj</td><td>Produs</td><td>☐ DA / ☐ NU</td><td></td></tr>
+                <tr><td>6</td><td>O6</td><td>Aplică rășina UV uniform, fără bule, cu mănuși de protecție</td><td>Produs + Observare</td><td>☐ DA / ☐ NU</td><td></td></tr>
+                <tr><td>7</td><td>O7</td><td>Setează corect temperatura și durata de coacere</td><td>Observare</td><td>☐ DA / ☐ NU</td><td></td></tr>
+                <tr><td>8</td><td>O8</td><td>Estimează un preț realist pentru bijuteria creată</td><td>Exercițiu oral</td><td>☐ DA / ☐ NU</td><td></td></tr>
+                <tr><td>9</td><td>O9</td><td>Numește cel puțin 2 canale de vânzare potrivite</td><td>Întrebare orală</td><td>☐ DA / ☐ NU</td><td></td></tr>
+            </tbody>
+        </table>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem; font-size: 0.82rem;">
+            <div>
+                <p><strong>Nume cursant:</strong> _________________________________</p>
+                <p style="margin-top: 0.5rem;"><strong>Data:</strong> ____ / ____ / ________</p>
+            </div>
+            <div>
+                <p><strong>Calificativ final:</strong> ☐ Admis / ☐ Respins</p>
+                <p style="margin-top: 0.5rem;"><strong>Semnătura trainer:</strong> _________________________</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">
+        <span class="icon">📋</span>
+        <h2>11. Fișă de Feedback (Chestionar de Satisfacție)</h2>
+    </div>
+
+    <div class="info-card full no-break" style="margin-bottom: 1rem;">
+        <p style="font-size: 0.82rem; color: var(--gray); margin-bottom: 0.5rem;">Completată anonim de cursant la finalul cursului. Scală: 1 (deloc) – 5 (în totalitate).</p>
+        <table class="plan-table" style="margin-top: 0.5rem;">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">Nr.</th>
+                    <th style="width: 55%;">Afirmație</th>
+                    <th style="width: 8%;">1</th>
+                    <th style="width: 8%;">2</th>
+                    <th style="width: 8%;">3</th>
+                    <th style="width: 8%;">4</th>
+                    <th style="width: 8%;">5</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Cursul a corespuns așteptărilor mele</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                <tr><td>2</td><td>Trainerul a explicat clar și pe înțeles</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                <tr><td>3</td><td>Am avut suficient timp pentru practică</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                <tr><td>4</td><td>Materialele au fost de calitate bună</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                <tr><td>5</td><td>Normele de siguranță au fost clar prezentate</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                <tr><td>6</td><td>Am învățat ceva nou și util</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                <tr><td>7</td><td>Atmosfera a fost plăcută și confortabilă</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                <tr><td>8</td><td>Sunt mulțumit/ă de bijuteria pe care am creat-o</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                <tr><td>9</td><td>Aș recomanda acest curs altcuiva</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+                <tr><td>10</td><td>Informațiile despre monetizare mi-au fost utile</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+            </tbody>
+        </table>
+        <div style="margin-top: 0.8rem; font-size: 0.82rem;">
+            <p><strong>Ce ți-a plăcut cel mai mult?</strong></p>
+            <p style="border-bottom: 1px solid #ccc; height: 1.5rem; margin-bottom: 0.5rem;"></p>
+            <p><strong>Ce ai îmbunătăți?</strong></p>
+            <p style="border-bottom: 1px solid #ccc; height: 1.5rem; margin-bottom: 0.5rem;"></p>
+            <p><strong>Alte comentarii:</strong></p>
+            <p style="border-bottom: 1px solid #ccc; height: 1.5rem;"></p>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section-header">
+        <span class="icon">📚</span>
+        <h2>12. Bibliografie & Referințe</h2>
+    </div>
+
+    <div class="info-grid no-break">
+        <div class="info-card full">
+            <h3>📖 Referințe metodologice</h3>
+            <ul>
+                <li><strong>Knowles, M.S.</strong> (1980). <em>The Modern Practice of Adult Education</em>. Cambridge Book Company.</li>
+                <li><strong>Kolb, D.A.</strong> (1984). <em>Experiential Learning</em>. Prentice Hall.</li>
+                <li><strong>Bloom, B.S.</strong> (1956). <em>Taxonomy of Educational Objectives</em>. David McKay.</li>
+                <li><strong>Honey, P. & Mumford, A.</strong> (1986). <em>The Manual of Learning Styles</em>. Peter Honey Publications.</li>
+                <li><strong>OG 129/2000</strong> privind formarea profesională a adulților, republicată, cu modificările ulterioare.</li>
+                <li><strong>HG 522/2003</strong> pentru aprobarea Normelor metodologice de aplicare a OG 129/2000.</li>
+                <li><strong>Autoritatea Națională pentru Calificări (ANC)</strong> — Standardul ocupațional: Formator.</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h3>🧱 Referințe de specialitate</h3>
+            <ul>
+                <li><strong>Fimo</strong> — Staedtler: Specificații tehnice și fișe de siguranță (SDS)</li>
+                <li><strong>Sculpey</strong> — Polyform Products: Instrucțiuni de utilizare și temperaturi</li>
+                <li><strong>Cernit</strong> — The Clay & Paint Factory: Ghid tehnic</li>
+                <li>Fișe tehnice de siguranță (SDS / MSDS) pentru rășină UV epoxidică</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h3>🔒 Referințe normative — siguranță</h3>
+            <ul>
+                <li><strong>Regulamentul (CE) nr. 1907/2006 — REACH</strong></li>
+                <li><strong>Directiva 2001/95/CE</strong> — Siguranța generală a produselor</li>
+                <li>Norme SSM privind lucrul cu substanțe chimice și echipamente termice</li>
+                <li>Recomandări ASTM D-4236 privind etichetarea materialelor artistice</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-header">
+        <span class="icon">📎</span>
+        <h2>13. Anexe — Documente Conexe</h2>
+    </div>
+
+    <div class="info-grid no-break">
+        <div class="info-card">
+            <h3>📄 Lista materialelor de curs</h3>
+            <ul>
+                <li>Suport de curs — <strong>curs-print.html</strong> (format slideshow A4 landscape)</li>
+                <li>Landing page — <strong>landing-print.html</strong> (informații marketing, A4 portrait)</li>
+                <li>Plan de curs — <strong>plan-curs.html</strong> (prezentul document)</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h3>📋 Documente administrative</h3>
+            <ul>
+                <li>Fișa de evaluare a cursantului (secțiunea 10)</li>
+                <li>Chestionarul de satisfacție / feedback (secțiunea 11)</li>
+                <li>Lista de prezență (formular separat)</li>
+                <li>Proces-verbal de predare-primire materiale</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="signatures no-break">
+        <div class="sig-block">
+            <strong>Trainer</strong>
+            <p>Cosmin Ilie — RashinaThor.ro</p>
+            <p style="margin-top: 2rem; font-size: 0.78rem;">Semnătura: _________________________</p>
+        </div>
+        <div class="sig-block">
+            <strong>Organizator</strong>
+            <p>_________________________________</p>
+            <p style="margin-top: 2rem; font-size: 0.78rem;">Semnătura: _________________________</p>
+        </div>
+    </div>
+
+    <div class="doc-footer">
+        <p><strong>De la Bulgăre la Bijuterie</strong> — Plan de Curs | Trainer: Cosmin Ilie | <a href="https://rashinathor.ro" target="_blank" rel="noopener">rashinathor.ro</a></p>
+        <p>Document generat conform metodologiei Train the Trainer</p>
+    </div>
+
+</body>
+</html>

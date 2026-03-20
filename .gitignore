@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.py
+
+# Build/temp
+*.xlsx
+*.3mf
+*.docx
+~$*
+
+# Source materials (nu publicam textele brute)
+materiale/
+
+# Project folder (duplicat?)
+PROIECT_COMPLET/
